@@ -5,15 +5,19 @@ using UnityEngine;
 public class Tile : MonoBehaviour {
     public float m_FadeDuration = 0.5f;
     public float m_FadeOutScale = 1.5f;
+    public float m_BlinkDelay = 0.25f;
     [HideInInspector]
     public int m_Num;
     [HideInInspector]
     public TMPro.TMP_Text m_NumText;
+    [HideInInspector]
+    public SpriteRenderer m_Sr;
     Transform m_Tf;
     Vector3 m_OriScale;
     bool m_IsPlaying;
     private void Awake()
     {
+        m_Sr = GetComponent<SpriteRenderer>();
         m_NumText = GetComponentInChildren<TMPro.TMP_Text>();
         m_Tf = transform;
         m_OriScale = m_Tf.localScale;
@@ -27,6 +31,11 @@ public class Tile : MonoBehaviour {
     {
         StopAllCoroutines();
         StartCoroutine("Co_FadeOut");
+    }
+    public void Blink()
+    {
+        StopAllCoroutines();
+        StartCoroutine("Co_Blink");
     }
     IEnumerator Co_FadeIn()
     {
@@ -69,6 +78,20 @@ public class Tile : MonoBehaviour {
             yield return null;
         }
         m_IsPlaying = false;
+    }
+    IEnumerator Co_Blink()
+    {
+        m_IsPlaying = true;
+        WaitForSeconds wait = new WaitForSeconds(m_BlinkDelay);
+        while (true)
+        {
+            m_Sr.color = Color.grey;
+            m_NumText.color = Color.black;
+            yield return wait;
+            m_Sr.color = Color.black;
+            m_NumText.color = Color.white;
+            yield return wait;
+        }
     }
     public bool IsPlaying()
     {

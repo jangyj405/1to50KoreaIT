@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameScene : MonoBehaviour {
+    public float m_HelpTIme;
     public Transform m_StartPos;
     public Vector2 m_TileSize;
     public Vector2 m_TileSpacing;
@@ -18,6 +19,7 @@ public class GameScene : MonoBehaviour {
     float m_TimeScore;
     int m_Index;
     int m_NumOrder;
+    List<Tile> m_TileList = new List<Tile>();
 	// Use this for initialization
 	IEnumerator Start () {
         Input.multiTouchEnabled = false;
@@ -42,17 +44,28 @@ public class GameScene : MonoBehaviour {
         m_CountText.gameObject.SetActive(false);
 
         StartCoroutine("UpdateTimer");
-       
+        float t = Time.time;
         while (true)
         {
             Tile tile = GetTouchTile();
-
             if (tile != null)
-           {
+            {
                 if (tile.m_Num == m_NumOrder)
                 {
                     StartCoroutine("TouchTile", tile);
                     m_NumOrder++;
+                    t = Time.time;
+                }
+            }
+            if (Time.time - t > m_HelpTIme)
+            {
+                int index = m_NumOrder - 1;
+                if (index >= 0 && index < m_MaxGameNum)
+                {
+                    if (m_TileList[index] != null && !m_TileList[index].IsPlaying())
+                    {
+                        m_TileList[index].Blink();
+                    }
                 }
             }
             if (m_NumOrder > m_MaxGameNum)
@@ -85,6 +98,7 @@ public class GameScene : MonoBehaviour {
             newTile.transform.localScale = tile.transform.localScale;
             newTile.m_Num = m_Index + 1;
             newTile.m_NumText.text = newTile.m_Num.ToString();
+            m_TileList.Add(newTile);
             m_Index++;
             newTile.FadeIn();
         }
@@ -145,8 +159,10 @@ public class GameScene : MonoBehaviour {
                 tile.transform.localScale = new Vector3(m_TileSize.x, m_TileSize.y, 1);
                 tile.m_Num = numArr[m_Index];
                 tile.m_NumText.text = tile.m_Num.ToString();
+                m_TileList.Add(tile);
                 m_Index++;
             }
+        m_TileList.Sort((a, b) => a.m_Num.CompareTo(b.m_Num));
     }
     public void OnDrawGizmos()
     {

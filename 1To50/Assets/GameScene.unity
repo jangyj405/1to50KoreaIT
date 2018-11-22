@@ -1425,6 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64d27c1339c16748929fafa1bbc89c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HelpTIme: 3
   m_StartPos: {fileID: 1201228815}
   m_TileSize: {x: 1, y: 1}
   m_TileSpacing: {x: 0.1, y: 0.1}
