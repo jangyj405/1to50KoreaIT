@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class jung : MonoBehaviour {
+public class SceneControl : MonoBehaviour {
+
+
+    private BlockRoot block_root = null;
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("hi");
+        this.block_root = this.gameObject.GetComponent<BlockRoot>();
+
+        this.block_root.initialSetUp();
+		
 	}
 	
 	// Update is called once per frame
