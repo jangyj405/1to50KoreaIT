@@ -10,8 +10,12 @@ using UnityEngine.SceneManagement;
 public class CJooLogin : MonoBehaviour
 {
     public GameObject signup = null;
-    public InputField IDField = null;
-    public InputField PWField = null;
+    public InputField signupID = null;
+    public InputField signupPW = null;
+
+    public GameObject login = null;
+    public InputField loginID = null;
+    public InputField loginPW = null;
 
     bool m_isSucceeded = false;
     bool isSucceeded
@@ -129,9 +133,9 @@ public class CJooLogin : MonoBehaviour
         CustomLogin(ID, PW);
     }
 
-    void DisplaySignUp()
+    public void OnClickBtnDisplaySignUp()
     {
-
+        signup.SetActive(true);
     }
 
     void GetAccountFromPrefs(out string oID, out string oPW)
@@ -171,12 +175,33 @@ public class CJooLogin : MonoBehaviour
         }
     }
 
+    public void OnClickBtnTryLogIn()
+    {
+        string tID = "";
+        string tPW = "";
+        tID = loginID.text;
+        tPW = loginPW.text;
+
+        if (tID == "")
+        {
+            Debug.Log("아이디를 입력해라");
+        }
+        else if (tPW == "")
+        {
+            Debug.Log("패스워드를 입력해라");
+        }
+        else
+        {
+            CustomLogin(tID, tPW);
+        }
+    }
+
     public void OnClickTryCreateID()
     {
         string tID = "";
         string tPW = "";
-        tID = IDField.text;
-        tPW = PWField.text;
+        tID = signupID.text;
+        tPW = signupPW.text;
 
         if(tID == "")
         {
@@ -230,7 +255,7 @@ public class CJooLogin : MonoBehaviour
         TryLoginPrefsSync();
         if(isSucceeded == false)
         {
-            signup.SetActive(true);
+            login.SetActive(true);
         }
     }
 }
