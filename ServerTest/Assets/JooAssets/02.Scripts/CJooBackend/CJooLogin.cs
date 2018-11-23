@@ -17,6 +17,8 @@ public class CJooLogin : MonoBehaviour
     public InputField loginID = null;
     public InputField loginPW = null;
 
+    public GameObject serverStatusPanel = null;
+
     bool m_isSucceeded = false;
     bool isSucceeded
     {
@@ -36,13 +38,18 @@ public class CJooLogin : MonoBehaviour
     void Start()
     {
         InitialBackend();
+        bool isServerAvailable = ServerStatus.CheckServerStatus();
+
+        if (isServerAvailable == false)
+        {
+            serverStatusPanel.SetActive(true);
+            return;
+        }
+
         TryLogin();
     }
 
-    void Update()
-    {
-
-    }
+   
 
     void InitialBackend()
     {
@@ -137,6 +144,10 @@ public class CJooLogin : MonoBehaviour
     {
         signup.SetActive(true);
     }
+    public void OnClickBtnHideSignUp()
+    {
+        signup.SetActive(false);
+    }
 
     void GetAccountFromPrefs(out string oID, out string oPW)
     {
@@ -170,6 +181,8 @@ public class CJooLogin : MonoBehaviour
                 break;
 
             default:
+                PlayerPrefs.SetString("UserID", ID);
+                PlayerPrefs.SetString("UserPW", PW);
                 isSucceeded = true;
                 break;
         }
@@ -257,5 +270,10 @@ public class CJooLogin : MonoBehaviour
         {
             login.SetActive(true);
         }
+    }
+
+    public void OnClickBtnQuit()
+    {
+        Application.Quit();
     }
 }
