@@ -13,9 +13,12 @@ public class CJooLogin : MonoBehaviour
     public InputField signupID = null;
     public InputField signupPW = null;
 
+	public InputField nickName = null;
+
     public GameObject login = null;
     public InputField loginID = null;
     public InputField loginPW = null;
+
 
     public GameObject serverStatusPanel = null;
 
@@ -213,44 +216,50 @@ public class CJooLogin : MonoBehaviour
     {
         string tID = "";
         string tPW = "";
+		string tNickName = "";
         tID = signupID.text;
         tPW = signupPW.text;
+		tNickName = nickName.text;
 
-        if(tID == "")
-        {
-            Debug.Log("아이디를 입력해라");
-        }
-        else if(tPW == "")
-        {
-            Debug.Log("패스워드를 입력해라");
-        }
-        else
-        {
-            signup.SetActive(false);
-            BackendReturnObject bro = null;
-            bro = CustomSignUp(tID, tPW);
+		if (tID == "")
+		{
+			Debug.Log("아이디를 입력해라");
+		}
+		else if (tPW == "")
+		{
+			Debug.Log("패스워드를 입력해라");
+		}
+		else if (tNickName == "")
+		{
+			Debug.Log("닉네임을 입력해라");
+		}
+		else
+		{
+			signup.SetActive(false);
+			BackendReturnObject bro = null;
+			bro = CustomSignUp(tID, tPW);
 
-            string statuscode = bro.GetStatusCode();
-            int statuscodeInt = Convert.ToInt32(statuscode);
+			string statuscode = bro.GetStatusCode();
+			int statuscodeInt = Convert.ToInt32(statuscode);
 
-            switch (statuscodeInt)
-            {
-                case 409:
-                    {
-                        Debug.Log("중복 ID");
-                        signup.SetActive(true);
-                    }
-                    break;
-               
-                default:
-                    PlayerPrefs.SetString("UserID", tID);
-                    PlayerPrefs.SetString("UserPW", tPW);
-                    isSucceeded = true;
-                    break;
-            }
+			switch (statuscodeInt)
+			{
+				case 409:
+					{
+						Debug.Log("중복 ID");
+						signup.SetActive(true);
+					}
+					break;
 
-            Debug.Log(bro.ToString());
-        }
+				default:
+					PlayerPrefs.SetString("UserID", tID);
+					PlayerPrefs.SetString("UserPW", tPW);
+					isSucceeded = true;
+					break;
+			}
+
+			Debug.Log(bro.ToString());
+		}
     }
 
     // 커스텀 가입

@@ -4,135 +4,6 @@ using UnityEngine;
 using BackEnd;
 using System;
 
-public class CJooTime
-{
-	char[] m_split = { '-', 'T', ':', '.' };
-	public CJooTime(ServerTime time)
-	{
-		string[] splitted = time.utcTime.Split(m_split);
-		Year = Convert.ToInt32(splitted[0]);
-		Month = Convert.ToInt32(splitted[1]);
-		Day = Convert.ToInt32(splitted[2]);
-
-		Hour = Convert.ToInt32(splitted[3]);
-		Minute = Convert.ToInt32(splitted[4]);
-		Second = Convert.ToInt32(splitted[5]);
-	}
-
-	private CJooTime()
-	{
-
-	}
-
-	private int year = 0;
-	public int Year
-	{
-		get
-		{
-			return year;
-		}
-		private set
-		{
-			year = value;
-		}
-	}
-
-
-	private int month = 0;
-	public int Month
-	{
-		get
-		{
-			return month;
-		}
-		private set
-		{
-			month = value;
-		}
-	}
-
-	//todo
-	private int day = 0;
-	public int Day
-	{
-		get
-		{
-			return day;
-		}
-		private set
-		{
-			day = value;
-		}
-	}
-
-
-	private int hour = 0;
-	public int Hour
-	{
-		get
-		{
-			return hour;
-		}
-		private set
-		{
-			int quotient = value / 24;
-			int remainder = value % 24;
-			if (quotient > 0)
-			{
-				Day += quotient;
-			}
-			hour = remainder;
-		}
-	}
-
-	private int minute = 0;
-	public int Minute
-	{
-		get
-		{
-			return minute;
-		}
-		private set
-		{
-			int quotient = value / 60;
-			int remainder = value % 60;
-			if (quotient > 0)
-			{
-				Hour += quotient;
-			}
-			minute = remainder;
-		}
-	}
-
-
-	private int second = 0;
-	public int Second
-	{
-		get
-		{
-			return second;
-		}
-		private set
-		{
-			int quotient = value / 60;
-			int remainder = value % 60;
-			if (quotient > 0)
-			{
-				Minute += quotient;
-			}
-			second = remainder;
-		}
-	}
-
-	
-}
-
-
-
-public class ServerTime
-{
-	public string utcTime = "";
-}
 
 public class TimeWithHeart
 {
@@ -181,17 +52,28 @@ public class CJooHeart : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		BackendReturnObject bro = Backend.Utils.GetServerTime();
-		ServerTime a = JsonUtility.FromJson<ServerTime>(bro.GetReturnValue());
-		Debug.Log(a.utcTime);
+		//BackendReturnObject bro = Backend.Utils.GetServerTime();
+		//ServerTime a = JsonUtility.FromJson<ServerTime>(bro.GetReturnValue());
+		//Debug.Log(a.utcTime);
 
-		char[] an = { '-', 'T',':' };
-		string t = "2018-11-26T06:22:14.947Z";
-		string[] tSplit = t.Split(an);
-		foreach(string ta in tSplit)
-		{
-			Debug.Log(ta);
-		}
+		//char[] an = { '-', 'T',':' };
+		//string t = "2018-11-26T06:22:14.947Z";
+		//string[] tSplit = t.Split(an);
+		//foreach(string ta in tSplit)
+		//{
+		//	Debug.Log(ta);
+		//}
+		string time_0 = "2018-11-26T06:22:14.947Z";
+		string time_1 = "2018-11-29T05:18:15.947Z";
+
+		CJooTime jooTime_0 = new CJooTime(time_0);
+		CJooTime jooTime_1 = new CJooTime(time_1);
+
+		CJooTime gapTime = jooTime_1 -jooTime_0;
+
+		Debug.Log(jooTime_0.ToString());
+		Debug.Log(jooTime_1.ToString());
+		Debug.Log(gapTime.ToString());
 	}
 	
 	// Update is called once per frame

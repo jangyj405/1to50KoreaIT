@@ -22,7 +22,7 @@ public static class ServerStatus
         string rv = bro.GetReturnValue();
         Debug.Log(rv);
 
-        serverStat stat = JsonUtility.FromJson<serverStat>(rv);
+        ServerStat stat = JsonUtility.FromJson<ServerStat>(rv);
         Debug.Log(stat.serverStatus);
 
         switch (stat.serverStatus)
@@ -42,7 +42,7 @@ public static class ServerStatus
     }
 }
 
-public class serverStat
+public class ServerStat
 {
-    public int serverStatus = 100;
+    public int serverStatus = -1;
 }
