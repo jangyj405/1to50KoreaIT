@@ -2503,6 +2503,10 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1402926632327528, guid: 183e73806b3140a48b5743a3d316e1d5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 183e73806b3140a48b5743a3d316e1d5, type: 2}
   m_IsPrefabParent: 0
