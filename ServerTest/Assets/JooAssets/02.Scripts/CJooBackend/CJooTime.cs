@@ -299,12 +299,22 @@ public class CJooTime
 	public override string ToString()
 	{
 		string t =
-			Year.ToString() + "\n" +
-			Month.ToString() + "\n" +
-			Day.ToString() + "\n" +
-			Hour.ToString() + "\n" +
-			Minute.ToString() + "\n" +
-			Second.ToString();
+			Year.ToString("0000") + "-" +
+			Month.ToString("00") + "-" +
+			Day.ToString("00") + "T" +
+			Hour.ToString("00") + ":" +
+			Minute.ToString("00") + ":" +
+			Second.ToString("00");
 		return t;
+	}
+
+	public int ToSecond()
+	{
+		if(Year + Month + Day+ Hour > 0)
+		{
+			return -1;
+		}
+		int result = Minute * 60 + Second;
+		return result;
 	}
 }
