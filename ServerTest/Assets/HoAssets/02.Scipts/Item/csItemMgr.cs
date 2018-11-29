@@ -25,9 +25,9 @@ public class csItemMgr
 		return GameTime;
 	}
 
-	public void UseGodOfHint()
+	public float UseGodOfHint()
 	{
-
+		return 0.5f;
 	}
 
 	public void UseGodOfShield(csMapData _mapData)
@@ -49,16 +49,20 @@ public class csItemMgr
 		return GameTime;
 	}
 
-	public void UseGodOfDestory()
+	public void UseGodOfDestory(Tile _tile,int _currentIndexNum)
 	{
-
+		//int RemoveIndex = _currentIndexNum;
+		//for (int i = 0; i < 10; ++i) {
+		//	_tile.m_Num = _currentIndexNum + 1;
+		//
+		//}
+		//return RemoveIndex;
 	}
 
 	public void UseGodOfHeart()
 	{
 
 	}
-
 
 
 }

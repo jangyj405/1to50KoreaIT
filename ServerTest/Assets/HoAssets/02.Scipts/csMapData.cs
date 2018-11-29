@@ -21,6 +21,8 @@ public class csMapData : ScriptableObject {
     private int trackCount;
     [SerializeField]
     private int emptyCount;
+	[SerializeField]
+	private int maxGameNum;
 
 	public string GetMapId
 	{
@@ -111,6 +113,20 @@ public class csMapData : ScriptableObject {
 			emptyCount = value;
 		}
     }
+
+	public int MaxGameNum
+	{
+		get
+		{
+			return maxGameNum;
+		}
+		set
+		{
+			maxGameNum = value;
+		}
+	}
+
+
 
     public int NothingCount
     {

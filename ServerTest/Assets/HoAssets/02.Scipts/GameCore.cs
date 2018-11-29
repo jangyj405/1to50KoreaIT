@@ -162,6 +162,7 @@ public class GameCore : MonoBehaviour {
                 break;
             }
 			if (m_NumOrder > m_MaxGameNum) {
+				
 				csStageClearData.GetInstance ().SetClearTime (m_MapData.GetMapId, m_TimeScoreText.text.ToString());
 				break;
 			}
@@ -328,11 +329,12 @@ public class GameCore : MonoBehaviour {
 	{
 		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
 		Debug.Log (m_MapData.GetMapId);
-		Debug.Log (m_MapData.GetRotationCount);
-        csBlockControl.Instance.RandomRotationNumber = m_MapData.GetRotationCount;
-        csBlockControl.Instance.RandomBlinkNumber = m_MapData.GetBlinkCount;
-        csBlockControl.Instance.RandomReverseNumber = m_MapData.GetReverseCount;
-        csBlockControl.Instance.RandomChangeScaleNumber = m_MapData.GetScaleCount;
+		Debug.Log (m_MapData.RotationCount);
+		m_MaxGameNum = m_MapData.MaxGameNum;
+        csBlockControl.Instance.RandomRotationNumber = m_MapData.RotationCount;
+        csBlockControl.Instance.RandomBlinkNumber = m_MapData.BlinkCount;
+        csBlockControl.Instance.RandomReverseNumber = m_MapData.ReverseCount;
+        csBlockControl.Instance.RandomChangeScaleNumber = m_MapData.ScaleCount;
 
 
 	}
