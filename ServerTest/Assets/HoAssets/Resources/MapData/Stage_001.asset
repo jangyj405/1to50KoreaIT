@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: Stage_001
   m_EditorClassIdentifier: 
   MapId: Stage_001
-  RotationCount: 5
-  BlinkCount: 0
-  ReverseCount: 0
-  ScaleCount: 0
-  TrackCount: 0
-  EmptyCount: 0
+  rotationCount: 0
+  blinkCount: 0
+  reverseCount: 0
+  scaleCount: 0
+  trackCount: 0
+  emptyCount: 0
+  maxGameNum: 0
