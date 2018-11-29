@@ -245,21 +245,13 @@ public class CJooLogin : MonoBehaviour
                 default:
                     PlayerPrefs.SetString("UserID", tID);
                     PlayerPrefs.SetString("UserPW", tPW);
-					SetDefaultData();
-					isSucceeded = true;
+                    isSucceeded = true;
                     break;
             }
 
             Debug.Log(bro.ToString());
         }
     }
-
-	private void SetDefaultData()
-	{
-		
-	}
-
-
 
     // 커스텀 가입
     BackendReturnObject CustomSignUp(string id, string pw)
