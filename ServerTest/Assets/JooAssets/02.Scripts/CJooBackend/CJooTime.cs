@@ -307,4 +307,17 @@ public class CJooTime
 			Second.ToString();
 		return t;
 	}
+	public int ToSecond()
+	{
+		if(Year + Month + Day + Hour > 0)
+		{
+			return -1;
+		}
+		else
+		{
+			int result = Minute * 60 + Second;
+			return result;
+		}
+	}
+	
 }
