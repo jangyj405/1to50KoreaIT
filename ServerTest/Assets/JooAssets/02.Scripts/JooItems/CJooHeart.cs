@@ -156,6 +156,7 @@ public class CJooHeart : MonoBehaviour
 		//string aaa = JsonUtility.ToJson(super);
 		//Debug.Log(aaa);
 	    */
+		//todo passed data from server
 		TimeWithHeart twh = new TimeWithHeart();
 		twh.HeartCount = 3;
 		twh.RecordedDate = "2018-11-29T05:05:00";
@@ -163,6 +164,35 @@ public class CJooHeart : MonoBehaviour
 
 		Initial(twh);
 		StartCoroutine(TimeDecrease());
+		
+
+		//BackendReturnObject bro = Backend.Social.Post.GetPostList();
+		//string asdf = bro.GetReturnValue();
+		//Debug.Log(asdf);
+
+		//BackendReturnObject bro = Backend.Social.GetGamerIndateByNickname("Mailer");
+		//Debug.Log(bro.GetReturnValue());
+		//PlayerPrefs.DeleteAll();
+		//return;
+		
+		/*
+		string MyIndate = Backend.BMember.GetUserInfo().GetReturnValue();
+
+		UserMetaData user = JsonUtility.FromJson<UserMetaData>(MyIndate);
+
+
+		string inDate = "2018-11-29T07:42:23.092Z";
+		PostItem item = new PostItem()
+		{
+			Title = "Test",
+			Content = "TestMail",
+			TableName = "Heart",
+			RowInDate = user.row.inDate,
+			Column = "TestCol"
+		};
+		Backend.Social.Post.SendPost(inDate, item);
+		*/
+
 		/*
 		BackendReturnObject bro = Backend.BMember.GetUserInfo();
 		Debug.Log(bro.GetReturnValue());
