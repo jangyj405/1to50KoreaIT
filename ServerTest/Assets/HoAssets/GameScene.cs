@@ -405,13 +405,30 @@ public class GameScene : MonoBehaviour {
 	{
 		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
 		Debug.Log (m_MapData.GetMapId);
-		Debug.Log (m_MapData.GetRotationCount);
-		RandomRotationNumber = m_MapData.GetRotationCount;
-		RandomBlinkNumber = m_MapData.GetBlinkCount;
-		RandomReverseNumber = m_MapData.GetReverseCount;
-		RandomChangeScaleNumber = m_MapData.GetScaleCount;
+		Debug.Log (m_MapData.RotationCount);
+		RandomRotationNumber = m_MapData.RotationCount;
+		RandomBlinkNumber = m_MapData.BlinkCount;
+		RandomReverseNumber = m_MapData.ReverseCount;
+		RandomChangeScaleNumber = m_MapData.ScaleCount;
 
 
+	}
+
+	public float GameTime
+	{
+		get
+		{
+			return m_TimeScore;
+		}
+		set
+		{
+			m_TimeScore = value;
+		}
+	}
+
+	public csMapData CurrentMapData()
+	{
+		return m_MapData;
 	}
    
 }
