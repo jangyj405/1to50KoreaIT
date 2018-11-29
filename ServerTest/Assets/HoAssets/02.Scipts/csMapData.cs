@@ -10,17 +10,17 @@ public class csMapData : ScriptableObject {
 	//[SerializeField]
 	private float MapClearTime;
     [SerializeField]
-    private int RotationCount;
+    private int rotationCount;
     [SerializeField]
-    private int BlinkCount;
+    private int blinkCount;
     [SerializeField]
-    private int ReverseCount;
+    private int reverseCount;
     [SerializeField]
-    private int ScaleCount;
+    private int scaleCount;
     [SerializeField]
-    private int TrackCount;
+    private int trackCount;
     [SerializeField]
-    private int EmptyCount;
+    private int emptyCount;
 
 	public string GetMapId
 	{
@@ -39,55 +39,80 @@ public class csMapData : ScriptableObject {
 	}
 
 
-    public int GetRotationCount
+    public int RotationCount
     {
         get
         {
-            return RotationCount;
+            return rotationCount;
         }
+		set
+		{
+			rotationCount = value;
+		}
+
     }
 
-    public int GetBlinkCount
+    public int BlinkCount
     {
         get
         {
-            return BlinkCount;
+            return blinkCount;
         }
+		set
+		{
+			blinkCount = value;
+		}
     }
 
-    public int GetReverseCount
+    public int ReverseCount
     {
         get
         {
-            return ReverseCount;
+            return reverseCount;
         }
+		set
+		{
+			reverseCount = value;
+		}
     }
 
-    public int GetScaleCount
+    public int ScaleCount
     {
         get
         {
-            return ScaleCount;
+            return scaleCount;
         }
+		set
+		{
+			scaleCount = value;
+		}
     }
 
-    public int GetTrackCount
+    public int TrackCount
     {
         get
         {
-            return TrackCount;
+            return trackCount;
         }
+		set
+		{
+			trackCount = value;
+		}
     }
 
-    public int GetEmptyCount
+    public int EmptyCount
     {
         get
         {
-            return EmptyCount;
+            return emptyCount;
         }
+		set
+		{
+			emptyCount = value;
+		}
     }
 
-    public int GetNothingCount
+    public int NothingCount
     {
         get
         {
