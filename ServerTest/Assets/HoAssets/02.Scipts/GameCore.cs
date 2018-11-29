@@ -162,7 +162,6 @@ public class GameCore : MonoBehaviour {
                 break;
             }
 			if (m_NumOrder > m_MaxGameNum) {
-				
 				csStageClearData.GetInstance ().SetClearTime (m_MapData.GetMapId, m_TimeScoreText.text.ToString());
 				break;
 			}
@@ -198,11 +197,11 @@ public class GameCore : MonoBehaviour {
         if (m_Index < m_MaxGameNum)
         {
            
-            tile.m_Num = m_Index + 1;
+            tile.m_Num = m_Index + 1;//ex)1번Index를 가진 타일이 지워지면  25+1 인덱스를 새로나올 타일 인덱스에 넣는다.
             tile.m_NumText.text = tile.m_Num.ToString();
-            m_TileList.Add(tile);
-            m_Index++;
-            tile.FadeIn();
+            m_TileList.Add(tile);//새로나온 타일을 list에 추가
+            m_Index++;//25를 증가 시킨다  
+            tile.FadeIn();//타일 페이드인 효과
             hasOnGame++;
             
         }
@@ -330,7 +329,6 @@ public class GameCore : MonoBehaviour {
 		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
 		Debug.Log (m_MapData.GetMapId);
 		Debug.Log (m_MapData.RotationCount);
-		m_MaxGameNum = m_MapData.MaxGameNum;
         csBlockControl.Instance.RandomRotationNumber = m_MapData.RotationCount;
         csBlockControl.Instance.RandomBlinkNumber = m_MapData.BlinkCount;
         csBlockControl.Instance.RandomReverseNumber = m_MapData.ReverseCount;
@@ -339,5 +337,13 @@ public class GameCore : MonoBehaviour {
 
 	}
     
-   
+    public float GameTime
+    {
+        get
+        {
+            return m_TimeScore;
+        }
+    }
+
+
 }

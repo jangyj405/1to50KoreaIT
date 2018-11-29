@@ -27,7 +27,7 @@ public class csMapMgr
 	public csMapData MapSetting(int _StageLevel)
 	{
 		MapInit ();
-		for (int i = 0; i < MapDatats.Length; ++i) {
+		for (int i = 0; i < MapDatats.Length; i++) {
 			if (MapDatats [i].name.Contains (_StageLevel.ToString())) {
 				
 				tempData = MapDatats [i];
@@ -38,6 +38,4 @@ public class csMapMgr
 		}
 		return tempData;
 	}
-
-
 }
