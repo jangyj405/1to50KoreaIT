@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 1569095031}
   - component: {fileID: 1569095030}
   m_Layer: 0
-  m_Name: GameScene
+  m_Name: GameCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1442,8 +1442,11 @@ MonoBehaviour:
   m_GameOverText: {fileID: 1071844843}
   m_LockText: {fileID: 1734009263}
   m_CountText: {fileID: 1066255979}
+  m_NumOrder: 0
   m_LockNum: 5
   m_LimitTime: 200
+  hasOnGame: 0
+  m_TileList: []
 --- !u!4 &1569095031
 Transform:
   m_ObjectHideFlags: 0
