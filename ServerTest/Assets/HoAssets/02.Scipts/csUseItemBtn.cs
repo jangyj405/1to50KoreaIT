@@ -14,41 +14,58 @@ public class csUseItemBtn : MonoBehaviour
 	public void GodOfTimeBtn() 
 	{
 		isGodOfTimeItem = true;
+		csGameData.GetInstance ().IsClickTimeSkill = isGodOfTimeItem;
 	}
 
 	public void GodOfShieldBtn() 
 	{
 		isGodOfShieldItem = true;
+		csGameData.GetInstance ().IsClickShieldSkill = isGodOfShieldItem;
 	}
 
 	public void GodOfDestoryBtn() 
 	{
 		isGodOfDestoryItem = true;
+		csGameData.GetInstance ().IsClickDestorySkill = isGodOfDestoryItem;
 	}
 
 	public void GodOfSlowBtn()
 	{
 		isGodOfSlowItem = true;
+		csGameData.GetInstance ().IsClickSlowSkill = isGodOfSlowItem;
 	}
 
 	public void GodOfHintBtn()
 	{
 		isGodOfHintItem = true;
+		csGameData.GetInstance ().IsClickHintSkill = isGodOfHintItem;
 	}
 
 	public void GodOfHeartBtn()
 	{
 		isGodOfHeartItem = true;
+		csGameData.GetInstance ().IsClickHeartSkill = isGodOfHeartItem;
 	}
 
 	public void ItemUseSetting()
 	{
 		isGodOfTimeItem = false;
+		csGameData.GetInstance ().IsClickTimeSkill = isGodOfTimeItem;
+
 		isGodOfShieldItem = false;
+		csGameData.GetInstance ().IsClickShieldSkill = isGodOfShieldItem;
+
 		isGodOfDestoryItem = false;
+		csGameData.GetInstance ().IsClickDestorySkill = isGodOfDestoryItem;
+
 		isGodOfSlowItem = false;
+		csGameData.GetInstance ().IsClickSlowSkill = isGodOfSlowItem;
+
 		isGodOfHintItem = false;
+		csGameData.GetInstance ().IsClickHintSkill = isGodOfHintItem;
+
 		isGodOfHeartItem = false;
+		csGameData.GetInstance ().IsClickHeartSkill = isGodOfHeartItem;
 	}
 
 	public bool GetisGodOfTime

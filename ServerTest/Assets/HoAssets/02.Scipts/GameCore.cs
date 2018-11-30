@@ -162,6 +162,10 @@ public class GameCore : MonoBehaviour {
                 break;
             }
 			if (m_NumOrder > m_MaxGameNum) {
+				if (csGameData.GetInstance ().IsClickTimeSkill) {
+					csItemMgr.GetInstance ().UseGodOfTime ();
+				}
+
 				csStageClearData.GetInstance ().SetClearTime (m_MapData.GetMapId, m_TimeScoreText.text.ToString());
 				break;
 			}
@@ -229,8 +233,13 @@ public class GameCore : MonoBehaviour {
 
         while (true)
         {
-            m_TimeScore += Time.deltaTime;
-            m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
+			if (csGameData.GetInstance ().IsClickSlowSkill) {
+				csItemMgr.GetInstance ().UseGodOfSlow ();
+			} else {
+				m_TimeScore += Time.deltaTime;
+				m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
+			}
+          
             yield return null;
         }
     }
@@ -329,10 +338,14 @@ public class GameCore : MonoBehaviour {
 		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
 		Debug.Log (m_MapData.GetMapId);
 		Debug.Log (m_MapData.RotationCount);
+		if (csGameData.GetInstance ().IsClickShieldSkill) {
+			csItemMgr.GetInstance ().UseGodOfShield (m_MapData);
+		}
         csBlockControl.Instance.RandomRotationNumber = m_MapData.RotationCount;
         csBlockControl.Instance.RandomBlinkNumber = m_MapData.BlinkCount;
         csBlockControl.Instance.RandomReverseNumber = m_MapData.ReverseCount;
         csBlockControl.Instance.RandomChangeScaleNumber = m_MapData.ScaleCount;
+
 
 
 	}
