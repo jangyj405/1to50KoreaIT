@@ -66,7 +66,7 @@ public class GameCore : MonoBehaviour {
             yield return null;
         m_StartText.SetActive(false);
 
-		//MapSettingInit ();
+		MapSettingInit ();
         Init();
 
         m_NumOrder = 1;
@@ -170,15 +170,21 @@ public class GameCore : MonoBehaviour {
             }
 			if (m_NumOrder > m_MaxGameNum) {
 				if (csGameData.GetInstance ().IsClickTimeSkill) {
-					csItemMgr.GetInstance ().UseGodOfTime ();
+					m_TimeScore = csItemMgr.GetInstance ().UseGodOfTime (m_TimeScore);
+					m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
+					StopCoroutine("UpdateTimer");
 				}
-
+				Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+				Debug.Log (m_TimeScore);
+				Debug.Log (m_TimeScoreText.text.ToString());
+				Debug.Log (m_MapData.GetMapId);
 				csStageClearData.GetInstance ().SetClearTime (m_MapData.GetMapId, m_TimeScoreText.text.ToString());
+
 				break;
 			}
             yield return null;
         }
-        StopCoroutine("UpdateTimer");
+        //StopCoroutine("UpdateTimer");
 
         yield return new WaitForSeconds(0.25f);
 
@@ -243,8 +249,10 @@ public class GameCore : MonoBehaviour {
 			if (csGameData.GetInstance ().IsClickSlowSkill) {
 				csItemMgr.GetInstance ().UseGodOfSlow ();
 			} else {
-				m_TimeScore += Time.deltaTime;
+				m_TimeScore += Time.deltaTime ;
 				m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
+
+
 			}
           
             yield return null;
@@ -343,7 +351,7 @@ public class GameCore : MonoBehaviour {
     
 	void MapSettingInit()
 	{
-		//m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
 		//Debug.Log (m_MapData.GetMapId);
 		//Debug.Log (m_MapData.RotationCount);
 		//if (csGameData.GetInstance ().IsClickShieldSkill) {

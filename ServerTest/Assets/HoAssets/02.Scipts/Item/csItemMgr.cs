@@ -17,12 +17,12 @@ public class csItemMgr
 		return m_Instance;
 	}
 
-	public float UseGodOfTime()
+	public float UseGodOfTime(float _AdvantageTime)
 	{
-		GameCore = GameObject.Find ("GameCore").GetComponent<GameCore>();
-		GameTime = GameCore.GameTime;
-		GameTime -= 2.0f;
-		return GameTime;
+		//GameCore = GameObject.Find ("GameCore").GetComponent<GameCore>();
+		//GameTime = GameCore.GameTime;
+		_AdvantageTime -= 2.0f;
+		return _AdvantageTime;
 	}
 
 	public void UseGodOfHint_01(SpriteRenderer spr,TMPro.TMP_Text text)
