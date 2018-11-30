@@ -7,12 +7,13 @@ using UnityEngine.UI;
 public class FriendView : MonoBehaviour {
 
     public GameObject friendAddScreen;
-    public Transform friendContent;
     public int friendCount;
+
+    public Transform friendContent;
 
     public InputField nickNameInputField;
     public GameObject friendList;
-
+    public Friend friendPF;
     public void Start()
     {
         friendCount = friendContent.transform.childCount;        
@@ -20,7 +21,6 @@ public class FriendView : MonoBehaviour {
 
     public void FriendAddClick()
     {
-
         friendAddScreen.SetActive(true);
     }
 
@@ -38,11 +38,19 @@ public class FriendView : MonoBehaviour {
 
     public void FriendAddReal()
     {
-        
+        //GameObject friend = (GameObject)Instantiate(friendList, friendContent.position, Quaternion.identity);
+        //friend.transform.SetParent(friendContent);
+        //friend.GetComponentInChildren<Text>().text = nickNameInputField.text;
+        Friend instFriend = Instantiate<Friend>(friendPF, friendContent);
+      //  instFriend.transform.SetParent(friendContent);
+        instFriend.InitialOneFriend(nickNameInputField.text, "2018-11-11T08:00:00");
+        //instFriend.NickName = "";
     }
 
     public void FriendAddScreenCloseClick()
     {
         friendAddScreen.SetActive(false);
     }
+
+
 }
