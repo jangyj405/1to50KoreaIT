@@ -19,4 +19,14 @@ public class ETC : MonoBehaviour {
     {
         SceneManager.LoadScene("Option");
     }
+
+    public void PostClick()
+    {
+        SceneManager.LoadScene("Post");
+    }
+
+    public void FriendClick()
+    {
+        SceneManager.LoadScene("Friend");
+    }
 }

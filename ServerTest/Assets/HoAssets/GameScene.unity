@@ -618,9 +618,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'GAME
+  m_text: 'STAGE
 
-    OVER'
+    CLEAR'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -696,11 +696,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1071844846}
@@ -1407,6 +1407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1569095031}
   - component: {fileID: 1569095030}
+  - component: {fileID: 1569095032}
   m_Layer: 0
   m_Name: GameCore
   m_TagString: Untagged
@@ -1420,7 +1421,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1569095029}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c64d27c1339c16748929fafa1bbc89c3, type: 3}
   m_Name: 
@@ -1430,7 +1431,50 @@ MonoBehaviour:
   m_TileSize: {x: 1, y: 1}
   m_TileSpacing: {x: 0.1, y: 0.1}
   m_TileNum: {x: 5, y: 5}
-  m_MaxGameNum: 50
+  m_MaxGameNum: 2
+  m_TilePrefab: {fileID: 1704083655835138, guid: 89bb3520cf1bacf4590835c2ac83882f,
+    type: 2}
+  m_NextText:
+  - {fileID: 1889797117}
+  - {fileID: 1186120640}
+  - {fileID: 298905411}
+  m_TimeScoreText: {fileID: 2054714677}
+  m_StartText: {fileID: 1227220371}
+  m_GameOverText: {fileID: 1071844843}
+  m_LockText: {fileID: 1734009263}
+  m_CountText: {fileID: 1066255979}
+  m_LockNum: 5
+  m_LimitTime: 200
+--- !u!4 &1569095031
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569095029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1569095032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569095029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea264040705f92c46a96409463f0a12f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HelpTIme: 3
+  m_StartPos: {fileID: 1201228815}
+  m_TileSize: {x: 1, y: 1}
+  m_TileSpacing: {x: 0.1, y: 0.1}
+  m_TileNum: {x: 5, y: 5}
+  m_MaxGameNum: 2
   m_TilePrefab: {fileID: 1704083655835138, guid: 89bb3520cf1bacf4590835c2ac83882f,
     type: 2}
   m_NextText:
@@ -1447,19 +1491,6 @@ MonoBehaviour:
   m_LimitTime: 200
   hasOnGame: 0
   m_TileList: []
---- !u!4 &1569095031
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1569095029}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601193357
 GameObject:
   m_ObjectHideFlags: 0

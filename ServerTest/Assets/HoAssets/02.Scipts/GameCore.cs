@@ -182,7 +182,7 @@ public class GameCore : MonoBehaviour {
         while (!Input.GetMouseButtonDown(0))
             yield return null;
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneNames.stageScene);
     }
 
     IEnumerator TouchTile(Tile tile)
