@@ -30,6 +30,8 @@ public class GameCore : MonoBehaviour {
     int m_stageIndex = 0;
     public float m_LimitTime = 200;
 
+	private csBlockControl BlockControlScript;
+
     public static GameCore Instance
     {
         get
@@ -64,7 +66,7 @@ public class GameCore : MonoBehaviour {
             yield return null;
         m_StartText.SetActive(false);
 
-		MapSettingInit ();
+		//MapSettingInit ();
         Init();
 
         m_NumOrder = 1;
@@ -80,6 +82,8 @@ public class GameCore : MonoBehaviour {
         m_CountText.gameObject.SetActive(false);
         //-----------------------------------------------
 
+		BlockControlScript = GameObject.FindGameObjectWithTag ("tagGameCore").GetComponent<csBlockControl> ();
+		BlockControlScript.Init ();
 
         /*
         StartCoroutine("RandomRotation");
@@ -90,6 +94,7 @@ public class GameCore : MonoBehaviour {
 
         StartCoroutine("RandomChangeScale");
 
+
         InvokeRepeating("RandomRotation", 7.0f, 7.0f);
 
         InvokeRepeating("RandomBlink",7.0f,7.0f);
@@ -97,18 +102,19 @@ public class GameCore : MonoBehaviour {
         InvokeRepeating("RandomReverse", 7.0f, 7.0f);
 
         InvokeRepeating("RandomChangeScale", 7.0f, 7.0f);
-        */
+		*/
+        
         
         
         //-----------------------------------------------
 
         
-		if (CRyuGameDataMgr.GetInst().GetMapStageLevel == 1)
-        {
-            //StartCoroutine("RandomRotation");
-            csBlockControl.Instance.RandomRotation();
-            
-        }
+		//if (CRyuGameDataMgr.GetInst().GetMapStageLevel == 1)
+        //{
+        //    //StartCoroutine("RandomRotation");
+        //    csBlockControl.Instance.RandomRotation();
+        //    
+        //}
         
        
 
@@ -117,6 +123,7 @@ public class GameCore : MonoBehaviour {
         while (true)
         {
             Tile tile = GetTouchTile();
+
             if (tile != null)
             {
                 if (tile.m_Num == m_NumOrder)
@@ -292,6 +299,7 @@ public class GameCore : MonoBehaviour {
                 hasOnGame++;
             }
         m_TileList.Sort((a, b) => a.m_Num.CompareTo(b.m_Num));
+
     }
     Vector2Int WorldToGrid(Vector2 pos)
     {
@@ -335,16 +343,16 @@ public class GameCore : MonoBehaviour {
     
 	void MapSettingInit()
 	{
-		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
-		Debug.Log (m_MapData.GetMapId);
-		Debug.Log (m_MapData.RotationCount);
-		if (csGameData.GetInstance ().IsClickShieldSkill) {
-			csItemMgr.GetInstance ().UseGodOfShield (m_MapData);
-		}
-        csBlockControl.Instance.RandomRotationNumber = m_MapData.RotationCount;
-        csBlockControl.Instance.RandomBlinkNumber = m_MapData.BlinkCount;
-        csBlockControl.Instance.RandomReverseNumber = m_MapData.ReverseCount;
-        csBlockControl.Instance.RandomChangeScaleNumber = m_MapData.ScaleCount;
+		//m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+		//Debug.Log (m_MapData.GetMapId);
+		//Debug.Log (m_MapData.RotationCount);
+		//if (csGameData.GetInstance ().IsClickShieldSkill) {
+		//	csItemMgr.GetInstance ().UseGodOfShield (m_MapData);
+		//}
+        //csBlockControl.Instance.RandomRotationNumber = m_MapData.RotationCount;
+        //csBlockControl.Instance.RandomBlinkNumber = m_MapData.BlinkCount;
+        //csBlockControl.Instance.RandomReverseNumber = m_MapData.ReverseCount;
+        //csBlockControl.Instance.RandomChangeScaleNumber = m_MapData.ScaleCount;
 
 
 

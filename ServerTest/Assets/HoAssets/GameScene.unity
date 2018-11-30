@@ -1408,9 +1408,10 @@ GameObject:
   - component: {fileID: 1569095031}
   - component: {fileID: 1569095030}
   - component: {fileID: 1569095032}
+  - component: {fileID: 1569095033}
   m_Layer: 0
   m_Name: GameCore
-  m_TagString: Untagged
+  m_TagString: tagGameCore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1491,6 +1492,17 @@ MonoBehaviour:
   m_LimitTime: 200
   hasOnGame: 0
   m_TileList: []
+--- !u!114 &1569095033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569095029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288a1a4dd2b13da4e8492ea6f53ced0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1601193357
 GameObject:
   m_ObjectHideFlags: 0

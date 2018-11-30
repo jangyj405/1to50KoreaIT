@@ -5,29 +5,75 @@ using DG.Tweening;
 
 public class csBlockControl : MonoBehaviour 
 {
-    private static csBlockControl instance;
+    //private static csBlockControl instance;
 
-    public int RandomRotationNumber;
-    public int RandomBlinkNumber;
-    public int RandomReverseNumber;
-    public int RandomChangeScaleNumber;
+    private int RandomRotationNumber;
+    private int RandomBlinkNumber;
+    private int RandomReverseNumber;
+    private int RandomChangeScaleNumber;
 
-    public static csBlockControl Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<csBlockControl>();
-                if (instance == null)
-                {
-                    GameObject container = new GameObject("csBlockControl");
-                    instance = container.AddComponent<csBlockControl>();
-                }
-            }
-            return instance;
-        }
-    }
+	private GameCore GameCoreSript;
+	private csMapData m_MapData;
+
+	//void Start()
+	//{
+	//	//GameCoreSript = GameObject.FindGameObjectWithTag ("tagGameCore").GetComponent<GameCore> ();
+	//	Init();
+	//	RandomRotation ();
+	//	RandomBlink ();
+	//	RandomReverse ();
+	//	RandomChangeScale ();
+	//
+	//}
+
+	public void Init()
+	{
+		MapSettingInit ();
+		StartCoroutine("RandomRotation");
+
+		StartCoroutine("RandomBlink");
+
+		StartCoroutine("RandomReverse");
+
+		StartCoroutine("RandomChangeScale");
+
+	}
+
+	void MapSettingInit()
+	{
+		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+		Debug.Log (m_MapData.GetMapId);
+		Debug.Log (m_MapData.RotationCount);
+
+		RandomRotationNumber = m_MapData.RotationCount;
+		RandomBlinkNumber = m_MapData.BlinkCount;
+		RandomReverseNumber = m_MapData.ReverseCount;
+		RandomChangeScaleNumber = m_MapData.ScaleCount;
+		if (csGameData.GetInstance ().IsClickShieldSkill) {
+			//csItemMgr.GetInstance ().UseGodOfShield (m_MapData);
+			RandomRotationNumber = 0;
+			RandomBlinkNumber = 0;
+			RandomReverseNumber = 0;
+			RandomChangeScaleNumber = 0;
+		}
+	}
+
+    //public static csBlockControl Instance
+    //{
+    //    get
+    //    {
+    //        if (instance == null)
+    //        {
+    //            instance = FindObjectOfType<csBlockControl>();
+    //            if (instance == null)
+    //            {
+    //                GameObject container = new GameObject("csBlockControl");
+    //                instance = container.AddComponent<csBlockControl>();
+    //            }
+    //        }
+    //        return instance;
+    //    }
+    //}
     public void RandomRotation()
     {
         StartCoroutine("Co_RandomRotation");
