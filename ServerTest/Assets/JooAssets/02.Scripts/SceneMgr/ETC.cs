@@ -29,4 +29,9 @@ public class ETC : MonoBehaviour {
     {
         SceneManager.LoadScene("Friend");
     }
+
+    public void CharacterClick()
+    {
+        SceneManager.LoadScene("Character");
+    }
 }

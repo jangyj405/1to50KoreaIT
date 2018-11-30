@@ -14,9 +14,15 @@ public class FriendView : MonoBehaviour {
     public InputField nickNameInputField;
     public GameObject friendList;
     public Friend friendPF;
+
+    public GameObject friendListPanel;
+    public GameObject friendAcceptPanel;
+
     public void Start()
     {
-        friendCount = friendContent.transform.childCount;        
+        friendCount = friendContent.transform.childCount;
+        friendListPanel.SetActive(true);
+        friendAcceptPanel.SetActive(false);
     }
 
     public void FriendAddClick()
@@ -52,5 +58,15 @@ public class FriendView : MonoBehaviour {
         friendAddScreen.SetActive(false);
     }
 
+    public void FriendListClick()
+    {
+        friendListPanel.SetActive(true);
+        friendAcceptPanel.SetActive(false);
+    }
 
+    public void FriendAcceptClick()
+    {
+        friendListPanel.SetActive(false);
+        friendAcceptPanel.SetActive(true);
+    }
 }
