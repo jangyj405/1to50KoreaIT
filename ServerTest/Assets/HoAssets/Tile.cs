@@ -7,6 +7,7 @@ public class Tile : MonoBehaviour {
     public float m_FadeOutScale = 1.5f;
     public float m_BlinkDelay = 0.25f;
     public float m_MissDelay = 0.25f;
+	public float m_HintBlink = 0.01f;
     [HideInInspector]
     public int m_Num;
     [HideInInspector]
@@ -37,14 +38,24 @@ public class Tile : MonoBehaviour {
     }
     public void Blink()
     {
-        StopAllCoroutines();
-        StartCoroutine("Co_Blink");
+		if (csGameData.GetInstance ().IsClickHintSkill == false) {
+			StopAllCoroutines ();
+			StartCoroutine ("Co_Blink");
+		} else {
+			StopAllCoroutines ();
+			StartCoroutine("Co_HintItem");
+		}
     }
     public void Miss()
     {
         StopAllCoroutines();
         StartCoroutine("Co_Miss");
     }
+	//public void HintItem()
+	//{
+	//	StopCoroutine ();
+	//	StartCoroutine("Co_HintItem");
+	//}
     IEnumerator Co_FadeIn()
     {
         m_IsPlaying = true;
@@ -121,4 +132,17 @@ public class Tile : MonoBehaviour {
     {
         return m_IsPlaying;
     }
+
+	IEnumerator Co_HintItem()
+	{
+		m_IsPlaying = true;
+		WaitForSeconds wait = new WaitForSeconds (m_HintBlink);
+		while (true) {
+			csItemMgr.GetInstance ().UseGodOfHint_01 (m_Sr,m_NumText);
+			yield return wait;
+			csItemMgr.GetInstance ().UseGodOfHint_02 (m_Sr,m_NumText);
+			yield return wait;
+		}
+
+	}
 }
