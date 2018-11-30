@@ -1,0 +1,261 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using BackEnd;
+using System;
+
+
+public class CJooFriends : MonoBehaviour
+{
+	private enum EMessageTypes
+	{
+		NoInputError = 0,
+		ServerError = 1,
+		AddFriend = 2,
+		NoUserError = 3,
+		DuplicatedError = 4,
+		RequestError = 5,
+		SucceededRequest = 6
+	}
+	
+	[SerializeField]
+	private InputField nicknameField = null;
+
+	Action[] DisplayMessage = null;
+	Action[] HideMessage = null;
+
+
+	[SerializeField]
+	private GameObject panelErrorMessage = null;
+
+
+	[SerializeField]
+	private GameObject panelAddFriendGO = null;
+	
+
+	private string foundUserIndate = "";
+	private FriendData fdata = null;
+	private FriendData FData
+	{
+		get
+		{
+			return fdata;
+		}
+		set
+		{
+			fdata = value;
+			if(fdata != null)
+			{
+				//DisplayOnUI();
+			}
+			else
+			{
+				//HideAllFriendInfos
+			}
+		}
+	}
+
+	void Awake()
+	{
+		DisplayMessage = new Action[7];
+		DisplayMessage[(int)EMessageTypes.NoInputError] = DisplayNoInputError;
+		DisplayMessage[(int)EMessageTypes.ServerError] = DisplayServerError;
+		DisplayMessage[(int)EMessageTypes.AddFriend] = DisplayAddFriend;
+		DisplayMessage[(int)EMessageTypes.NoUserError] = DisplayNoUserError;
+		DisplayMessage[(int)EMessageTypes.DuplicatedError] = DisplayDuplicatedError;
+		DisplayMessage[(int)EMessageTypes.RequestError] = DisplayRequestError;
+		DisplayMessage[(int)EMessageTypes.SucceededRequest] = DisplaySucceededMessage;
+
+		HideMessage = new Action[7];
+		HideMessage[(int)EMessageTypes.NoInputError] = HideNoInputError;
+		HideMessage[(int)EMessageTypes.ServerError] = HideServerError;
+		HideMessage[(int)EMessageTypes.AddFriend] = HideAddFriend;
+		HideMessage[(int)EMessageTypes.NoUserError] = HideNoUserError;
+		HideMessage[(int)EMessageTypes.DuplicatedError] = HideDuplicatedError;
+		HideMessage[(int)EMessageTypes.RequestError] = HideRequestError;
+		HideMessage[(int)EMessageTypes.SucceededRequest] = HideSucceededMessage;
+	}
+
+
+	
+	void OnEnable ()
+	{
+		InitialFriendScene();
+		GetFriendList();
+	}
+
+	void InitialFriendScene()
+	{
+		HideAllMessages();
+		nicknameField.text = "";
+		foundUserIndate = "";
+		FData = null;
+	}
+
+	void GetUserMetaData()
+	{
+		BackendReturnObject bro = Backend.BMember.GetUserInfo();
+		UserMetaData data = JsonUtility.FromJson<UserMetaData>(bro.GetReturnValue());
+		Debug.Log(data.row.inDate);
+		PlayerPrefs.DeleteAll();
+	}
+
+	void AddFriend()
+	{
+		string indate = "2018-11-29T07:42:23.092Z";
+		BackendReturnObject bro = Backend.Social.Friend.RequestFriend(indate);
+		Debug.Log(bro.GetStatusCode());
+		PlayerPrefs.DeleteAll();
+	}
+
+
+	public void OnClickBtnRequestFriend()
+	{
+		string tNickName = nicknameField.text;
+		if(tNickName == "")
+		{
+			DisplayMessage[(int)EMessageTypes.NoInputError]();
+			return;
+		}
+		BackendReturnObject bro = Backend.Social.GetGamerIndateByNickname(tNickName);
+
+		bool isAvailable = CJooBackendCommonErrors.IsAvailableWithServer(bro);
+		if(!isAvailable)
+		{
+			DisplayMessage[(int)EMessageTypes.ServerError]();
+			return;
+		}
+
+	
+		FindUserAsNickname tValue = JsonUtility.FromJson<FindUserAsNickname>(bro.GetReturnValue());
+		if(tValue == null)
+		{
+			DisplayMessage[(int)EMessageTypes.ServerError]();
+			return;
+		}
+
+		string tInDate = tValue.rows.inDate.S;
+		Debug.Log(tInDate);
+
+		if (tInDate == "")
+		{
+			DisplayMessage[(int)EMessageTypes.NoUserError]();
+			return;
+		}
+
+		BackendReturnObject requestBro = Backend.Social.Friend.RequestFriend(tInDate);
+
+		string statusCodeStr = requestBro.GetStatusCode();
+		int statusCodeInt = Convert.ToInt32(statusCodeStr);
+
+		switch (statusCodeInt)
+		{
+			case 409:
+				DisplayMessage[(int)EMessageTypes.DuplicatedError]();
+				return;
+
+			case 412:
+				DisplayMessage[(int)EMessageTypes.RequestError]();
+				return;
+		}
+
+		DisplayMessage[(int)EMessageTypes.SucceededRequest]();
+		
+	}
+
+
+
+
+	void GetFriendList()
+	{
+		BackendReturnObject bro = Backend.Social.Friend.GetFriendList();
+		string list = bro.GetReturnValue();
+		Debug.Log(list);
+
+		FData = JsonUtility.FromJson<FriendData>(list);
+		Debug.Log(FData.rows[0].nickname.S);
+		Debug.Log(FData.rows[0].inDate.S);
+	}
+
+
+	private void HideAllMessages()
+	{
+		panelAddFriendGO.SetActive(false);
+		panelErrorMessage.SetActive(false);
+	}
+
+	public void DisplayMessageinArray(int btnValue)
+	{
+		DisplayMessage[btnValue]();
+	}
+
+	public void OnClickBtnHideMessageInArray(int btnValue)
+	{
+		HideMessage[btnValue]();
+	}
+
+	private void DisplayNoInputError()
+	{
+		panelErrorMessage.SetActive(true);
+	}
+	private void HideNoInputError()
+	{
+		panelErrorMessage.SetActive(false);
+	}
+
+	private void DisplayServerError()
+	{
+		panelErrorMessage.SetActive(true);
+	}
+	private void HideServerError()
+	{
+		panelErrorMessage.SetActive(false);
+	}
+
+	private void DisplayAddFriend()
+	{
+		panelAddFriendGO.SetActive(true);
+	}
+	private void HideAddFriend()
+	{
+		panelAddFriendGO.SetActive(false);
+	}
+
+	private void DisplayNoUserError()
+	{
+		panelErrorMessage.SetActive(true);
+	}
+
+	private void HideNoUserError()
+	{
+		panelErrorMessage.SetActive(false);
+	}
+
+	private void DisplayDuplicatedError()
+	{
+		panelErrorMessage.SetActive(true);
+	}
+	private void HideDuplicatedError()
+	{
+		panelErrorMessage.SetActive(false);
+	}
+
+	private void DisplayRequestError()
+	{
+		panelErrorMessage.SetActive(true);
+	}
+	private void HideRequestError()
+	{
+		panelErrorMessage.SetActive(false);
+	}
+
+	private void DisplaySucceededMessage()
+	{
+
+	}
+	private void HideSucceededMessage()
+	{
+
+	}
+}

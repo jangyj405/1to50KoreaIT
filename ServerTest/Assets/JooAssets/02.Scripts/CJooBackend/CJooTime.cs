@@ -299,11 +299,11 @@ public class CJooTime
 	public override string ToString()
 	{
 		string t =
-			Year.ToString() + "\n" +
-			Month.ToString() + "\n" +
-			Day.ToString() + "\n" +
-			Hour.ToString() + "\n" +
-			Minute.ToString() + "\n" +
+			Year.ToString() + "-" +
+			Month.ToString() + "-" +
+			Day.ToString() + "T" +
+			Hour.ToString() + ":" +
+			Minute.ToString() + ":" +
 			Second.ToString();
 		return t;
 	}
