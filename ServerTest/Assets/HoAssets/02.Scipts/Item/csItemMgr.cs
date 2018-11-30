@@ -25,8 +25,18 @@ public class csItemMgr
 		return GameTime;
 	}
 
-	public void UseGodOfHint()
+	public void UseGodOfHint_01(SpriteRenderer spr,TMPro.TMP_Text text)
 	{
+		spr.color = Color.grey;
+		text.color = Color.black;
+
+	}
+
+	public void UseGodOfHint_02(SpriteRenderer spr,TMPro.TMP_Text text)
+	{
+		
+		spr.color = Color.black;
+		text.color = Color.white;
 
 	}
 
