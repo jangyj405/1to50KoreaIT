@@ -10,7 +10,7 @@ public class HeartView : MonoBehaviour {
 
     void Start()
     {
-        HeartPurchasScreen.SetActive(false);
+        
     }
     
     public void HeartPurchasClick()
