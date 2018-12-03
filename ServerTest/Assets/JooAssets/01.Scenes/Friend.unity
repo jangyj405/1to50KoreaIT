@@ -1864,6 +1864,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1451408620408674, guid: 4ad2eda0868fecf48bbcaaf8c366cb20, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ad2eda0868fecf48bbcaaf8c366cb20, type: 2}
   m_IsPrefabParent: 0
@@ -2532,6 +2536,7 @@ GameObject:
   - component: {fileID: 1495773726}
   - component: {fileID: 1495773725}
   - component: {fileID: 1495773729}
+  - component: {fileID: 1495773730}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2634,6 +2639,20 @@ MonoBehaviour:
   friendPF: {fileID: 114678603766127250, guid: 4ad2eda0868fecf48bbcaaf8c366cb20, type: 2}
   friendListPanel: {fileID: 393759698}
   friendAcceptPanel: {fileID: 663522470}
+--- !u!114 &1495773730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1495773724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d927cacec199c2a47bf910eea8789a17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nicknameField: {fileID: 0}
+  panelErrorMessage: {fileID: 0}
+  panelAddFriendGO: {fileID: 0}
 --- !u!1 &1523316536
 GameObject:
   m_ObjectHideFlags: 0
