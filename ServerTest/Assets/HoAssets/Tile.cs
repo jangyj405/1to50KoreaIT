@@ -18,6 +18,7 @@ public class Tile : MonoBehaviour {
     Collider2D m_Col;
     Vector3 m_OriScale;
     bool m_IsPlaying;
+    bool m_IsDestroy = false;
     private void Awake()
     {
         m_Col = GetComponent<Collider2D>();
@@ -25,6 +26,10 @@ public class Tile : MonoBehaviour {
         m_NumText = GetComponentInChildren<TMPro.TMP_Text>();
         m_Tf = transform;
         m_OriScale = m_Tf.localScale;
+    }
+    public bool IsDestory()
+    {
+        return m_IsDestroy;
     }
     public void FadeIn()
     {
@@ -48,7 +53,7 @@ public class Tile : MonoBehaviour {
     }
     public void Miss()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         StartCoroutine("Co_Miss");
     }
 	//public void HintItem()
@@ -58,6 +63,7 @@ public class Tile : MonoBehaviour {
 	//}
     IEnumerator Co_FadeIn()
     {
+        m_IsDestroy = false;
         m_IsPlaying = true;
         //m_Col.enabled = true;
         m_Sr.color = Color.black;
@@ -80,6 +86,7 @@ public class Tile : MonoBehaviour {
     IEnumerator Co_FadeOut()
     {
         m_IsPlaying = true;
+        m_IsDestroy= true;
         //m_Col.enabled = false;
         Vector3 destScale = m_OriScale * 1.5f;
         m_Tf.localScale = m_OriScale;
