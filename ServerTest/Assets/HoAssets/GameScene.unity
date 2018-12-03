@@ -1487,6 +1487,7 @@ MonoBehaviour:
   m_GameOverText: {fileID: 1071844843}
   m_LockText: {fileID: 1734009263}
   m_CountText: {fileID: 1066255979}
+  ITEM_SlowRate: 0.9
   m_NumOrder: 0
   m_LockNum: 5
   m_LimitTime: 200

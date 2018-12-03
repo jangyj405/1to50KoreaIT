@@ -5,9 +5,9 @@ using UnityEngine;
 public class Tile : MonoBehaviour {
     public float m_FadeDuration = 0.5f;
     public float m_FadeOutScale = 1.5f;
-    public float m_BlinkDelay = 0.25f;
+    public float m_BlinkDelay = 2.0f;
     public float m_MissDelay = 0.25f;
-	public float m_HintBlink = 0.01f;
+	public float m_HintBlink = 2f;
     [HideInInspector]
     public int m_Num;
     [HideInInspector]
@@ -41,16 +41,29 @@ public class Tile : MonoBehaviour {
         StopAllCoroutines();
         StartCoroutine("Co_FadeOut");
     }
-    public void Blink()
-    {
-		if (csGameData.GetInstance ().IsClickHintSkill == false) {
-			StopAllCoroutines ();
-			StartCoroutine ("Co_Blink");
-		} else {
-			StopAllCoroutines ();
-			StartCoroutine("Co_HintItem");
-		}
-    }
+    //public void Blink()
+    //{
+	//	if (csGameData.GetInstance ().IsClickHintSkill == false) {
+	//		StopAllCoroutines ();
+	//		StartCoroutine ("Co_Blink");
+	//	} else {
+	//		StopAllCoroutines ();
+	//		StartCoroutine("Co_HintItem");
+	//	}
+    //}
+
+	public void Blink()
+	{
+		
+		StopAllCoroutines ();
+		StartCoroutine ("Co_Blink");
+
+	}
+	public void HintBlink()
+	{
+		StopAllCoroutines ();
+		StartCoroutine("Co_HintItem");
+	}
     public void Miss()
     {
         //StopAllCoroutines();
@@ -116,10 +129,12 @@ public class Tile : MonoBehaviour {
         {
             m_Sr.color = Color.grey;
             m_NumText.color = Color.black;
-            yield return wait;
+			Debug.Log ("깜박임_01");
+			yield return wait;
             m_Sr.color = Color.black;
             m_NumText.color = Color.white;
-            yield return wait;
+			Debug.Log ("깜박임_02");
+			yield return wait;
         }
     }
     IEnumerator Co_Miss()
@@ -145,9 +160,11 @@ public class Tile : MonoBehaviour {
 		m_IsPlaying = true;
 		WaitForSeconds wait = new WaitForSeconds (m_HintBlink);
 		while (true) {
-			csItemMgr.GetInstance ().UseGodOfHint_01 (m_Sr,m_NumText);
+			m_Sr.color = csItemMgr.GetInstance ().UseGodOfHint_SpritetRender (m_Sr,Color.grey);
+			m_NumText.color =  csItemMgr.GetInstance ().UseGodOfHint_Text (m_NumText,Color.black);
 			yield return wait;
-			csItemMgr.GetInstance ().UseGodOfHint_02 (m_Sr,m_NumText);
+			m_Sr.color = csItemMgr.GetInstance ().UseGodOfHint_SpritetRender (m_Sr,Color.black);
+			m_NumText.color =  csItemMgr.GetInstance ().UseGodOfHint_Text (m_NumText,Color.white);
 			yield return wait;
 		}
 
