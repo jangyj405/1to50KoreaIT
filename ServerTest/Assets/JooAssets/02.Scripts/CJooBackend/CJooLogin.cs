@@ -275,5 +275,6 @@ public class CJooLogin : MonoBehaviour
     public void OnClickBtnQuit()
     {
         Application.Quit();
+		
     }
 }

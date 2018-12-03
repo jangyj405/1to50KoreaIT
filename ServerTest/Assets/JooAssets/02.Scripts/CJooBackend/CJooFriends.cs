@@ -35,17 +35,17 @@ public class CJooFriends : MonoBehaviour
 	
 
 	private string foundUserIndate = "";
-	private FriendData fdata = null;
-	private FriendData FData
+	private FriendData nowFriendData = null;
+	private FriendData NowFriendData
 	{
 		get
 		{
-			return fdata;
+			return nowFriendData;
 		}
 		set
 		{
-			fdata = value;
-			if(fdata != null)
+			nowFriendData = value;
+			if(nowFriendData != null)
 			{
 				//DisplayOnUI();
 			}
@@ -55,6 +55,28 @@ public class CJooFriends : MonoBehaviour
 			}
 		}
 	}
+
+	private FriendData requestedFriendData = null;
+	private FriendData RequestedFriendData
+	{
+		get
+		{
+			return requestedFriendData;
+		}
+		set
+		{
+			requestedFriendData = value;
+			if (requestedFriendData != null)
+			{
+				//DisplayOnUI();
+			}
+			else
+			{
+				//HideAllFriendInfos
+			}
+		}
+	}
+
 
 	void Awake()
 	{
@@ -81,7 +103,15 @@ public class CJooFriends : MonoBehaviour
 	
 	void OnEnable ()
 	{
-		InitialFriendScene();
+		//InitialFriendScene();
+		PlayerPrefs.DeleteAll();
+		//GetUserMetaData();
+		//string indate = "2018-11-29T07:42:23.092Z";
+		//Backend.Social.Friend.RevokeSentRequest(indate);
+		//Backend.BMember.CreateNickname(false, "RequestFriend");
+		//AddFriend();
+		//GetFriendList();
+		GetRequestedList();
 		GetFriendList();
 	}
 
@@ -90,14 +120,15 @@ public class CJooFriends : MonoBehaviour
 		HideAllMessages();
 		nicknameField.text = "";
 		foundUserIndate = "";
-		FData = null;
+		NowFriendData = null;
+		RequestedFriendData = null;
 	}
 
 	void GetUserMetaData()
 	{
 		BackendReturnObject bro = Backend.BMember.GetUserInfo();
 		UserMetaData data = JsonUtility.FromJson<UserMetaData>(bro.GetReturnValue());
-		Debug.Log(data.row.inDate);
+		Debug.Log(data.row.nickname);
 		PlayerPrefs.DeleteAll();
 	}
 
@@ -173,10 +204,19 @@ public class CJooFriends : MonoBehaviour
 		string list = bro.GetReturnValue();
 		Debug.Log(list);
 
-		FData = JsonUtility.FromJson<FriendData>(list);
-		Debug.Log(FData.rows[0].nickname.S);
-		Debug.Log(FData.rows[0].inDate.S);
+		NowFriendData = JsonUtility.FromJson<FriendData>(list);
+		Debug.Log(NowFriendData.rows[0].nickname.S);
+		Debug.Log(NowFriendData.rows[0].inDate.S);
 	}
+
+	void GetRequestedList()
+	{
+		BackendReturnObject bro = Backend.Social.Friend.GetReceivedRequestList();
+		string aaa = bro.GetReturnValue();
+		RequestedFriendData = JsonUtility.FromJson<FriendData>(aaa);
+		Debug.Log(RequestedFriendData.rows[0].nickname.S);
+	}
+
 
 
 	private void HideAllMessages()

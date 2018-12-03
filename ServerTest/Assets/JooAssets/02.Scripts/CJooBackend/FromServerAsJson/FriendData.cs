@@ -18,4 +18,7 @@ public class FriendDataValue
 
 	[SerializeField]
 	public JsonS nickname;
+
+	[SerializeField]
+	public JsonS createdAt;
 }
