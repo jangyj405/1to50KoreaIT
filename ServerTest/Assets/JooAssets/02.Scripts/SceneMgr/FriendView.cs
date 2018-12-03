@@ -9,14 +9,18 @@ public class FriendView : MonoBehaviour
 	public static FriendView friendView = null;
     public GameObject friendAddScreen;
     public int friendCount;
-
+	[Space(20)]
     public Transform friendContent;
-
+	public Transform requestContent;
+	
     public InputField nickNameInputField;
     public GameObject friendList;
-    public Friend friendPF;
+	[Space(20)]
+	public Friend friendPF;
+	public CJooRequestedFriend requestedFriendPF;
 
-    public GameObject friendListPanel;
+	[Space(20)]
+	public GameObject friendListPanel;
     public GameObject friendAcceptPanel;
 
 	void Awake()
@@ -66,6 +70,14 @@ public class FriendView : MonoBehaviour
 		Friend instFriend = Instantiate<Friend>(friendPF, friendContent);
 		instFriend.InitialOneFriend(pNickName, pInDate);
 	}
+
+	public void InstantiateRequestedList(string pNickName, string pInDate)
+	{
+		CJooRequestedFriend instRequest = Instantiate<CJooRequestedFriend>(requestedFriendPF, requestContent);
+		instRequest.InitialOneFriend(pNickName, pInDate);
+	}
+
+
 
 	public void FriendAddScreenCloseClick()
     {

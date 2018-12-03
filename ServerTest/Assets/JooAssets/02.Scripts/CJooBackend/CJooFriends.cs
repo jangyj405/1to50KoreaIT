@@ -73,7 +73,12 @@ public class CJooFriends : MonoBehaviour
 			requestedFriendData = value;
 			if (requestedFriendData != null)
 			{
-				
+				foreach (FriendDataValue val in requestedFriendData.rows)
+				{
+					string tNickName = val.nickname.S;
+					string tInDate = val.inDate.S;
+					FriendView.friendView.InstantiateRequestedList(tNickName, tInDate);
+				}
 			}
 			else
 			{

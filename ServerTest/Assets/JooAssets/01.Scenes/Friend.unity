@@ -696,6 +696,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1559532725540940, guid: 3efae0f3b90186b43822d2e240ab787d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3efae0f3b90186b43822d2e240ab787d, type: 2}
   m_IsPrefabParent: 0
@@ -1167,8 +1171,7 @@ MonoBehaviour:
 --- !u!114 &445335372
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114062298331216692, guid: 4ad2eda0868fecf48bbcaaf8c366cb20,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 445335369}
   m_Enabled: 1
@@ -2746,9 +2749,12 @@ MonoBehaviour:
   friendAddScreen: {fileID: 1015919544}
   friendCount: 0
   friendContent: {fileID: 393759699}
+  requestContent: {fileID: 663522471}
   nickNameInputField: {fileID: 473257442}
   friendList: {fileID: 1451408620408674, guid: 4ad2eda0868fecf48bbcaaf8c366cb20, type: 2}
   friendPF: {fileID: 114678603766127250, guid: 4ad2eda0868fecf48bbcaaf8c366cb20, type: 2}
+  requestedFriendPF: {fileID: 114414485739179956, guid: 3efae0f3b90186b43822d2e240ab787d,
+    type: 2}
   friendListPanel: {fileID: 393759698}
   friendAcceptPanel: {fileID: 663522470}
 --- !u!114 &1495773730

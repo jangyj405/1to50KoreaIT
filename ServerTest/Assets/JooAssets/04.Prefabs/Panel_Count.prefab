@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 224259093391578602}
   - component: {fileID: 222399802387515890}
   - component: {fileID: 114678083619114626}
-  - component: {fileID: 114062298331216692}
   - component: {fileID: 114678603766127250}
   m_Layer: 5
   m_Name: Panel_Count
@@ -134,17 +133,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114062298331216692
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1451408620408674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d4888897c63d2b49bd7483c26c8e61d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114134127472832012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,7 +205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114062298331216692}
+      - m_Target: {fileID: 114678603766127250}
         m_MethodName: FriendDeleteClick
         m_Mode: 1
         m_Arguments:
