@@ -21,6 +21,8 @@ public class GameCore : MonoBehaviour {
     public GameObject m_GameOverText;
     public GameObject m_LockText;
     public TMPro.TMP_Text m_CountText;
+	[SerializeField]
+	private float ITEM_SlowRate;
     Tile[,] m_TileMap;
     float m_TimeScore;
     int m_Index;
@@ -152,17 +154,39 @@ public class GameCore : MonoBehaviour {
 
             }
            
-            if (Time.time - t > m_HelpTIme)
-            {
-                int index = m_NumOrder - 1;
-                if (index >= 0 && index < m_MaxGameNum)
-                {
-                    if (m_TileList[index] != null && !m_TileList[index].IsPlaying())
-                    {
-                        m_TileList[index].Blink();
-                    }
-                }
-            }
+            //if (Time.time - t > m_HelpTIme)
+            //{
+            //    int index = m_NumOrder - 1;
+            //    if (index >= 0 && index < m_MaxGameNum)
+            //    {
+            //        if (m_TileList[index] != null && !m_TileList[index].IsPlaying())
+            //        {
+            //            m_TileList[index].Blink();
+            //        }
+            //    }
+            //}
+
+			if (Time.time - t > m_HelpTIme && csGameData.GetInstance().IsClickHintSkill == false)
+			{
+				int index = m_NumOrder - 1;
+				if (index >= 0 && index < m_MaxGameNum)
+				{
+					if (m_TileList[index] != null && !m_TileList[index].IsPlaying())
+					{
+						m_TileList[index].Blink();
+					}
+				}
+			}
+			if (csGameData.GetInstance ().IsClickHintSkill == true) {
+				int index = m_NumOrder - 1;
+				if (index >= 0 && index < m_MaxGameNum)
+				{
+					if (m_TileList[index] != null && !m_TileList[index].IsPlaying())
+					{
+						m_TileList[index].HintBlink();
+					}
+				}
+			}
             if (m_TimeScore >= m_LimitTime)
             {
                 Debug.Log("제한시간 초과");
@@ -247,7 +271,9 @@ public class GameCore : MonoBehaviour {
         while (true)
         {
 			if (csGameData.GetInstance ().IsClickSlowSkill) {
-				csItemMgr.GetInstance ().UseGodOfSlow ();
+				//m_TimeScore = csItemMgr.GetInstance ().UseGodOfSlow (m_TimeScore);
+				m_TimeScore = (m_TimeScore + Time.deltaTime);
+				m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore * ITEM_SlowRate);
 			} else {
 				m_TimeScore += Time.deltaTime ;
 				m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);

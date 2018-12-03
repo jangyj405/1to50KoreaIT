@@ -25,18 +25,35 @@ public class csItemMgr
 		return _AdvantageTime;
 	}
 
-	public void UseGodOfHint_01(SpriteRenderer spr,TMPro.TMP_Text text)
+	//public void UseGodOfHint_01(SpriteRenderer spr,TMPro.TMP_Text text)
+	//{
+	//	spr.color = Color.grey;
+	//	text.color = Color.black;
+	//
+	//}
+	//
+	//public void UseGodOfHint_02(SpriteRenderer spr,TMPro.TMP_Text text)
+	//{
+	//	
+	//	spr.color = Color.black;
+	//	text.color = Color.white;
+	//
+	//}
+
+	public Color UseGodOfHint_SpritetRender(SpriteRenderer spr,Color _color)
 	{
-		spr.color = Color.grey;
-		text.color = Color.black;
+		spr.color = _color;
+		return spr.color;
+
 
 	}
 
-	public void UseGodOfHint_02(SpriteRenderer spr,TMPro.TMP_Text text)
+	public Color UseGodOfHint_Text(TMPro.TMP_Text text ,Color _color)
 	{
-		
-		spr.color = Color.black;
-		text.color = Color.white;
+
+
+		text.color = _color;
+		return text.color;
 
 	}
 
@@ -51,12 +68,12 @@ public class csItemMgr
 
 	}
 
-	public float UseGodOfSlow()
+	public float UseGodOfSlow(float time)
 	{
-		GameCore = GameObject.Find ("GameCore").GetComponent<GameCore>();
-		GameTime = GameCore.GameTime;
-		GameTime *= 0.9f;
-		return GameTime;
+		//GameCore = GameObject.Find ("GameCore").GetComponent<GameCore>();
+		//GameTime = GameCore.GameTime;
+		time = (time + Time.deltaTime) * 0.9f;
+		return time;
 	}
 
 	public void UseGodOfDestory()
