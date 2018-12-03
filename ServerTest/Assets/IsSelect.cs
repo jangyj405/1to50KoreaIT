@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class IsSelect : MonoBehaviour
 {
     public Button[] characterButton;
-    public int index;
-    
-    
+    public int index;    
 
     public void CharacterClick(int pIndex)
     {
