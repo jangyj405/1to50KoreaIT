@@ -141,8 +141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FadeDuration: 0.5
   m_FadeOutScale: 1.5
-  m_BlinkDelay: 0.25
+  m_BlinkDelay: 1
   m_MissDelay: 0.25
+  m_HintBlink: 1
   m_Num: 0
   m_NumText: {fileID: 0}
   m_Sr: {fileID: 0}
