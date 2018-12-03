@@ -37,6 +37,7 @@ public class CJooLogin : MonoBehaviour
     }
     void Start()
     {
+		PlayerPrefs.DeleteAll();
         InitialBackend();
         bool isServerAvailable = ServerStatus.CheckServerStatus();
 
@@ -45,7 +46,6 @@ public class CJooLogin : MonoBehaviour
             serverStatusPanel.SetActive(true);
             return;
         }
-
         TryLogin();
     }
 

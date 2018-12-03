@@ -9,7 +9,7 @@ using System;
 public class FindUserAsNickname
 {
 	[SerializeField]
-	public FindUserAsNicknameValue rows;
+	public FindUserAsNicknameValue[] rows;
 }
 
 [Serializable]

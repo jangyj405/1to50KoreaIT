@@ -114,6 +114,7 @@ public class CJooFriends : MonoBehaviour
 	void OnEnable ()
 	{
 		GetFriendList();
+		GetRequestedList();
 	}
 
 	void InitialFriendScene()
@@ -167,7 +168,7 @@ public class CJooFriends : MonoBehaviour
 			return;
 		}
 
-		string tInDate = tValue.rows.inDate.S;
+		string tInDate = tValue.rows[0].inDate.S;
 		Debug.Log(tInDate);
 
 		if (tInDate == "")
@@ -206,8 +207,8 @@ public class CJooFriends : MonoBehaviour
 		Debug.Log(list);
 
 		NowFriendData = JsonUtility.FromJson<FriendData>(list);
-		Debug.Log(NowFriendData.rows[0].nickname.S);
-		Debug.Log(NowFriendData.rows[0].inDate.S);
+		//Debug.Log(NowFriendData.rows[0].nickname.S);
+		//Debug.Log(NowFriendData.rows[0].inDate.S);
 	}
 
 	void GetRequestedList()
@@ -215,7 +216,7 @@ public class CJooFriends : MonoBehaviour
 		BackendReturnObject bro = Backend.Social.Friend.GetReceivedRequestList();
 		string aaa = bro.GetReturnValue();
 		RequestedFriendData = JsonUtility.FromJson<FriendData>(aaa);
-		Debug.Log(RequestedFriendData.rows[0].nickname.S);
+		//Debug.Log(RequestedFriendData.rows[0].nickname.S);
 	}
 
 
@@ -293,7 +294,7 @@ public class CJooFriends : MonoBehaviour
 
 	private void DisplaySucceededMessage()
 	{
-
+		Debug.Log("친구요청 보냄");
 	}
 	private void HideSucceededMessage()
 	{
