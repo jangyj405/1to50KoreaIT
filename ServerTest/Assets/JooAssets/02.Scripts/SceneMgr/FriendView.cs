@@ -83,4 +83,6 @@ public class FriendView : MonoBehaviour
         friendListPanel.SetActive(false);
         friendAcceptPanel.SetActive(true);
     }
+
+  
 }
