@@ -4,23 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ItemView : MonoBehaviour {
+public class CharacterView : MonoBehaviour {
 
-    public GameObject ItemPurchasScreen;
+    public GameObject CharacterPurchasScreen;
 
-	void Start () {
-        ItemPurchasScreen.SetActive(false);
-	}
-
-    public void ItemPurchasClick()
+    public void CharacterPurchasClick()
     {
-        if (ItemPurchasScreen != null)
-            ItemPurchasScreen.SetActive(true);
+        if (CharacterPurchasScreen != null)
+            CharacterPurchasScreen.SetActive(true);
     }
 
     public void NoClick()
     {
-        ItemPurchasScreen.SetActive(false);
+        CharacterPurchasScreen.SetActive(false);
     }
 
     public void CloseClick()

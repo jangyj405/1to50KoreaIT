@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class csCharacterMgr
 {
+    // {POLAR, CAMEL, PUPPY, PENGUIN, SHEEP, KITTEN};
+    private Dictionary<int, CHAR_TYPE> charIntToEnum = new Dictionary<int, CHAR_TYPE>()
+    {
+        {(int)CHAR_TYPE.POLAR, CHAR_TYPE.POLAR},
+         {(int)CHAR_TYPE.CAMEL, CHAR_TYPE.CAMEL},
+         {(int)CHAR_TYPE.PUPPY, CHAR_TYPE.PUPPY},
+         {(int)CHAR_TYPE.PENGUIN, CHAR_TYPE.PENGUIN},
+         {(int)CHAR_TYPE.SHEEP, CHAR_TYPE.SHEEP},
+         {(int)CHAR_TYPE.KITTEN, CHAR_TYPE.KITTEN}
+
+    };
 	private static csCharacterMgr m_Instance;
 	public static csCharacterMgr GetInstance()
 	{
@@ -19,6 +30,11 @@ public class csCharacterMgr
 	{
 		Char_Type = chartype;
 	}
+
+    public void CharacterChoice(int idx)
+    {
+        Char_Type = charIntToEnum[idx];
+    }
 
 	public void CharacterEffect()
 	{

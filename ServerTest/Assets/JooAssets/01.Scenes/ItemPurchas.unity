@@ -538,7 +538,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD30C\uAD34\uC758 \uC2E0"
+  m_Text: "\uD558\uD2B8\uC758 \uC2E0"
 --- !u!222 &79949375
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -905,7 +905,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 184832114}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495773729}
+        m_MethodName: ItemPurchasClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &184832114
@@ -1082,7 +1093,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: 50
 --- !u!222 &213747514
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1238,7 +1249,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 259634624}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495773729}
+        m_MethodName: ItemPurchasClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &259634624
@@ -1574,7 +1596,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 408694197}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495773729}
+        m_MethodName: ItemPurchasClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &408694197
@@ -2197,7 +2230,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 625019989}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495773729}
+        m_MethodName: ItemPurchasClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &625019989
@@ -2470,7 +2514,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 820333662}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2479,7 +2523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98, y: -27}
+  m_AnchoredPosition: {x: -98.000015, y: -27.00003}
   m_SizeDelta: {x: 364.9, y: 43.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &820333664
@@ -2514,8 +2558,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD604\uC7AC \uD130\uCE58\uBE14\uB7ED\uC5D0\uC11C \uB2E4\uC74C 10\uAC1C\uC758\n\uBE14\uB7ED\uC744
-    \uC790\uB3D9 \uD30C\uAD34\uD55C\uB2E4"
+  m_Text: "\uD558\uB8E8\uB3D9\uC548 \uD50C\uB808\uC774\uB97C\n\uBB34\uC81C\uD55C \uD560
+    \uC218 \uC788\uB2E4"
 --- !u!222 &820333665
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2619,7 +2663,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 875029015}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2628,7 +2672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98, y: -27}
+  m_AnchoredPosition: {x: -98.000015, y: -27}
   m_SizeDelta: {x: 364.9, y: 43.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &875029017
@@ -2663,8 +2707,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD558\uB8E8\uB3D9\uC548 \uD50C\uB808\uC774\uB97C\n\uBB34\uC81C\uD55C \uD560
-    \uC218 \uC788\uB2E4"
+  m_Text: "\uD604\uC7AC \uD130\uCE58\uBE14\uB7ED\uC5D0\uC11C \uB2E4\uC74C 10\uAC1C\uC758\n\uBE14\uB7ED\uC744
+    \uC790\uB3D9 \uD30C\uAD34\uD55C\uB2E4"
 --- !u!222 &875029018
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2961,7 +3005,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD558\uD2B8\uC758 \uC2E0"
+  m_Text: "\uD30C\uAD34\uC758 \uC2E0"
 --- !u!222 &982733316
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3175,7 +3219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1056024446
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4665,7 +4709,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1631935384}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495773729}
+        m_MethodName: ItemPurchasClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1631935384
@@ -4908,7 +4963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: 20
 --- !u!222 &1712433328
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5132,7 +5187,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1903969186}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495773729}
+        m_MethodName: ItemPurchasClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1903969186

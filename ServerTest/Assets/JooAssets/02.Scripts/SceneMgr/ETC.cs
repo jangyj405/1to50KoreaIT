@@ -15,6 +15,11 @@ public class ETC : MonoBehaviour {
         SceneManager.LoadScene("HeartPurchas");
     }
 
+    public void CharacterClick()
+    {
+        SceneManager.LoadScene("Character");
+    }
+
     public void OptionClick()
     {
         SceneManager.LoadScene("Option");
@@ -30,8 +35,13 @@ public class ETC : MonoBehaviour {
         SceneManager.LoadScene("Friend");
     }
 
-    public void CharacterClick()
+    public void ItemClick()
     {
-        SceneManager.LoadScene("Character");
+        SceneManager.LoadScene("ItemPurchas");
+    }
+
+    public void CharacterPurchasClick()
+    {
+        SceneManager.LoadScene("CharacterPurchas");
     }
 }

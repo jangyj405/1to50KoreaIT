@@ -20,7 +20,7 @@ public class csCharacter : MonoBehaviour
 		}
 	}
 
-	protected string CharLevel
+	protected int CharLevel
 	{
 		get
 		{
@@ -32,7 +32,7 @@ public class csCharacter : MonoBehaviour
 		}
 	}
 
-	protected string CharExp
+	protected int CharExp
 	{
 		get
 		{
