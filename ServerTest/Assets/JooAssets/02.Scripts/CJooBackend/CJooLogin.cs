@@ -31,7 +31,7 @@ public class CJooLogin : MonoBehaviour
             m_isSucceeded = value;
             if(m_isSucceeded == true)
             {
-                SceneManager.LoadScene("03_MainMenu");
+                SceneManager.LoadScene(SceneNames.modeSelectScene);
             }
         }
     }

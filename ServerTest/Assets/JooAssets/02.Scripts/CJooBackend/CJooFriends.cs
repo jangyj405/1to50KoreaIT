@@ -47,7 +47,12 @@ public class CJooFriends : MonoBehaviour
 			nowFriendData = value;
 			if(nowFriendData != null)
 			{
-				//DisplayOnUI();
+				foreach (FriendDataValue val in nowFriendData.rows)
+				{
+					string tNickName = val.nickname.S;
+					string tInDate = val.inDate.S;
+					FriendView.friendView.FriendAddReal(tNickName, tInDate);
+				}
 			}
 			else
 			{
@@ -68,7 +73,7 @@ public class CJooFriends : MonoBehaviour
 			requestedFriendData = value;
 			if (requestedFriendData != null)
 			{
-				//DisplayOnUI();
+				
 			}
 			else
 			{
@@ -103,15 +108,6 @@ public class CJooFriends : MonoBehaviour
 	
 	void OnEnable ()
 	{
-		//InitialFriendScene();
-		PlayerPrefs.DeleteAll();
-		//GetUserMetaData();
-		//string indate = "2018-11-29T07:42:23.092Z";
-		//Backend.Social.Friend.RevokeSentRequest(indate);
-		//Backend.BMember.CreateNickname(false, "RequestFriend");
-		//AddFriend();
-		//GetFriendList();
-		GetRequestedList();
 		GetFriendList();
 	}
 

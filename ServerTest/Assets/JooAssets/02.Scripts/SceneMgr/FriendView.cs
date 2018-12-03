@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class FriendView : MonoBehaviour {
-
+public class FriendView : MonoBehaviour
+{
+	public static FriendView friendView = null;
     public GameObject friendAddScreen;
     public int friendCount;
 
@@ -17,6 +18,12 @@ public class FriendView : MonoBehaviour {
 
     public GameObject friendListPanel;
     public GameObject friendAcceptPanel;
+
+	void Awake()
+	{
+		friendView = this;
+	}
+
 
     public void Start()
     {
@@ -53,7 +60,14 @@ public class FriendView : MonoBehaviour {
         //instFriend.NickName = "";
     }
 
-    public void FriendAddScreenCloseClick()
+
+	public void FriendAddReal(string pNickName, string pInDate)
+	{
+		Friend instFriend = Instantiate<Friend>(friendPF, friendContent);
+		instFriend.InitialOneFriend(pNickName, pInDate);
+	}
+
+	public void FriendAddScreenCloseClick()
     {
         friendAddScreen.SetActive(false);
     }
