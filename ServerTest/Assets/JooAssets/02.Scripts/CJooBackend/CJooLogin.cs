@@ -31,10 +31,27 @@ public class CJooLogin : MonoBehaviour
             m_isSucceeded = value;
             if(m_isSucceeded == true)
             {
-                SceneManager.LoadScene(SceneNames.modeSelectScene);
+				bool hasSetNickname = IsNickNameSet();
+				if(hasSetNickname)
+				{
+					SceneManager.LoadScene(SceneNames.modeSelectScene);
+				}
+				else
+				{
+					SceneManager.LoadScene(SceneNames.nicknameCreateScene);
+				}
             }
         }
     }
+
+	bool IsNickNameSet()
+	{
+		BackendReturnObject bro = Backend.BMember.GetUserInfo();
+		string tVal = bro.GetReturnValue();
+		UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(tVal);
+		return (metaData.row.nickname == "");
+	}
+
     void Start()
     {
 		PlayerPrefs.DeleteAll();

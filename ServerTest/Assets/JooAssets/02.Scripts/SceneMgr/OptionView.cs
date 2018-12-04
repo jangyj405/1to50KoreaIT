@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class OptionView : MonoBehaviour {
 
+    public GameObject LogOutPanel;
+    public GameObject WithdrawPanel;
+
     public void CloseClick()
     {
         if (ModeSelect.stageModeKind == StageModeKind.StageMode)
@@ -16,4 +19,26 @@ public class OptionView : MonoBehaviour {
             SceneManager.LoadScene(SceneNames.timeAttackScene);
         }
     }
+
+    public void NickNameChangeClick()
+    {
+        SceneManager.LoadScene("NickNameChange");
+    }
+
+    public void LogOutClick()
+    {
+        LogOutPanel.SetActive(true);
+    }
+
+    public void WithdrawClick()
+    {
+        WithdrawPanel.SetActive(true);
+    }
+
+    public void LogOutWithdrawAfterConfirmClick()
+    {
+        SceneManager.LoadScene(SceneNames.AccountScene);
+    }
+
+
 }

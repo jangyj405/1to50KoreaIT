@@ -868,6 +868,7 @@ GameObject:
   - component: {fileID: 355740267}
   - component: {fileID: 355740269}
   - component: {fileID: 355740268}
+  - component: {fileID: 355740270}
   m_Layer: 5
   m_Name: Panel_ErrorMessage
   m_TagString: Untagged
@@ -929,6 +930,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355740266}
+--- !u!114 &355740270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 355740266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce051cf10b276fd4d9705c6cc9fedccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtErrorID: {fileID: 625298671}
+  txtErrorExplain: {fileID: 534901925}
 --- !u!1 &387299428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,7 +2472,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1312671494}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1495773730}
+        m_MethodName: OnClickBtnHideMessageInArray
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1312671494
@@ -2769,7 +2794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nicknameField: {fileID: 473257442}
-  panelErrorMessage: {fileID: 355740266}
+  panelErrorMessage: {fileID: 355740270}
   panelAddFriendGO: {fileID: 1015919544}
 --- !u!1 &1523316536
 GameObject:
