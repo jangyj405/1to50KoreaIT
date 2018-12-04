@@ -13,6 +13,7 @@ public static class SceneNames
     public const string stageScene = "StageScene";
     public const string timeAttackScene = "TimeAttackScene";
 	public const string modeSelectScene = "ModeSelect";
+    public const string AccountScene = "02_AccountScene";
 }
 
 public class ModeSelect : MonoBehaviour
