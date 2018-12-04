@@ -21,9 +21,10 @@ public class GameCore : MonoBehaviour {
     public GameObject m_GameOverText;
     public GameObject m_LockText;
     public TMPro.TMP_Text m_CountText;
-	[SerializeField]
+    public Vector2Int[] m_RotationOrder;
+    [SerializeField]
 	private float ITEM_SlowRate;
-    Tile[,] m_TileMap;
+    public Tile[,] m_TileMap;
     float m_TimeScore;
     int m_Index;
     public int m_NumOrder;
@@ -105,20 +106,18 @@ public class GameCore : MonoBehaviour {
 
         InvokeRepeating("RandomChangeScale", 7.0f, 7.0f);
 		*/
-        
-        
-        
+
+
+
         //-----------------------------------------------
 
-        
-		//if (CRyuGameDataMgr.GetInst().GetMapStageLevel == 1)
+
+        //if (CRyuGameDataMgr.GetInst().GetMapStageLevel == 1)
         //{
         //    //StartCoroutine("RandomRotation");
         //    csBlockControl.Instance.RandomRotation();
         //    
         //}
-        
-       
 
         StartCoroutine("UpdateTimer");
         float t = Time.time;

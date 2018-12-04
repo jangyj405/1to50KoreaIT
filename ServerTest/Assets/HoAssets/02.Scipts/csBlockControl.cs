@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class csBlockControl : MonoBehaviour 
 {
-    //private static csBlockControl instance;
+   //private static csBlockControl instance;
 
     private int RandomRotationNumber;
     private int RandomBlinkNumber;
@@ -58,22 +58,22 @@ public class csBlockControl : MonoBehaviour
 		}
 	}
 
-    //public static csBlockControl Instance
-    //{
-    //    get
-    //    {
-    //        if (instance == null)
-    //        {
-    //            instance = FindObjectOfType<csBlockControl>();
-    //            if (instance == null)
-    //            {
-    //                GameObject container = new GameObject("csBlockControl");
-    //                instance = container.AddComponent<csBlockControl>();
-    //            }
-    //        }
-    //        return instance;
-    //    }
-    //}
+ //public static csBlockControl Instance
+ //{
+ //    get
+ //    {
+ //        if (instance == null)
+ //        {
+ //            instance = FindObjectOfType<csBlockControl>();
+ //            if (instance == null)
+ //            {
+ //                GameObject container = new GameObject("csBlockControl");
+ //                instance = container.AddComponent<csBlockControl>();
+ //            }
+ //        }
+ //        return instance;
+ //    }
+ //}
     public void RandomRotation()
     {
         StartCoroutine("Co_RandomRotation");
@@ -91,12 +91,27 @@ public class csBlockControl : MonoBehaviour
         StartCoroutine("Co_RandomChangeScale");
     }
 
+    //테두리 회전
+    public void EdgeRotation()
+    {
+        StartCoroutine("Co_EdgeRotation");
+    }
 
 
 
 
+    //테두리 회전
+    IEnumerator Co_EdgeRotation()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            BkEdgeRotation();
 
-
+        }
+            
+                
+    }
     IEnumerator Co_RandomRotation()
     {
 
@@ -126,7 +141,23 @@ public class csBlockControl : MonoBehaviour
 
     }
 
+    //테두리 회전
+    void BkEdgeRotation()
+    {
 
+        Vector2Int lastPos =GameCore.Instance.m_RotationOrder[GameCore.Instance.m_RotationOrder.Length - 1];
+        Tile prevTile =GameCore.Instance.m_TileMap[lastPos.x, lastPos.y];
+        for (int i = 0; i < GameCore.Instance.m_RotationOrder.Length; i++)
+        {
+            Vector2Int CurPos = GameCore.Instance.m_RotationOrder[i];
+            Tile CurTile = GameCore.Instance.m_TileMap[CurPos.x, CurPos.y];
+            prevTile.transform.DOMove(CurTile.transform.position, 1f);
+
+            GameCore.Instance.m_TileMap[CurPos.x, CurPos.y] = prevTile;
+            prevTile = CurTile;
+        }
+       
+    }
 
     IEnumerator Co_RandomReverse()
     {
