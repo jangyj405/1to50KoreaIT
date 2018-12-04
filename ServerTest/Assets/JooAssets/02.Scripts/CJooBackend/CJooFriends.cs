@@ -27,7 +27,7 @@ public class CJooFriends : MonoBehaviour
 
 
 	[SerializeField]
-	private GameObject panelErrorMessage = null;
+	private CJooErrorMessage panelErrorMessage = null;
 
 
 	[SerializeField]
@@ -113,6 +113,7 @@ public class CJooFriends : MonoBehaviour
 	
 	void OnEnable ()
 	{
+		GetUserMetaData();
 		GetFriendList();
 		GetRequestedList();
 	}
@@ -168,7 +169,23 @@ public class CJooFriends : MonoBehaviour
 			return;
 		}
 
-		string tInDate = tValue.rows[0].inDate.S;
+		//if (tValue.rows[0] == null)
+		//{
+		//	DisplayMessage[(int)EMessageTypes.NoUserError]();
+		//	return;
+		//}
+		string tInDate = "";
+		try
+		{
+			tInDate = tValue.rows[0].inDate.S;
+		}
+		catch
+		{
+			DisplayMessage[(int)EMessageTypes.NoUserError]();
+			return;
+		}
+
+		
 		Debug.Log(tInDate);
 
 		if (tInDate == "")
@@ -214,8 +231,8 @@ public class CJooFriends : MonoBehaviour
 	void GetRequestedList()
 	{
 		BackendReturnObject bro = Backend.Social.Friend.GetReceivedRequestList();
-		string aaa = bro.GetReturnValue();
-		RequestedFriendData = JsonUtility.FromJson<FriendData>(aaa);
+		string jsonValue = bro.GetReturnValue();
+		RequestedFriendData = JsonUtility.FromJson<FriendData>(jsonValue);
 		//Debug.Log(RequestedFriendData.rows[0].nickname.S);
 	}
 
@@ -224,7 +241,7 @@ public class CJooFriends : MonoBehaviour
 	private void HideAllMessages()
 	{
 		panelAddFriendGO.SetActive(false);
-		panelErrorMessage.SetActive(false);
+		panelErrorMessage.gameObject.SetActive(false);
 	}
 
 	public void DisplayMessageinArray(int btnValue)
@@ -239,20 +256,24 @@ public class CJooFriends : MonoBehaviour
 
 	private void DisplayNoInputError()
 	{
-		panelErrorMessage.SetActive(true);
+		panelErrorMessage.errorID = "친구요청에 실패하였습니다";
+		panelErrorMessage.errorExplain = "닉네임을\n입력하세요!";
+		panelErrorMessage.gameObject.SetActive(true);
 	}
 	private void HideNoInputError()
 	{
-		panelErrorMessage.SetActive(false);
+		panelErrorMessage.gameObject.SetActive(false);
 	}
 
 	private void DisplayServerError()
 	{
-		panelErrorMessage.SetActive(true);
+		panelErrorMessage.errorID = "친구요청에 실패하였습니다";
+		panelErrorMessage.errorExplain = "서버 통신이\n원활하지 않습니다!";
+		panelErrorMessage.gameObject.SetActive(true);
 	}
 	private void HideServerError()
 	{
-		panelErrorMessage.SetActive(false);
+		panelErrorMessage.gameObject.SetActive(false);
 	}
 
 	private void DisplayAddFriend()
@@ -266,38 +287,46 @@ public class CJooFriends : MonoBehaviour
 
 	private void DisplayNoUserError()
 	{
-		panelErrorMessage.SetActive(true);
+		panelErrorMessage.errorID = "친구요청에 실패하였습니다";
+		panelErrorMessage.errorExplain = "해당 닉네임의 유저가 없습니다!";
+		panelErrorMessage.gameObject.SetActive(true);
 	}
 
 	private void HideNoUserError()
 	{
-		panelErrorMessage.SetActive(false);
+		panelErrorMessage.gameObject.SetActive(false);
 	}
 
 	private void DisplayDuplicatedError()
 	{
-		panelErrorMessage.SetActive(true);
+		panelErrorMessage.errorID = "친구요청에 실패하였습니다";
+		panelErrorMessage.errorExplain = "이미 친구이거나\n이미 요청을 보낸 유저입니다!";
+		panelErrorMessage.gameObject.SetActive(true);
 	}
 	private void HideDuplicatedError()
 	{
-		panelErrorMessage.SetActive(false);
+		panelErrorMessage.gameObject.SetActive(false);
 	}
 
 	private void DisplayRequestError()
 	{
-		panelErrorMessage.SetActive(true);
+		panelErrorMessage.errorID = "친구요청에 실패하였습니다";
+		panelErrorMessage.errorExplain = "상대 혹은 자신의 친구 목록이 최대치입니다!";
+		panelErrorMessage.gameObject.SetActive(true);
 	}
 	private void HideRequestError()
 	{
-		panelErrorMessage.SetActive(false);
+		panelErrorMessage.gameObject.SetActive(false);
 	}
 
 	private void DisplaySucceededMessage()
 	{
-		Debug.Log("친구요청 보냄");
+		panelErrorMessage.errorID = "친구요청에 성공하였습니다";
+		panelErrorMessage.errorExplain = "요청받은 유저가 수락하면\n친구가 됩니다!";
+		panelErrorMessage.gameObject.SetActive(true);
 	}
 	private void HideSucceededMessage()
 	{
-
+		panelErrorMessage.gameObject.SetActive(false);
 	}
 }

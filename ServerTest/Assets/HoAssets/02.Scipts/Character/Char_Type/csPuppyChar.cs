@@ -47,7 +47,7 @@ public class csPuppyChar : csCharacter {
 	public void LevelUP()
 	{
 		base.LevelUP ();
-		puppyEffect = charLevel * puppyEffect * 0.8;
+		puppyEffect = charLevel * puppyEffect * 0.8f;
 
 	}
 }
