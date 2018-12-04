@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_TileSize: {x: 1, y: 1}
   m_TileSpacing: {x: 0.1, y: 0.1}
   m_TileNum: {x: 5, y: 5}
-  m_MaxGameNum: 2
+  m_MaxGameNum: 50
   m_TilePrefab: {fileID: 1704083655835138, guid: 89bb3520cf1bacf4590835c2ac83882f,
     type: 2}
   m_NextText:

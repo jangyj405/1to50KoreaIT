@@ -157,10 +157,11 @@ public class Tile : MonoBehaviour {
 
 	IEnumerator Co_HintItem()
 	{
-		m_IsPlaying = true;
+    
+        m_IsPlaying = true;
 		WaitForSeconds wait = new WaitForSeconds (m_HintBlink);
 		while (true) {
-			m_Sr.color = csItemMgr.GetInstance ().UseGodOfHint_SpritetRender (m_Sr,Color.grey);
+            m_Sr.color = csItemMgr.GetInstance ().UseGodOfHint_SpritetRender (m_Sr,Color.grey);
 			m_NumText.color =  csItemMgr.GetInstance ().UseGodOfHint_Text (m_NumText,Color.black);
 			yield return wait;
 			m_Sr.color = csItemMgr.GetInstance ().UseGodOfHint_SpritetRender (m_Sr,Color.black);
