@@ -49,7 +49,7 @@ public class CJooLogin : MonoBehaviour
 		BackendReturnObject bro = Backend.BMember.GetUserInfo();
 		string tVal = bro.GetReturnValue();
 		UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(tVal);
-		return (metaData.row.nickname == "");
+		return !(metaData.row.nickname == "");
 	}
 
     void Start()
