@@ -31,7 +31,8 @@ public class GameCore : MonoBehaviour {
     int m_MissNum = 0;
     public int m_LockNum = 5;
     int m_stageIndex = 0;
-    public float m_LimitTime = 200;
+    float m_LimitTime = 200f;
+
 
 	private csBlockControl BlockControlScript;
 
@@ -186,10 +187,21 @@ public class GameCore : MonoBehaviour {
 					}
 				}
 			}
-            if (m_TimeScore >= m_LimitTime)
+            if (m_MapData.IsLimitTimer == true)
             {
-                Debug.Log("제한시간 초과");
-                break;
+                if (m_TimeScore >= m_LimitTime)
+                {
+                    Debug.Log("제한시간 초과");
+                    break;
+                }
+            }
+            else
+            {
+                if ((m_TimeScore >= m_LimitTime))
+                {
+                    Debug.Log("제한시간 초과");
+                    break;
+                }
             }
 			if (m_NumOrder > m_MaxGameNum) {
 				if (csGameData.GetInstance ().IsClickTimeSkill) {
@@ -377,8 +389,17 @@ public class GameCore : MonoBehaviour {
     
 	void MapSettingInit()
 	{
-		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+        m_MapData = csMapMgr.GetInstance().MapSetting(CRyuGameDataMgr.GetInst().GetMapStageLevel);
 
+        if ( csGameData.GetInstance().IsClickTimeSkill==true && m_MapData.IsLimitTimer == true)
+        {
+            m_LimitTime = m_MapData.LimitTimer + 2;
+        }
+ 
+        else if (m_MapData.IsLimitTimer==true)
+        {
+            m_LimitTime = m_MapData.LimitTimer; 
+        }
 
 		//Debug.Log (m_MapData.GetMapId);
 		//Debug.Log (m_MapData.RotationCount);

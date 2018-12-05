@@ -9,20 +9,34 @@ public class csMapData : ScriptableObject {
 	private string MapId;
 	//[SerializeField]
 	private float MapClearTime;
+
     [SerializeField]
     private int rotationCount;
     [SerializeField]
+    private float rotationTimer;
+
+    [SerializeField]
     private int blinkCount;
+    [SerializeField]
+    private float blinkTimer;
+
     [SerializeField]
     private int reverseCount;
     [SerializeField]
+    private float reverseTimer;
+
+    [SerializeField]
     private int scaleCount;
+    [SerializeField]
+    private float scaleTimer;
+
     [SerializeField]
     private int trackCount;
     [SerializeField]
     private int emptyCount;
 	[SerializeField]
 	private int maxGameNum;
+
 	[SerializeField]
 	private bool islimitTimer;
 	[SerializeField]
@@ -153,6 +167,38 @@ public class csMapData : ScriptableObject {
 			limitTimer = value;
 		}
 	}
+
+    public float RotationTimer
+    {
+        get
+        {
+            return rotationTimer;
+        }
+    }
+
+    public float BlinkTimer
+    {
+        get
+        {
+            return blinkTimer;
+        }
+    }
+
+    public float ScaleTimer
+    {
+        get
+        {
+            return scaleTimer;
+        }
+    }
+
+    public float ReverseTimer
+    {
+        get
+        {
+            return reverseTimer;
+        }
+    }
 
 
     public int NothingCount

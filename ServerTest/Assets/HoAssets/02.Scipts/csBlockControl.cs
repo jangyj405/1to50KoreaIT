@@ -78,25 +78,30 @@ public class csBlockControl : MonoBehaviour
  //}
     public void RandomRotation()
     {
-        StartCoroutine("Co_RandomRotation");
+        //StartCoroutine("Co_RandomRotation");
+        InvokeRepeating("Co_RandomRotation", 0.5f, m_MapData.RotationTimer);
     }
     public void RandomBlink()
     {
-        StartCoroutine("Co_RandomBlink");
+        //StartCoroutine("Co_RandomBlink");
+        InvokeRepeating("Co_RandomBlink", 5.0f, 0.5f);
+        
     }
     public void RandomReverse()
     {
-        StartCoroutine("Co_RandomReverse");
+        //StartCoroutine("Co_RandomReverse");
+        //InvokeRepeating("Co_RandomReverse", 0.5f, m_MapData.ReverseTimer);
     }
     public void RandomChangeScale()
     {
-        StartCoroutine("Co_RandomChangeScale");
+        //StartCoroutine("Co_RandomChangeScale");
+        //InvokeRepeating("Co_RandomChangeScale", 0.5f, m_MapData.ScaleTimer);
     }
 
     //테두리 회전
     public void EdgeRotation()
     {
-        StartCoroutine("Co_EdgeRotation");
+        //StartCoroutine("Co_EdgeRotation");
     }
 
 
