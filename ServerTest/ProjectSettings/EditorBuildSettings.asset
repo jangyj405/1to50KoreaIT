@@ -27,11 +27,8 @@ EditorBuildSettings:
     path: Assets/JooAssets/01.Scenes/Friend.unity
     guid: fe2e5d60517111c488057a0d7227007c
   - enabled: 1
-    path: Assets/JooAssets/01.Scenes/HeartPurchas.unity
+    path: Assets/JooAssets/01.Scenes/CharacterPurchase.unity
     guid: c5da281b8804b0c419f6bafe334995ee
-  - enabled: 1
-    path: Assets/JooAssets/01.Scenes/Character.unity
-    guid: cd4ceb2d57e85bd40b5e5880beb7467f
   - enabled: 1
     path: Assets/JooAssets/01.Scenes/ItemPurchas.unity
     guid: d5d379fefff44ac41b4105cb3a788fa0

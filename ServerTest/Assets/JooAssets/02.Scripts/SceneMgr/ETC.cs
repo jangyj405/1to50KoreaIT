@@ -7,18 +7,18 @@ public class ETC : MonoBehaviour {
     
     public void DiaPurchasClick()
     {
-        SceneManager.LoadScene("DiaPurchas");
+        SceneManager.LoadScene("DiaPurchase");
     }
 
     public void HeartPurchasClick()
     {
-        SceneManager.LoadScene("HeartPurchas");
+        SceneManager.LoadScene("HeartPurchase");
     }
 
-    public void CharacterClick()
-    {
-        SceneManager.LoadScene("Character");
-    }
+    //public void CharacterClick()
+    //{
+    //    SceneManager.LoadScene("Character");
+    //}
 
     public void OptionClick()
     {
@@ -42,6 +42,6 @@ public class ETC : MonoBehaviour {
 
     public void CharacterPurchasClick()
     {
-        SceneManager.LoadScene("CharacterPurchas");
+        SceneManager.LoadScene("CharacterPurchase");
     }
 }

@@ -68,6 +68,4 @@ public class csCharacter : MonoBehaviour
 			maxCharExp *= 2;
 		}
 	}
-
-
 }
