@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: Stage_001
   m_EditorClassIdentifier: 
   MapId: Stage_001
-  rotationCount: 3
+  rotationCount: 0
   rotationTimer: 0
   blinkCount: 3
-  blinkTimer: 0
-  reverseCount: 3
+  blinkTimer: 1
+  reverseCount: 0
   reverseTimer: 0
-  scaleCount: 3
+  scaleCount: 0
   scaleTimer: 0
   trackCount: 0
   emptyCount: 0

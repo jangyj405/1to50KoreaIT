@@ -29,23 +29,31 @@ public class csBlockControl : MonoBehaviour
 	public void Init()
 	{
 		MapSettingInit ();
-		StartCoroutine("RandomRotation");
-
-		StartCoroutine("RandomBlink");
-
-		StartCoroutine("RandomReverse");
-
-		StartCoroutine("RandomChangeScale");
+		//StartCoroutine("RandomRotation");
+		//
+		//StartCoroutine("RandomBlink");
+		//
+		//StartCoroutine("RandomReverse");
+		//
+		//StartCoroutine("RandomChangeScale");
 
         StartCoroutine("EdgeRotation");
+
+		InvokeRepeating ("RandomRotation", 0.5f, m_MapData.RotationTimer);
+
+		InvokeRepeating ("RandomBlink", 0.5f, m_MapData.BlinkTimer);
+
+		InvokeRepeating ("RandomReverse", 0.5f, m_MapData.ReverseTimer);
+
+		InvokeRepeating ("RandomChangeScale", 0.5f, m_MapData.ScaleTimer);
 
 	}
 
 	void MapSettingInit()
 	{
 		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
-		Debug.Log (m_MapData.GetMapId);
-		Debug.Log (m_MapData.RotationCount);
+		//Debug.Log (m_MapData.GetMapId);
+		//Debug.Log (m_MapData.RotationCount);
 
 		RandomRotationNumber = m_MapData.RotationCount;
 		RandomBlinkNumber = m_MapData.BlinkCount;
@@ -78,24 +86,24 @@ public class csBlockControl : MonoBehaviour
  //}
     public void RandomRotation()
     {
-        //StartCoroutine("Co_RandomRotation");
-        InvokeRepeating("Co_RandomRotation", 0.5f, m_MapData.RotationTimer);
+        StartCoroutine("Co_RandomRotation");
+        
     }
     public void RandomBlink()
     {
-        //StartCoroutine("Co_RandomBlink");
-        InvokeRepeating("Co_RandomBlink", 5.0f, 0.5f);
+        StartCoroutine("Co_RandomBlink");
+       
         
     }
     public void RandomReverse()
     {
-        //StartCoroutine("Co_RandomReverse");
-        //InvokeRepeating("Co_RandomReverse", 0.5f, m_MapData.ReverseTimer);
+        StartCoroutine("Co_RandomReverse");
+        
     }
     public void RandomChangeScale()
     {
-        //StartCoroutine("Co_RandomChangeScale");
-        //InvokeRepeating("Co_RandomChangeScale", 0.5f, m_MapData.ScaleTimer);
+        StartCoroutine("Co_RandomChangeScale");
+        
     }
 
     //테두리 회전
@@ -141,7 +149,14 @@ public class csBlockControl : MonoBehaviour
         {
             Color _color = GameCore.Instance.m_TileList[arrayInt[i]].GetComponent<SpriteRenderer>().material.color;
             Color alphaColor = new Color(_color.r, _color.g, _color.b, 0f);
-            GameCore.Instance.m_TileList[arrayInt[i]].GetComponent<SpriteRenderer>().material.DOColor(alphaColor, 1f).SetLoops(6, LoopType.Yoyo);
+			int repeatNum = (int)m_MapData.BlinkTimer;
+			if (repeatNum % 2 == 1) {
+				repeatNum -= 1;
+				if (repeatNum <= 0) {
+					repeatNum = 2;
+				}
+			}
+			GameCore.Instance.m_TileList[arrayInt[i]].GetComponent<SpriteRenderer>().material.DOColor(alphaColor, 1f).SetLoops(repeatNum, LoopType.Yoyo);
 
         }
         yield return null;

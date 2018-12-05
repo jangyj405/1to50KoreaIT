@@ -395,7 +395,7 @@ public class GameCore : MonoBehaviour {
         {
             m_LimitTime = m_MapData.LimitTimer + 2;
         }
- 
+ 	   
         else if (m_MapData.IsLimitTimer==true)
         {
             m_LimitTime = m_MapData.LimitTimer; 

@@ -129,11 +129,11 @@ public class Tile : MonoBehaviour {
         {
             m_Sr.color = Color.grey;
             m_NumText.color = Color.black;
-			Debug.Log ("깜박임_01");
+			//Debug.Log ("깜박임_01");
 			yield return wait;
             m_Sr.color = Color.black;
             m_NumText.color = Color.white;
-			Debug.Log ("깜박임_02");
+			//Debug.Log ("깜박임_02");
 			yield return wait;
         }
     }
