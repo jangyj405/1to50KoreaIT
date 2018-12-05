@@ -23,6 +23,10 @@ public class csMapData : ScriptableObject {
     private int emptyCount;
 	[SerializeField]
 	private int maxGameNum;
+	[SerializeField]
+	private bool islimitTimer;
+	[SerializeField]
+	private float limitTimer;
 
 	public string GetMapId
 	{
@@ -126,6 +130,29 @@ public class csMapData : ScriptableObject {
 		}
 	}
 
+	public bool IsLimitTimer
+	{
+		get
+		{
+			return islimitTimer;
+		}
+		set
+		{
+			islimitTimer = value;
+		}
+	}
+
+	public float LimitTimer
+	{
+		get
+		{
+			return limitTimer;
+		}
+		set
+		{
+			limitTimer = value;
+		}
+	}
 
 
     public int NothingCount

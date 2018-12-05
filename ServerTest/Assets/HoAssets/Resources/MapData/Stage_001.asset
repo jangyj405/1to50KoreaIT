@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: Stage_001
   m_EditorClassIdentifier: 
   MapId: Stage_001
-  rotationCount: 2
-  blinkCount: 2
-  reverseCount: 2
+  rotationCount: 0
+  blinkCount: 1
+  reverseCount: 0
   scaleCount: 0
   trackCount: 0
   emptyCount: 0

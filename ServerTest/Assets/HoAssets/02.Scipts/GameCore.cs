@@ -378,6 +378,8 @@ public class GameCore : MonoBehaviour {
 	void MapSettingInit()
 	{
 		m_MapData = csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+
+
 		//Debug.Log (m_MapData.GetMapId);
 		//Debug.Log (m_MapData.RotationCount);
 		//if (csGameData.GetInstance ().IsClickShieldSkill) {
