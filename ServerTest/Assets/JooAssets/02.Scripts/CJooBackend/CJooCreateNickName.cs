@@ -27,6 +27,19 @@ public class CJooCreateNickName : MonoBehaviour
 	[SerializeField]
 	private Button createButton = null;
 
+	private string availNickname = "";
+	private string AvailNickName
+	{
+		get
+		{
+			return availNickname;
+		}
+		set
+		{
+			availNickname = value;
+		}
+	}
+
 	bool isSucceeded = false;
 	bool IsSucceeded
 	{
@@ -37,19 +50,18 @@ public class CJooCreateNickName : MonoBehaviour
 		set
 		{
 			isSucceeded = value;
-			if(isSucceeded == true)
+			if (isSucceeded == true)
 			{
 				StartCoroutine(NickNameCheckTimer());
 				createButton.interactable = true;
 			}
 			else
 			{
-				panelExpire.SetActive(true);
 				createButton.interactable = false;
 			}
 		}
 	}
-	
+
 
 	void Start()
 	{
@@ -58,14 +70,14 @@ public class CJooCreateNickName : MonoBehaviour
 
 	public void OnClickBtnCheckDuplicate()
 	{
-		if(nickNameField.text == "")
+		if (nickNameField.text == "")
 		{
 			DisplayNoInputError();
 			Debug.Log("닉넴을 입력해라");
 			return;
 		}
 
-		if(nickNameField.text.Contains(" "))
+		if (nickNameField.text.Contains(" "))
 		{
 			BlankError();
 			return;
@@ -77,7 +89,7 @@ public class CJooCreateNickName : MonoBehaviour
 			return;
 		}
 
-		if(IsContainsSpecialChars(nickNameField.text))
+		if (IsContainsSpecialChars(nickNameField.text))
 		{
 			SpecialCharactersError();
 			return;
@@ -85,7 +97,7 @@ public class CJooCreateNickName : MonoBehaviour
 
 		BackendReturnObject userBro = Backend.Social.GetGamerIndateByNickname(nickNameField.text);
 		bool isServerOkay = CJooBackendCommonErrors.IsAvailableWithServer(userBro);
-		if(!isServerOkay)
+		if (!isServerOkay)
 		{
 			Debug.Log("Server is Now Inavailable");
 			DisplayServerError();
@@ -103,6 +115,7 @@ public class CJooCreateNickName : MonoBehaviour
 		catch
 		{
 			DisplayAvailMessage();
+			AvailNickName = nickNameField.text;
 			IsSucceeded = true;
 		}
 	}
@@ -110,7 +123,14 @@ public class CJooCreateNickName : MonoBehaviour
 
 	public void OnClickBtnCreateNickName()
 	{
-		BackendReturnObject bro = Backend.BMember.CreateNickname(false, nickNameField.text);
+
+		if (AvailNickName != nickNameField.text)
+		{
+			PleaseCheckDuplicationFirst();
+			IsSucceeded = false;
+			return;
+		}
+		BackendReturnObject bro = Backend.BMember.CreateNickname(false, AvailNickName);
 		bool isServerOkay = CJooBackendCommonErrors.IsAvailableWithServer(bro);
 		if (!isServerOkay)
 		{
@@ -134,7 +154,10 @@ public class CJooCreateNickName : MonoBehaviour
 				break;
 		}
 	}
-
+	void PleaseCheckDuplicationFirst()
+	{
+		errorMessage.text = "중복확인 버튼을 터치하세요";
+	}
 
 	//닉네임 길이가 지나치게 길때 20바이트
 	//"닉네임은 10글자 이내로 입력하세요"
@@ -214,15 +237,19 @@ public class CJooCreateNickName : MonoBehaviour
 	IEnumerator NickNameCheckTimer()
 	{
 		int time = 0;
-		while(IsSucceeded)
+		bool isRunningTimer = true;
+		while (isRunningTimer)
 		{
-			
+
 			time++;
-			if(time == 60)
+			if (time == 60)
 			{
-				IsSucceeded = false;
+				isRunningTimer = false;
+				panelExpire.SetActive(true);
+
 			}
 			yield return new WaitForSeconds(1f);
 		}
+		IsSucceeded = false;
 	}
 }
