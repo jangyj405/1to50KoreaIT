@@ -18,8 +18,9 @@ public class CJooLogin : MonoBehaviour
     public InputField loginPW = null;
 
     public GameObject serverStatusPanel = null;
+	string debugmessage = "";
 
-    bool m_isSucceeded = false;
+	bool m_isSucceeded = false;
     bool isSucceeded
     {
         get
@@ -31,7 +32,7 @@ public class CJooLogin : MonoBehaviour
             m_isSucceeded = value;
             if(m_isSucceeded == true)
             {
-				bool hasSetNickname = IsNickNameSet();
+				bool hasSetNickname = true;//IsNickNameSet();
 				if(hasSetNickname)
 				{
 					SceneManager.LoadScene(SceneNames.modeSelectScene);
@@ -52,23 +53,146 @@ public class CJooLogin : MonoBehaviour
 		return !(metaData.row.nickname == "");
 	}
 
-    void Start()
+    IEnumerator Start()
     {
+		yield return new WaitForSeconds(1f);
+		MakeCheckList();
 		PlayerPrefs.DeleteAll();
-        InitialBackend();
+		
+		InitialBackend();
         bool isServerAvailable = ServerStatus.CheckServerStatus();
 
         if (isServerAvailable == false)
         {
             serverStatusPanel.SetActive(true);
-            return;
+            yield break;
         }
-        TryLogin();
+		TryLoginPrefs();
     }
 
-   
+	/// <summary>
+	/// async
+	/// </summary>
+	List<Action> checkList = new List<Action>();
+	void MakeCheckList()
+	{
+		checkList.Add(CheckPrefsLogin);
+		checkList.Add(CheckCustomLogin);
+		checkList.Add(CheckNickName);
+	}
+	bool isCheckedPrefs = false;
+	bool isCheckedCustom = false;
+	bool isCheckedNickName = false;
+	bool hasCreatedNickName = false;
 
-    void InitialBackend()
+	BackendReturnObject fieldbro = new BackendReturnObject();
+	bool isBroSuccess = false;
+	void Update()
+	{
+		if (isBroSuccess)
+		{
+			Backend.BMember.SaveToken(fieldbro);
+			
+			
+			foreach(var check in checkList)
+			{
+				check();
+			}
+			
+			isBroSuccess = false;
+			fieldbro.Clear();
+
+			if ((isCheckedPrefs || isCheckedCustom) && !isCheckedNickName)
+			{
+				Backend.BMember.GetUserInfo((callback) => { isBroSuccess = true; fieldbro = callback; });
+			}
+
+		}
+
+		if ((isCheckedPrefs || isCheckedCustom) && isCheckedNickName)
+		{
+
+		}
+	}
+
+	void CheckPrefsLogin()
+	{
+		if(isCheckedPrefs == true)
+		{
+			return;
+		}
+		string statuscode = fieldbro.GetStatusCode();
+		int statuscodeInt = Convert.ToInt32(statuscode);
+
+		switch (statuscodeInt)
+		{
+			case 401:
+				{
+					Debug.Log("아이디가 존재하지 않음");
+				}
+				break;
+
+			case 403:
+				{
+					Debug.Log("차단당한 유저");
+				}
+				break;
+
+			default:
+				isCheckedPrefs = true;
+				break;
+		}
+	}
+	void CheckCustomLogin()
+	{
+		if (isCheckedCustom == true)
+		{
+			return;
+		}
+		string statuscode = fieldbro.GetStatusCode();
+		int statuscodeInt = Convert.ToInt32(statuscode);
+
+		switch (statuscodeInt)
+		{
+			case 401:
+				{
+					Debug.Log("아이디가 존재하지 않음");
+				}
+				break;
+
+			case 403:
+				{
+					Debug.Log("차단당한 유저");
+				}
+				break;
+
+			default:
+				PlayerPrefs.SetString("UserID", loginID.text);
+				PlayerPrefs.SetString("UserPW", loginPW.text);
+				isCheckedCustom = true;
+				break;
+		}
+	}
+	void CheckNickName()
+	{
+		if(hasCreatedNickName == true)
+		{
+			return;
+		}
+		string tVal = fieldbro.GetReturnValue();
+		UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(tVal);
+		hasCreatedNickName = !(metaData.row.nickname == "");
+		
+	}
+
+	public void TryLoginPrefs()
+	{
+		string id, pw;
+		GetAccountFromPrefs(out id, out pw);
+		Backend.BMember.CustomLogin(id, pw, (callback) => { isBroSuccess = true; fieldbro = callback; });
+	}
+
+	void InitialBackend()
     {
         if (!Backend.IsInitialized)
         {
@@ -136,8 +260,9 @@ public class CJooLogin : MonoBehaviour
                 isSucceeded = true;
                 break;
         }
+		debugmessage = statuscode;
 
-        Debug.Log(bro.ToString());
+		Debug.Log(bro.ToString());
     }
 
     void TryLoginPrefsSync()
@@ -214,12 +339,15 @@ public class CJooLogin : MonoBehaviour
 
         if (tID == "")
         {
-            Debug.Log("아이디를 입력해라");
-        }
+			Debug.Log("아이디를 입력해라");
+			debugmessage = "아이디를 입력해라";
+
+		}
         else if (tPW == "")
         {
             Debug.Log("패스워드를 입력해라");
-        }
+			debugmessage = "패스워드를 입력해라";
+		}
         else
         {
             CustomLogin(tID, tPW);
@@ -294,4 +422,9 @@ public class CJooLogin : MonoBehaviour
         Application.Quit();
 		
     }
+
+	void OnGUI()
+	{
+		GUI.TextArea(new Rect(0f, 0f, 100f, 50f), debugmessage);
+	}
 }

@@ -9,17 +9,20 @@ EditorBuildSettings:
     path: Assets/asdf.unity
     guid: 24091134fdc7e3043a83a7977288f87a
   - enabled: 1
-    path: Assets/JooAssets/01.Scenes/AddtiveSceneETC.unity
-    guid: b2b068778bfb83941aa79d9a8615aa89
-  - enabled: 1
     path: Assets/JooAssets/01.Scenes/01_DisplayBackendLogo.unity
     guid: b04d1a5aec4de3348a62bc1a21f1733e
   - enabled: 1
     path: Assets/JooAssets/01.Scenes/02_AccountScene.unity
     guid: d38ab1ffc60049f4e9c2c418317e1f15
-  - enabled: 1
+  - enabled: 0
     path: Assets/JooAssets/01.Scenes/03_MainMenu.unity
     guid: 0a439b2bdc0544e45a3fb8b26a632921
+  - enabled: 1
+    path: Assets/JooAssets/01.Scenes/ModeSelect.unity
+    guid: 638e6359b4b109e458ea370cb9c58316
+  - enabled: 1
+    path: Assets/JooAssets/01.Scenes/AddtiveSceneETC.unity
+    guid: b2b068778bfb83941aa79d9a8615aa89
   - enabled: 1
     path: Assets/JooAssets/01.Scenes/DiaPurchas.unity
     guid: e2acdc279050ed54c8a79daaefc9f783
@@ -30,14 +33,11 @@ EditorBuildSettings:
     path: Assets/JooAssets/01.Scenes/HeartPurchas.unity
     guid: c5da281b8804b0c419f6bafe334995ee
   - enabled: 1
-    path: Assets/JooAssets/01.Scenes/Character.unity
+    path: Assets/JooAssets/01.Scenes/CharacterPurchas.unity
     guid: cd4ceb2d57e85bd40b5e5880beb7467f
   - enabled: 1
     path: Assets/JooAssets/01.Scenes/ItemPurchas.unity
     guid: d5d379fefff44ac41b4105cb3a788fa0
-  - enabled: 1
-    path: Assets/JooAssets/01.Scenes/ModeSelect.unity
-    guid: 638e6359b4b109e458ea370cb9c58316
   - enabled: 1
     path: Assets/JooAssets/01.Scenes/NickNameChange.unity
     guid: 1f8a1e41bae35a8449697b419ac3283c

@@ -27,6 +27,19 @@ public class CJooCreateNickName : MonoBehaviour
 	[SerializeField]
 	private Button createButton = null;
 
+	private string availNickname = "";
+	private string AvailNickName
+	{
+		get
+		{
+			return availNickname;
+		}
+		set
+		{
+			availNickname = value;
+		}
+	}
+
 	bool isSucceeded = false;
 	bool IsSucceeded
 	{
@@ -44,7 +57,6 @@ public class CJooCreateNickName : MonoBehaviour
 			}
 			else
 			{
-				panelExpire.SetActive(true);
 				createButton.interactable = false;
 			}
 		}
@@ -103,6 +115,7 @@ public class CJooCreateNickName : MonoBehaviour
 		catch
 		{
 			DisplayAvailMessage();
+			AvailNickName = nickNameField.text;
 			IsSucceeded = true;
 		}
 	}
@@ -110,7 +123,14 @@ public class CJooCreateNickName : MonoBehaviour
 
 	public void OnClickBtnCreateNickName()
 	{
-		BackendReturnObject bro = Backend.BMember.CreateNickname(false, nickNameField.text);
+
+		if(AvailNickName != nickNameField.text)
+		{
+			PleaseCheckDuplicationFirst();
+			IsSucceeded = false;
+			return;
+		}
+		BackendReturnObject bro = Backend.BMember.CreateNickname(false, AvailNickName);
 		bool isServerOkay = CJooBackendCommonErrors.IsAvailableWithServer(bro);
 		if (!isServerOkay)
 		{
@@ -134,7 +154,10 @@ public class CJooCreateNickName : MonoBehaviour
 				break;
 		}
 	}
-
+	void PleaseCheckDuplicationFirst()
+	{
+		errorMessage.text = "중복확인 버튼을 터치하세요";
+	}
 
 	//닉네임 길이가 지나치게 길때 20바이트
 	//"닉네임은 10글자 이내로 입력하세요"
@@ -214,15 +237,19 @@ public class CJooCreateNickName : MonoBehaviour
 	IEnumerator NickNameCheckTimer()
 	{
 		int time = 0;
-		while(IsSucceeded)
+		bool isRunningTimer = true;
+		while(isRunningTimer)
 		{
 			
 			time++;
 			if(time == 60)
 			{
-				IsSucceeded = false;
+				isRunningTimer = false;
+				panelExpire.SetActive(true);
+			
 			}
 			yield return new WaitForSeconds(1f);
 		}
+		IsSucceeded = false;
 	}
 }
