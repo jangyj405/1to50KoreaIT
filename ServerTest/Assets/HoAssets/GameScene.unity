@@ -1507,7 +1507,6 @@ MonoBehaviour:
   ITEM_SlowRate: 0.9
   m_NumOrder: 0
   m_LockNum: 5
-  m_LimitTime: 200
   hasOnGame: 0
   m_TileList: []
 --- !u!114 &1569095033

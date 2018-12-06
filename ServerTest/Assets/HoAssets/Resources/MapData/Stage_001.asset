@@ -14,14 +14,15 @@ MonoBehaviour:
   MapId: Stage_001
   rotationCount: 0
   rotationTimer: 0
-  blinkCount: 3
-  blinkTimer: 1
+  blinkCount: 0
+  blinkTimer: 0
   reverseCount: 0
   reverseTimer: 0
   scaleCount: 0
   scaleTimer: 0
   trackCount: 0
   emptyCount: 0
-  maxGameNum: 0
+  maxGameNum: 25
   islimitTimer: 0
-  limitTimer: 3
+  limitTimer: 0
+  isEdgeRotation: 0

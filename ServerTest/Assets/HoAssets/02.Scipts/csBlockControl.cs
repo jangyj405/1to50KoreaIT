@@ -11,6 +11,7 @@ public class csBlockControl : MonoBehaviour
     private int RandomBlinkNumber;
     private int RandomReverseNumber;
     private int RandomChangeScaleNumber;
+	private int RandomTwoTouchNumber;
 
 	private GameCore GameCoreSript;
 	private csMapData m_MapData;
@@ -37,7 +38,9 @@ public class csBlockControl : MonoBehaviour
 		//
 		//StartCoroutine("RandomChangeScale");
 
-        StartCoroutine("EdgeRotation");
+		if (m_MapData.IsEdgeRotation == true) {
+			StartCoroutine ("EdgeRotation");
+		}
 
 		InvokeRepeating ("RandomRotation", 0.5f, m_MapData.RotationTimer);
 
@@ -59,12 +62,14 @@ public class csBlockControl : MonoBehaviour
 		RandomBlinkNumber = m_MapData.BlinkCount;
 		RandomReverseNumber = m_MapData.ReverseCount;
 		RandomChangeScaleNumber = m_MapData.ScaleCount;
+		RandomTwoTouchNumber = m_MapData.TrackCount;
 		if (csGameData.GetInstance ().IsClickShieldSkill) {
 			//csItemMgr.GetInstance ().UseGodOfShield (m_MapData);
 			RandomRotationNumber = 0;
 			RandomBlinkNumber = 0;
 			RandomReverseNumber = 0;
 			RandomChangeScaleNumber = 0;
+			RandomTwoTouchNumber = 0;
 		}
 	}
 
@@ -109,7 +114,7 @@ public class csBlockControl : MonoBehaviour
     //테두리 회전
     public void EdgeRotation()
     {
-        //StartCoroutine("Co_EdgeRotation");
+        StartCoroutine("Co_EdgeRotation");
     }
 
 
@@ -132,9 +137,17 @@ public class csBlockControl : MonoBehaviour
 
         int[] arrayInt = GetRandomNumList(RandomRotationNumber).ToArray();
 
+		int repeatNum = (int)m_MapData.RotationTimer;
+		if (repeatNum % 2 == 1) {
+			repeatNum -= 1;
+			if (repeatNum <= 0) {
+				repeatNum = 2;
+			}
+		}
+
         for (int i = 0; i < arrayInt.Length; i++)
         {
-            GameCore.Instance.m_TileList[arrayInt[i]].transform.DORotate(new Vector3(0f, 0f, 360f), 2.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+			GameCore.Instance.m_TileList[arrayInt[i]].transform.DORotate(new Vector3(0f, 0f, 360f), 2.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(repeatNum, LoopType.Yoyo);
         }
         yield return null;
 
@@ -198,12 +211,20 @@ public class csBlockControl : MonoBehaviour
     {
         int[] arrayInt = GetRandomNumList(RandomChangeScaleNumber).ToArray();
 
+		int repeatNum = (int)m_MapData.ScaleTimer;
+		if (repeatNum % 2 == 1) {
+			repeatNum -= 1;
+			if (repeatNum <= 0) {
+				repeatNum = 2;
+			}
+		}
         for (int i = 0; i < arrayInt.Length; i++)
         {
-            GameCore.Instance.m_TileList[arrayInt[i]].transform.DOScale(new Vector3(0.7f, 0.7f, 0.1f), 1f).SetLoops(-1, LoopType.Yoyo);
+			GameCore.Instance.m_TileList[arrayInt[i]].transform.DOScale(new Vector3(0.7f, 0.7f, 0.1f), 1f).SetLoops(repeatNum, LoopType.Yoyo);
         }
         yield return null;
     }
+
 
 
     private List<int> GetRandomNumList(int ListLen)

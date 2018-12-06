@@ -41,6 +41,8 @@ public class csMapData : ScriptableObject {
 	private bool islimitTimer;
 	[SerializeField]
 	private float limitTimer;
+	[SerializeField]
+	private bool isEdgeRotation;
 
 	public string GetMapId
 	{
@@ -199,6 +201,14 @@ public class csMapData : ScriptableObject {
             return reverseTimer;
         }
     }
+
+	public bool IsEdgeRotation
+	{
+		get
+		{
+			return isEdgeRotation;
+		}
+	}
 
 
     public int NothingCount

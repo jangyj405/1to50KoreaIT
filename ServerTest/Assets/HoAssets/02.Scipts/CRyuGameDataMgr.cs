@@ -40,5 +40,9 @@ public class CRyuGameDataMgr
 		{
 			return mStageIndex;
 		}
+		set
+		{
+			++mStageIndex;
+		}
 	}
 }

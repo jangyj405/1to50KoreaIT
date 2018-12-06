@@ -323,6 +323,10 @@ public class GameCore : MonoBehaviour {
 
     void Init()
     {
+		m_MaxGameNum = 50;
+		if (m_MapData.MaxGameNum >= 1) {
+			m_MaxGameNum = m_MapData.MaxGameNum;
+		}
         m_Index = 0;
         int[] numArr = new int[m_TileNum.x * m_TileNum.y];
         for (int i = 0; i < numArr.Length ; i++)
@@ -422,6 +426,7 @@ public class GameCore : MonoBehaviour {
             return m_TimeScore;
         }
     }
+
 
 
 }
