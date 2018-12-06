@@ -18,6 +18,12 @@ public class csMapMgr
 		return m_Instance;
 	}
 
+	private csMapMgr()
+	{
+		MapInit ();
+	}
+
+
 	public void MapInit()
 	{
 		MapDatats = Resources.LoadAll<csMapData> ("MapData");
@@ -26,14 +32,15 @@ public class csMapMgr
 
 	public csMapData MapSetting(int _StageLevel)
 	{
-		MapInit ();
+		//MapInit ();
 		for (int i = 0; i < MapDatats.Length; i++) {
 			if (MapDatats [i].name.Contains (_StageLevel.ToString())) {
 				
 				tempData = MapDatats [i];
 				break;
 			} else {
-				return null;
+				continue;
+				//return null;
 			}
 		}
 		return tempData;

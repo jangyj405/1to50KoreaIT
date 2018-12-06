@@ -34,15 +34,15 @@ public class CRyuGameDataMgr
     {
 
     }
-	public int GetMapStageLevel
+	public int GetMapStageLevel 
 	{
-		get
-		{
+		get {
 			return mStageIndex;
 		}
-		set
-		{
-			++mStageIndex;
-		}
+	}
+
+	public void IncreaseStageLevel()
+	{
+		++mStageIndex;
 	}
 }
