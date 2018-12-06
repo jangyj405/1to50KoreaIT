@@ -50,4 +50,9 @@ public class Friend : MonoBehaviour {
 		Debug.Log(NickName + "은 이제 내 친구가 아니야!");
 		Destroy(this.gameObject);
 	}
+
+	public void OnClickBtnSendHeart()
+	{
+		
+	}
 }

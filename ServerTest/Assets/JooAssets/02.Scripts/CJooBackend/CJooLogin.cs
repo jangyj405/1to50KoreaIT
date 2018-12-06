@@ -34,6 +34,7 @@ public class CJooLogin : MonoBehaviour
 				bool hasSetNickname = IsNickNameSet();
 				if(hasSetNickname)
 				{
+					TestStageData();
 					SceneManager.LoadScene(SceneNames.modeSelectScene);
 				}
 				else
@@ -43,6 +44,28 @@ public class CJooLogin : MonoBehaviour
             }
         }
     }
+	
+	void TestStageData()
+	{
+		Dictionary<string, string> test = new Dictionary<string, string>()
+		{
+			{ "Stage_001", "032:02" },
+			 {"Stage_002", "032:02" },
+			  {"Stage_003", "032:02" }
+		};
+		Dictionary<string, int> test_int = new Dictionary<string, int>()
+		{
+			{ "Stage_001", 3220 },
+			{"Stage_002", 3220 },
+			{"Stage_003", 3220 }
+		};
+		Param pa = new Param();
+		pa.Add("StageLog", test);
+		pa.Add("Stage_001", "032:02");
+		pa.Add("Stage_002", 32.32f);
+		pa.Add("StageFloat", test_int);
+		Backend.GameInfo.Insert("stage", pa);
+	}
 
 	bool IsNickNameSet()
 	{

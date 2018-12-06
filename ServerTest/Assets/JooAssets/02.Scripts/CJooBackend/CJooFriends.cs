@@ -194,6 +194,24 @@ public class CJooFriends : MonoBehaviour
 			return;
 		}
 
+		foreach(var data in NowFriendData.rows)
+		{
+			if(data.nickname.S == tNickName)
+			{
+				DisplayMessage[(int)EMessageTypes.DuplicatedError]();
+				return;
+			}
+		}
+
+		foreach (var data in RequestedFriendData.rows)
+		{
+			if (data.nickname.S == tNickName)
+			{
+				DisplayMessage[(int)EMessageTypes.DuplicatedError]();
+				return;
+			}
+		}
+
 		BackendReturnObject requestBro = Backend.Social.Friend.RequestFriend(tInDate);
 
 		string statusCodeStr = requestBro.GetStatusCode();
