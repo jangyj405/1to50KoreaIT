@@ -206,12 +206,12 @@ public class GameCore : MonoBehaviour {
 			if (m_NumOrder > m_MaxGameNum) {
 				if (csGameData.GetInstance ().IsClickTimeSkill) {
 					m_TimeScore = csItemMgr.GetInstance ().UseGodOfTime (m_TimeScore);
-					m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
-					csStageClearData.GetInstance ().SetClearTime (m_MapData.GetMapId, m_TimeScoreText.text.ToString());
-					CRyuGameDataMgr.GetInst ().IncreaseStageLevel ();
-					StopCoroutine("UpdateTimer");
+                    m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
 				}
-				Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+                csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
+                CRyuGameDataMgr.GetInst().IncreaseStageLevel();
+                StopCoroutine("UpdateTimer");
+                Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
 				Debug.Log (m_TimeScore);
 				Debug.Log (m_TimeScoreText.text.ToString());
 				Debug.Log (m_MapData.GetMapId);
