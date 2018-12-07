@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -299,6 +300,7 @@ public class GameCore : MonoBehaviour {
 
     Tile GetTouchTile()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
             /*

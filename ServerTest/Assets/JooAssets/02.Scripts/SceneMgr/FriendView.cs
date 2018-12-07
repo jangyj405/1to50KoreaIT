@@ -6,27 +6,28 @@ using UnityEngine.UI;
 
 public class FriendView : MonoBehaviour
 {
-	public static FriendView friendView = null;
+    public static FriendView friendView = null;
     public GameObject friendAddScreen;
     public int friendCount;
-	[Space(20)]
+    [Space(20)]
     public Transform friendContent;
-	public Transform requestContent;
-	
+    public Transform requestContent;
+
     public InputField nickNameInputField;
     public GameObject friendList;
-	[Space(20)]
-	public Friend friendPF;
-	public CJooRequestedFriend requestedFriendPF;
+    [Space(20)]
+    public Friend friendPF;
+    public CJooRequestedFriend requestedFriendPF;
 
-	[Space(20)]
-	public GameObject friendListPanel;
+    [Space(20)]
+    public GameObject friendListPanel;
     public GameObject friendAcceptPanel;
 
-	void Awake()
-	{
-		friendView = this;
-	}
+
+    void Awake()
+    {
+        friendView = this;
+    }
 
 
     public void Start()
@@ -59,27 +60,27 @@ public class FriendView : MonoBehaviour
         //friend.transform.SetParent(friendContent);
         //friend.GetComponentInChildren<Text>().text = nickNameInputField.text;
         Friend instFriend = Instantiate<Friend>(friendPF, friendContent);
-      //  instFriend.transform.SetParent(friendContent);
+        //  instFriend.transform.SetParent(friendContent);
         instFriend.InitialOneFriend(nickNameInputField.text, "2018-11-11T08:00:00");
         //instFriend.NickName = "";
     }
 
 
-	public void FriendAddReal(string pNickName, string pInDate)
-	{
-		Friend instFriend = Instantiate<Friend>(friendPF, friendContent);
-		instFriend.InitialOneFriend(pNickName, pInDate);
-	}
+    public void FriendAddReal(string pNickName, string pInDate)
+    {
+        Friend instFriend = Instantiate<Friend>(friendPF, friendContent);
+        instFriend.InitialOneFriend(pNickName, pInDate);
+    }
 
-	public void InstantiateRequestedList(string pNickName, string pInDate)
-	{
-		CJooRequestedFriend instRequest = Instantiate<CJooRequestedFriend>(requestedFriendPF, requestContent);
-		instRequest.InitialOneFriend(pNickName, pInDate);
-	}
+    public void InstantiateRequestedList(string pNickName, string pInDate)
+    {
+        CJooRequestedFriend instRequest = Instantiate<CJooRequestedFriend>(requestedFriendPF, requestContent);
+        instRequest.InitialOneFriend(pNickName, pInDate);
+    }
 
 
 
-	public void FriendAddScreenCloseClick()
+    public void FriendAddScreenCloseClick()
     {
         friendAddScreen.SetActive(false);
     }
@@ -96,5 +97,4 @@ public class FriendView : MonoBehaviour
         friendAcceptPanel.SetActive(true);
     }
 
-  
 }

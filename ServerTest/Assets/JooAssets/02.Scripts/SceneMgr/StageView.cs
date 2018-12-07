@@ -17,9 +17,12 @@ public class StageView : MonoBehaviour {
     {
         startScreen.SetActive(true);
 		//Debug.Log (EventSystem.current.currentSelectedGameObject.name);
-		if ((int.Parse(EventSystem.current.currentSelectedGameObject.name.Substring (12)) > CRyuGameDataMgr.GetInst ().GetMapStageLevel)) {
-			Debug.Log ("UnLock");
-		} else {
+		if ((int.Parse(EventSystem.current.currentSelectedGameObject.name.Substring (12)) > CRyuGameDataMgr.GetInst ().GetMapStageLevel)) 
+        {
+			Debug.Log ("Lock");
+		} 
+        else
+        {
 			csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst ().GetMapStageLevel);
 		}
 		Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
