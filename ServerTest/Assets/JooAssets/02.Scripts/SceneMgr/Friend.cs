@@ -31,6 +31,8 @@ public class Friend : MonoBehaviour {
         }
     }
 
+	public Button sendHeartButton = null;
+
     public virtual void InitialOneFriend(string pNickname, string pInDate)
     {
         NickName = pNickname;
@@ -53,6 +55,29 @@ public class Friend : MonoBehaviour {
 
 	public void OnClickBtnSendHeart()
 	{
-		
+		BackendReturnObject sendBro = Backend.Social.Message.SendMessage(InDate, MessageSenders.fromUser + "OneHeart");
+		bool isServerOK = CJooBackendCommonErrors.IsAvailableWithServer(sendBro);
+		if (!isServerOK)
+		{
+			//fail to Accept because of server
+			return;
+		}
+
+		string statusCodeStr = sendBro.GetStatusCode();
+		int statusCodeInt = System.Convert.ToInt32(statusCodeStr);
+		switch(statusCodeInt)
+		{
+			case 405:
+				return;
+		}
+		sendHeartButton.interactable = false;
 	}
+}
+
+
+public static class MessageSenders
+{
+	public const string fromAdmin = "Admin:";
+	public const string fromUser = "User:";
+	public const char splitter = ':';
 }

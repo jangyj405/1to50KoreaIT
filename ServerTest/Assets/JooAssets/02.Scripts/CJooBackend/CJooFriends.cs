@@ -8,6 +8,9 @@ using System;
 
 public class CJooFriends : MonoBehaviour
 {
+	public static CJooFriends friends = null;
+
+
 	private enum EMessageTypes
 	{
 		NoInputError = 0,
@@ -87,9 +90,13 @@ public class CJooFriends : MonoBehaviour
 		}
 	}
 
+	
+
 
 	void Awake()
 	{
+		friends = this;
+
 		DisplayMessage = new Action[7];
 		DisplayMessage[(int)EMessageTypes.NoInputError] = DisplayNoInputError;
 		DisplayMessage[(int)EMessageTypes.ServerError] = DisplayServerError;
