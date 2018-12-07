@@ -164,7 +164,10 @@ public class TimeModeCore : MonoBehaviour {
             if (gridPos.x < 0 || gridPos.x >= m_TileNum.x
                 || gridPos.y < 0 || gridPos.y >= m_TileNum.y)
                 return null;
-            return m_TileMap[gridPos.x, gridPos.y];
+            if (m_TileMap[gridPos.x, gridPos.y].IsDestory())
+                return null;
+
+            return (m_TileMap[gridPos.x, gridPos.y].gameObject.activeSelf == true) ? m_TileMap[gridPos.x, gridPos.y] : null;
         }
         return null;
     }
