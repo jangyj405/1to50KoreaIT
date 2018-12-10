@@ -46,6 +46,41 @@ public class JsonN
 }
 
 
+[Serializable]
+public class JsonTableBase
+{
+	[SerializeField]
+	public JsonS client_date;
+	[SerializeField]
+	public JsonS nickname;
+	[SerializeField]
+	public JsonS inDate;
+	[SerializeField]
+	public JsonS updatedAt;
+}
+
+[SerializeField]
+public class JsonTableHeart : JsonTableBase
+{
+	[SerializeField]
+	public JsonN HeartCount;
+	[SerializeField]
+	public JsonS RecordedDate;
+	[SerializeField]
+	public JsonN RemainTime;
+
+	//todo 20181210
+	public TimeWithHeart GetTimeWithHeart()
+	{
+		TimeWithHeart tTwh = new TimeWithHeart();
+		tTwh.HeartCount = (HeartCount == null)? 0 : Convert.ToInt32(this.HeartCount.N);
+		tTwh.RecordedDate = this.RecordedDate.S;
+		tTwh.RemainTime = (HeartCount == null) ? 0 : Convert.ToInt32(this.RemainTime.N);
+		return tTwh;
+	}
+}
+
+
 
 public class CJooHeart : MonoBehaviour
 {
@@ -63,7 +98,8 @@ public class CJooHeart : MonoBehaviour
 		set
 		{
 			curHeart = value;
-			if(curHeart < maxHeart)
+			DisplayHeart();
+			if (curHeart < maxHeart)
 			{
 				if(RemainTime > 0)
 				{
@@ -105,6 +141,12 @@ public class CJooHeart : MonoBehaviour
 				DisplayOnUI();
 			}
 		}
+	}
+	[SerializeField]
+	Text heartText = null;
+	void DisplayHeart()
+	{
+		heartText.text = CurHeart.ToString() + "/" + maxHeart.ToString();
 	}
 
 	[SerializeField]
@@ -157,12 +199,13 @@ public class CJooHeart : MonoBehaviour
 		//Debug.Log(aaa);
 	    */
 		//todo passed data from server
-		TimeWithHeart twh = new TimeWithHeart();
-		twh.HeartCount = 3;
-		twh.RecordedDate = "2018-11-29T05:05:00";
-		twh.RemainTime = 200;
+		//TimeWithHeart twh = new TimeWithHeart();
+		//twh.HeartCount = 3;
+		//twh.RecordedDate = "2018-11-29T05:05:00";
+		//twh.RemainTime = 200;
 
-		Initial(twh);
+		TimeWithHeart tTwh = GetTimeWithHeartFromServer();
+		Initial(tTwh);
 		StartCoroutine(TimeDecrease());
 		
 
@@ -226,10 +269,27 @@ public class CJooHeart : MonoBehaviour
 		*/
 	}
 
-
+	private TimeWithHeart GetTimeWithHeartFromServer()
+	{
+		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("heart");
+		string tResultValue = bro.GetReturnValue();
+		JsonTableHeart heartTable = JsonUtility.FromJson<JsonTableHeart>(tResultValue);
+		if(heartTable == null)
+		{
+			return null;
+		}
+		TimeWithHeart tTwh = heartTable.GetTimeWithHeart();
+		return tTwh;
+	}
 
 	public void Initial(TimeWithHeart pTimeWithHeart)
 	{
+		if(pTimeWithHeart == null)
+		{
+			CurHeart = maxHeart;
+			return;
+		}
+
 		BackendReturnObject broServerTime = Backend.Utils.GetServerTime();
 		ServerTime time = JsonUtility.FromJson<ServerTime>(broServerTime.GetReturnValue());
 

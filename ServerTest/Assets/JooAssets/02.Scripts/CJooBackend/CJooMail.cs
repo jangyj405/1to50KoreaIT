@@ -92,6 +92,9 @@ public class CJooMail : MonoBehaviour
 	void Start ()
 	{
 		GetPostListFromServer();
+		BackendReturnObject bro = Backend.Social.Post.GetPostList();
+		string result = bro.GetReturnValue();
+		Debug.Log(result);
 	}
 	
 	// Update is called once per frame

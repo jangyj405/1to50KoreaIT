@@ -48,13 +48,36 @@ public class CJooFriends : MonoBehaviour
 		set
 		{
 			nowFriendData = value;
+			BackendReturnObject bro = Backend.Utils.GetServerTime();
+			string time = bro.GetReturnValue();
+			ServerTime stime = JsonUtility.FromJson<ServerTime>(time);
+			CJooTime jooTime = new CJooTime(stime);
 			if(nowFriendData != null)
 			{
 				foreach (FriendDataValue val in nowFriendData.rows)
 				{
 					string tNickName = val.nickname.S;
 					string tInDate = val.inDate.S;
-					FriendView.friendView.FriendAddReal(tNickName, tInDate);
+					bool hasSentHeart = false;
+					
+					if (fromUser != null)
+					{
+						foreach (var user in fromUser.rows)
+						{
+							if (user.receiverNickname.S == tNickName)
+							{
+								CJooTime sentTime = new CJooTime(user.inDate.S);
+								CJooTime gapTime = jooTime - sentTime;
+								if(!(gapTime.Year > 0 || gapTime. Month > 0 || gapTime.Day > 0))
+								{
+									hasSentHeart = true;
+									break;
+								}
+							}
+
+						}
+					}
+					FriendView.friendView.FriendAddReal(tNickName, tInDate, hasSentHeart);
 				}
 			}
 			else
@@ -80,6 +103,7 @@ public class CJooFriends : MonoBehaviour
 				{
 					string tNickName = val.nickname.S;
 					string tInDate = val.inDate.S;
+					
 					FriendView.friendView.InstantiateRequestedList(tNickName, tInDate);
 				}
 			}
@@ -90,13 +114,18 @@ public class CJooFriends : MonoBehaviour
 		}
 	}
 
-	
-
+	private CJooPostFromUserRows fromUser = null;
+	private void GetSendPost()
+	{
+		BackendReturnObject bro = Backend.Social.Message.GetSentMessageList();
+		string jsonValue = bro.GetReturnValue();
+		fromUser = JsonUtility.FromJson<CJooPostFromUserRows>(jsonValue);
+	}
 
 	void Awake()
 	{
 		friends = this;
-
+		
 		DisplayMessage = new Action[7];
 		DisplayMessage[(int)EMessageTypes.NoInputError] = DisplayNoInputError;
 		DisplayMessage[(int)EMessageTypes.ServerError] = DisplayServerError;
@@ -120,7 +149,9 @@ public class CJooFriends : MonoBehaviour
 	
 	void OnEnable ()
 	{
+		InitialFriendScene();
 		GetUserMetaData();
+		GetSendPost();
 		GetFriendList();
 		GetRequestedList();
 	}
@@ -238,8 +269,6 @@ public class CJooFriends : MonoBehaviour
 		DisplayMessage[(int)EMessageTypes.SucceededRequest]();
 		
 	}
-
-
 
 
 	void GetFriendList()

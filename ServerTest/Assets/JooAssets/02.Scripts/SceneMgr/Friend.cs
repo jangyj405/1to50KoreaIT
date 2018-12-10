@@ -33,10 +33,14 @@ public class Friend : MonoBehaviour {
 
 	public Button sendHeartButton = null;
 
-    public virtual void InitialOneFriend(string pNickname, string pInDate)
+    public virtual void InitialOneFriend(string pNickname, string pInDate, bool hasSentHeart = false)
     {
         NickName = pNickname;
         inDate = pInDate;
+		if(sendHeartButton != null)
+		{
+			sendHeartButton.interactable = !hasSentHeart;
+		}
     }
 
 	public virtual void FriendDeleteClick()

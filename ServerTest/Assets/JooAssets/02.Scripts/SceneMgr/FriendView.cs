@@ -66,10 +66,10 @@ public class FriendView : MonoBehaviour
     }
 
 
-    public void FriendAddReal(string pNickName, string pInDate)
+    public void FriendAddReal(string pNickName, string pInDate, bool hasSentHeart)
     {
         Friend instFriend = Instantiate<Friend>(friendPF, friendContent);
-        instFriend.InitialOneFriend(pNickName, pInDate);
+        instFriend.InitialOneFriend(pNickName, pInDate, hasSentHeart);
     }
 
     public void InstantiateRequestedList(string pNickName, string pInDate)

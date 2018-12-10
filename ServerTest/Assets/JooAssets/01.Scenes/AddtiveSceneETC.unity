@@ -2518,6 +2518,7 @@ GameObject:
   - component: {fileID: 1914402014}
   - component: {fileID: 1914402013}
   - component: {fileID: 1914402017}
+  - component: {fileID: 1914402018}
   m_Layer: 5
   m_Name: Canvas_MainMenu
   m_TagString: Untagged
@@ -2617,6 +2618,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb7a2d02aba20a498fd1ed1a8d18d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1914402018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1914402012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fc1aee4a52a7b419f3afc719059e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeart: 5
+  curHeart: 0
+  resetTime: 300
+  remainTime: 0
+  heartText: {fileID: 2131591833}
+  timeText: {fileID: 912714021}
 --- !u!1 &1929165547
 GameObject:
   m_ObjectHideFlags: 0
