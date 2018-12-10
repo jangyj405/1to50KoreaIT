@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public class ItemContainer
+{
+    public int GodOfTimeCount;
+    public int GodOfShildCount;
+    public int GodOfHeartCount;
+    public int GodOfSlowCount;
+    public int GodOfHintCount;
+}
+
 public class csItemMgr
 {
 	private static csItemMgr m_Instance;
@@ -16,6 +26,20 @@ public class csItemMgr
 		}
 		return m_Instance;
 	}
+
+    private csItemMgr()
+    {
+
+    }
+
+
+    public ItemContainer container = null;
+   
+    public void Initial()
+    {
+        //container = GetItemFromServer();
+
+    }
 
 	public float UseGodOfTime(float _AdvantageTime)
 	{
@@ -44,17 +68,12 @@ public class csItemMgr
 	{
 		spr.color = _color;
 		return spr.color;
-
-
 	}
 
 	public Color UseGodOfHint_Text(TMPro.TMP_Text text ,Color _color)
 	{
-
-
 		text.color = _color;
 		return text.color;
-
 	}
 
 	public void UseGodOfShield(csMapData _mapData)
@@ -65,7 +84,6 @@ public class csItemMgr
 		_mapData.ReverseCount = 0;
 		_mapData.ScaleCount = 0;
 		_mapData.TrackCount = 0;
-
 	}
 
 	public float UseGodOfSlow(float time)
@@ -85,7 +103,5 @@ public class csItemMgr
 	{
 
 	}
-
-
 
 }
