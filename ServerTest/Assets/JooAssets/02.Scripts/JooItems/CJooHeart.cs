@@ -59,7 +59,14 @@ public class JsonTableBase
 	public JsonS updatedAt;
 }
 
-[SerializeField]
+[Serializable]
+public class JsonTableHeartRows
+{
+	[SerializeField]
+	public JsonTableHeart[] rows;
+}
+
+[Serializable]
 public class JsonTableHeart : JsonTableBase
 {
 	[SerializeField]
@@ -73,9 +80,31 @@ public class JsonTableHeart : JsonTableBase
 	public TimeWithHeart GetTimeWithHeart()
 	{
 		TimeWithHeart tTwh = new TimeWithHeart();
-		tTwh.HeartCount = (HeartCount == null)? 0 : Convert.ToInt32(this.HeartCount.N);
+		Debug.Log(HeartCount.N);
+		Debug.Log(RecordedDate.S);
+		try
+		{
+			tTwh.HeartCount = Convert.ToInt32(this.HeartCount.N);
+		}
+		catch
+		{
+			tTwh.HeartCount = 0;
+			tTwh.isFirst = true;
+		}
+		try
+		{
+			tTwh.RemainTime = Convert.ToInt32(this.RemainTime.N);
+		}
+		catch
+		{
+			tTwh.RemainTime = 0;
+			tTwh.isFirst = true;
+		}
+
+		//tTwh.HeartCount = (HeartCount == null)? 0 : Convert.ToInt32(this.HeartCount.N);
 		tTwh.RecordedDate = this.RecordedDate.S;
-		tTwh.RemainTime = (HeartCount == null) ? 0 : Convert.ToInt32(this.RemainTime.N);
+		//tTwh.RemainTime = (RemainTime == null) ? 0 : Convert.ToInt32(this.RemainTime.N);
+		Debug.Log(tTwh.RemainTime);
 		return tTwh;
 	}
 }
@@ -84,6 +113,10 @@ public class JsonTableHeart : JsonTableBase
 
 public class CJooHeart : MonoBehaviour
 {
+
+	public static CJooHeart jooHeart = null;
+	[SerializeField]
+	string inDate = "";
 	[SerializeField]
 	private int maxHeart = 5;
 
@@ -131,7 +164,14 @@ public class CJooHeart : MonoBehaviour
 		}
 		set
 		{
+			if(CurHeart >= maxHeart)
+			{
+				remainTime = -1;
+				DisplayOnUI();
+				return;
+			}
 			remainTime = value;
+			
 			if(remainTime == 0)
 			{
 				CurHeart++;
@@ -170,123 +210,98 @@ public class CJooHeart : MonoBehaviour
 			}
 		}
 	}
+
+
+	void Awake()
+	{
+		jooHeart = this;
+	}
+
 	// Use this for initialization
 	void Start()
 	{
-		//Param param = new Param();
-		//param.Add("Test01", 111);
-		//param.Add("Test02", "Test");
-		//
-		//Backend.GameInfo.Insert("message", param);
-		//
-
-		//BackendReturnObject bro = Backend.GameInfo.GetTableList();
-		//Debug.Log(bro.GetReturnValue());
-		//Tables table = JsonUtility.FromJson<Tables>(bro.GetReturnValue());
-		//Debug.Log(table.privateTables.Length);
-		//Debug.Log(table.publicTables.Length);
-
-		/*
-		//됐음!!
-		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("message");
-		Debug.Log(bro.GetReturnValue());
-
-		JsonSuper super = JsonUtility.FromJson<JsonSuper>(bro.GetReturnValue());
-		Debug.Log(super.rows[0].Test01.N);
-			//= new JsonSuper();
-
-		//string aaa = JsonUtility.ToJson(super);
-		//Debug.Log(aaa);
-	    */
-		//todo passed data from server
-		//TimeWithHeart twh = new TimeWithHeart();
-		//twh.HeartCount = 3;
-		//twh.RecordedDate = "2018-11-29T05:05:00";
-		//twh.RemainTime = 200;
-
+	
 		TimeWithHeart tTwh = GetTimeWithHeartFromServer();
 		Initial(tTwh);
 		StartCoroutine(TimeDecrease());
-		
 
-		//BackendReturnObject bro = Backend.Social.Post.GetPostList();
-		//string asdf = bro.GetReturnValue();
-		//Debug.Log(asdf);
-
-		//BackendReturnObject bro = Backend.Social.GetGamerIndateByNickname("Mailer");
-		//Debug.Log(bro.GetReturnValue());
-		//PlayerPrefs.DeleteAll();
-		//return;
-		
-		/*
-		string MyIndate = Backend.BMember.GetUserInfo().GetReturnValue();
-
-		UserMetaData user = JsonUtility.FromJson<UserMetaData>(MyIndate);
-
-
-		string inDate = "2018-11-29T07:42:23.092Z";
-		PostItem item = new PostItem()
-		{
-			Title = "Test",
-			Content = "TestMail",
-			TableName = "Heart",
-			RowInDate = user.row.inDate,
-			Column = "TestCol"
-		};
-		Backend.Social.Post.SendPost(inDate, item);
-		*/
-
-		/*
-		BackendReturnObject bro = Backend.BMember.GetUserInfo();
-		Debug.Log(bro.GetReturnValue());
-		UserMetaData meta = JsonUtility.FromJson<UserMetaData>(bro.GetReturnValue());
-		Debug.Log(meta.row.inDate);
-		*/
-		/*
-		//Test
-		//BackendReturnObject bro = Backend.Utils.GetServerTime();
-		//ServerTime a = JsonUtility.FromJson<ServerTime>(bro.GetReturnValue());
-		//Debug.Log(a.utcTime);
-
-		//char[] an = { '-', 'T',':' };
-		//string t = "2018-11-26T06:22:14.947Z";
-		//string[] tSplit = t.Split(an);
-		//foreach(string ta in tSplit)
-		//{
-		//	Debug.Log(ta);
-		//}
-		string time_0 = "2018-11-26T06:22:14.947Z";
-		string time_1 = "2018-11-29T05:18:15.947Z";
-
-		CJooTime jooTime_0 = new CJooTime(time_0);
-		CJooTime jooTime_1 = new CJooTime(time_1);
-
-		CJooTime gapTime = jooTime_1 -jooTime_0;
-
-		Debug.Log(jooTime_0.ToString());
-		Debug.Log(jooTime_1.ToString());
-		Debug.Log(gapTime.ToString());
-		*/
 	}
 
 	private TimeWithHeart GetTimeWithHeartFromServer()
 	{
 		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("heart");
 		string tResultValue = bro.GetReturnValue();
-		JsonTableHeart heartTable = JsonUtility.FromJson<JsonTableHeart>(tResultValue);
-		if(heartTable == null)
+		JsonTableHeartRows heartTable = JsonUtility.FromJson<JsonTableHeartRows>(tResultValue);
+		Debug.Log(tResultValue);
+		
+		try
 		{
-			return null;
+			TimeWithHeart tTwh = heartTable.rows[0].GetTimeWithHeart();
+			inDate = heartTable.rows[0].inDate.S;
+			return tTwh;
 		}
-		TimeWithHeart tTwh = heartTable.GetTimeWithHeart();
-		return tTwh;
+		catch
+		{
+			TimeWithHeart tTwh = new TimeWithHeart();
+			tTwh.isFirst = true;
+			return tTwh;
+		}
 	}
+	struct TempInDate
+	{
+		public string inDate;
+	}
+
+	private string InsertHeartDataToServer(bool pIsFirst)
+	{
+		int tRemainTime = (pIsFirst) ? -1 : RemainTime;
+
+		Param heartParam = new Param();
+		heartParam.Add("HeartCount", CurHeart);
+
+		BackendReturnObject bro = Backend.Utils.GetServerTime();
+		string tTime = bro.GetReturnValue();
+		ServerTime sTime = JsonUtility.FromJson<ServerTime>(tTime);
+		CJooTime jooTime = new CJooTime(sTime);
+		Debug.Log(sTime.utcTime);
+		Debug.Log(jooTime.ToString());
+		heartParam.Add("RecordedDate", jooTime.ToString());
+		heartParam.Add("RemainTime", tRemainTime);
+		BackendReturnObject broInsert = (pIsFirst) ?
+			Backend.GameInfo.Insert("heart", heartParam) : Backend.GameInfo.Update("heart", inDate, heartParam);
+		Debug.Log(broInsert.GetReturnValue());
+		try
+		{
+			TempInDate tIndate = JsonUtility.FromJson<TempInDate>(broInsert.GetReturnValue());
+			return tIndate.inDate;
+		}
+		catch
+		{
+			Debug.Log("Called");
+			return this.inDate;
+		}
+	}
+
 
 	public void Initial(TimeWithHeart pTimeWithHeart)
 	{
-		if(pTimeWithHeart == null)
+		if (pTimeWithHeart.isFirst)
 		{
 			CurHeart = maxHeart;
+
+			inDate = InsertHeartDataToServer(pTimeWithHeart.isFirst);
+			return;
+		}
+
+		if (pTimeWithHeart.RemainTime == -1)
+		{
+			CurHeart = pTimeWithHeart.HeartCount;
+			return;
+		}
+
+		if (pTimeWithHeart.HeartCount >= maxHeart)
+		{
+			CurHeart = pTimeWithHeart.HeartCount;
 			return;
 		}
 
@@ -298,6 +313,8 @@ public class CJooHeart : MonoBehaviour
 
 		CJooTime timeGap = nowTime - recordedTime;
 		int gapSecond = timeGap.ToSecond();
+		Debug.Log(timeGap.ToString());
+		Debug.Log(gapSecond);
 		if(gapSecond == -1)
 		{
 			CurHeart = maxHeart;
@@ -306,21 +323,30 @@ public class CJooHeart : MonoBehaviour
 		{
 			if (gapSecond - pTimeWithHeart.RemainTime < 0)
 			{
+				Debug.Log("Called If");
 				RemainTime = pTimeWithHeart.RemainTime - gapSecond;
 				CurHeart = pTimeWithHeart.HeartCount;
 			}
 			else
 			{
-				int refillHeart = (gapSecond - RemainTime) / 300;
-				int newRemainTime = (gapSecond - RemainTime) % 300;
+				int refillHeart = (gapSecond - pTimeWithHeart.RemainTime) / 300 + 1;
+				int newRemainTime = 300 - (gapSecond - pTimeWithHeart.RemainTime) % 300;
 
 				CurHeart = pTimeWithHeart.HeartCount + refillHeart;
-				RemainTime = newRemainTime;
+				if(CurHeart >= maxHeart)
+				{
+					CurHeart = maxHeart;
+				}
+				else
+				{
+					RemainTime = newRemainTime;
+				}
 			}
 		}
+		
 	}
 
-	public void OnClickBtnUseHeart()
+	public void OnClickBtnUseHeart(Action act)
 	{
 		if (CurHeart <= 0)
 		{
@@ -328,6 +354,20 @@ public class CJooHeart : MonoBehaviour
 			return;
 		}
 		CurHeart--;
+		inDate = InsertHeartDataToServer(false);
+		if(act != null)
+		{
+			act();
+		}
+	}
+
+
+	void OnGUI()
+	{
+		if(GUI.Button(new Rect(0f,0f, 100f,100f),"Use Heart") == true)
+		{
+			OnClickBtnUseHeart(null);
+		}
 	}
 }
 

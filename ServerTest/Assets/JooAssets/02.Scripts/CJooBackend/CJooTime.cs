@@ -103,8 +103,8 @@ public class CJooTime
 			{
 				uValue = value;
 			}
-			int quotient = uValue / 12;
-			int remainder = uValue % 12;
+			int quotient = (uValue-1) / 12;
+			int remainder = (uValue - 1) % 12 + 1;
 			if (quotient > 0)
 			{
 				Year += quotient;
@@ -300,11 +300,11 @@ public class CJooTime
 	{
 		string t =
 			Year.ToString() + "-" +
-			Month.ToString() + "-" +
-			Day.ToString() + "T" +
-			Hour.ToString() + ":" +
-			Minute.ToString() + ":" +
-			Second.ToString();
+			Month.ToString("00") + "-" +
+			Day.ToString("00") + "T" +
+			Hour.ToString("00") + ":" +
+			Minute.ToString("00") + ":" +
+			Second.ToString("00");
 		return t;
 	}
 	public int ToSecond()
