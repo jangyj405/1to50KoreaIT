@@ -19,13 +19,14 @@ public class TimeModeCore : MonoBehaviour {
     public GameObject m_StartText;
     public GameObject m_GameOverText;
     public TMPro.TMP_Text m_CountText;
+    public TMPro.TMP_Text m_MaxClickNum;
     Tile[,] m_TileMap;
     float m_TimeScore;
     int m_LockNum = 5;
     int m_MissNum = 0;
     int m_Index;
     int m_NumOrder;
-    float m_LimitTime =60f;
+    float m_LimitTime =30f;
     public GameObject m_LockText;
     List<Tile> m_TileList = new List<Tile>();
     // Use this for initialization
@@ -95,6 +96,7 @@ public class TimeModeCore : MonoBehaviour {
             {
                 StopCoroutine("UpdateTimer");
                 m_TimeScoreText.text = string.Format("{0:000.00}", (int)m_TimeScore);
+                m_MaxClickNum.text= string.Format("{00}",m_NumOrder-1);
                 break;
 
             }

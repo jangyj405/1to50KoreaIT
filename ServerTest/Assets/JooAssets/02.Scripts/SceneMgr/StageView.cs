@@ -15,16 +15,39 @@ public class StageView : MonoBehaviour {
 
     public void StageClick()
     {
-        startScreen.SetActive(true);
+        
 		//Debug.Log (EventSystem.current.currentSelectedGameObject.name);
 		if ((int.Parse(EventSystem.current.currentSelectedGameObject.name.Substring (12)) > CRyuGameDataMgr.GetInst ().GetMapStageLevel)) 
         {
 			Debug.Log ("Lock");
+
 		} 
         else
         {
-			csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst ().GetMapStageLevel);
-		}
+            startScreen.SetActive(true);
+            //todo : Joo
+            if ((int.Parse(EventSystem.current.currentSelectedGameObject.name.Substring(12)) == CRyuGameDataMgr.GetInst().GetMapStageLevel))
+            {
+
+                //csMapMgr.GetInstance ().MapSetting (CRyuGameDataMgr.GetInst ().GetMapStageLevel);
+
+                CRyuGameDataMgr.GetInst().CurrentStageLevel = CRyuGameDataMgr.GetInst().GetMapStageLevel;
+
+            }
+
+            else
+
+            {
+
+                //csMapMgr.GetInstance ().MapSetting ((int.Parse (EventSystem.current.currentSelectedGameObject.name.Substring (12))));
+
+                //Debug.Log ((int.Parse (EventSystem.current.currentSelectedGameObject.name.Substring (12))));
+
+                CRyuGameDataMgr.GetInst().CurrentStageLevel = (int.Parse(EventSystem.current.currentSelectedGameObject.name.Substring(12)));
+
+            }
+            
+        }
 		Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
     }
 
@@ -35,7 +58,7 @@ public class StageView : MonoBehaviour {
 
     public void GameStartClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("StageModeScene");
     }
 		
 }

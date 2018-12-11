@@ -18,6 +18,7 @@ public class GameCore : MonoBehaviour {
     public GameObject m_TilePrefab;
     public TMPro.TMP_Text[] m_NextText;
     public TMPro.TMP_Text m_TimeScoreText;
+    public TMPro.TMP_Text m_ResultScoreText;
     public GameObject m_StartText;
     public GameObject m_GameOverText;
     public GameObject m_LockText;
@@ -201,6 +202,8 @@ public class GameCore : MonoBehaviour {
                 if ((m_TimeScore >= m_LimitTime))
                 {
                     Debug.Log("제한시간 초과");
+                    StopCoroutine("UpdateTimer");
+                    m_TimeScoreText.text = string.Format("{0:000.00}",(int) m_TimeScore);
                     break;
                 }
             }
@@ -226,6 +229,8 @@ public class GameCore : MonoBehaviour {
         yield return new WaitForSeconds(0.25f);
 
         m_GameOverText.SetActive(true);
+
+        m_ResultScoreText.text = string.Format("{0:000.00}", m_TimeScore);
 
         yield return new WaitForSeconds(0.25f);
 

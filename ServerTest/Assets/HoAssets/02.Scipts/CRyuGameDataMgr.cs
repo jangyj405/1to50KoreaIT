@@ -7,6 +7,27 @@ public class CRyuGameDataMgr
     private static CRyuGameDataMgr mInstance = null;
 
 	private int mStageIndex = 1;
+    private int getCurrentStageLevel;
+
+    private int mCurrentStageIndex = 0;
+    public int CurrentStageIndex
+    {
+        get
+        {
+            return mCurrentStageIndex;
+        }
+        set
+        {
+            if(value > mStageIndex)
+            {
+                mCurrentStageIndex = 0;
+            }
+            else
+            {
+                mCurrentStageIndex = value;
+            }
+        }
+    }
 
 
 
@@ -45,4 +66,15 @@ public class CRyuGameDataMgr
 	{
 		++mStageIndex;
 	}
+    public int CurrentStageLevel
+    {
+        get
+        {
+            return getCurrentStageLevel;
+        }
+        set
+        {
+            getCurrentStageLevel = value;
+        }
+    }
 }
