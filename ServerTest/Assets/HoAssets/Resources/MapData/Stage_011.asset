@@ -22,7 +22,7 @@ MonoBehaviour:
   scaleTimer: 0
   trackCount: 0
   emptyCount: 0
-  maxGameNum: 40
+  maxGameNum: 35
   islimitTimer: 0
   limitTimer: 0
   isEdgeRotation: 0

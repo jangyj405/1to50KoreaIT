@@ -16,13 +16,13 @@ MonoBehaviour:
   rotationTimer: 4
   blinkCount: 0
   blinkTimer: 0
-  reverseCount: 0
-  reverseTimer: 0
+  reverseCount: 2
+  reverseTimer: 5
   scaleCount: 0
   scaleTimer: 0
   trackCount: 0
   emptyCount: 0
-  maxGameNum: 40
+  maxGameNum: 35
   islimitTimer: 0
   limitTimer: 0
   isEdgeRotation: 0
