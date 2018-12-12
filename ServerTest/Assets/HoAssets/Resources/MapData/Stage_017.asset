@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Name: Stage_017
   m_EditorClassIdentifier: 
   MapId: Stage_017
-  rotationCount: 0
-  rotationTimer: 0
-  blinkCount: 0
-  blinkTimer: 0
-  reverseCount: 0
-  reverseTimer: 0
+  rotationCount: 1
+  rotationTimer: 2
+  blinkCount: 3
+  blinkTimer: 4
+  reverseCount: 3
+  reverseTimer: 2
   scaleCount: 0
   scaleTimer: 0
   trackCount: 0
   emptyCount: 0
-  maxGameNum: 45
-  islimitTimer: 1
-  limitTimer: 45
+  maxGameNum: 40
+  islimitTimer: 0
+  limitTimer: 0
   isEdgeRotation: 0
