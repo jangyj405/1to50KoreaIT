@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using BackEnd;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 [Serializable]
 public class JsonNum
@@ -12,7 +13,12 @@ public class JsonNum
 	public int N;
 }
 
-
+[Serializable]
+public class JsonBool
+{
+	[SerializeField]
+	public bool BOOL;
+}
 
 [Serializable]
 public class CJooPostFromAdmin
@@ -108,7 +114,7 @@ public class CJooPostFromUser
 	public JsonS senderNickname;
 
 	[SerializeField]
-	public JsonS isRead;
+	public JsonBool isRead;
 
 	[SerializeField]
 	public JsonS receiverNickname;
@@ -146,9 +152,50 @@ public class CJooMail : MonoBehaviour
 		GetUserPostListFromServer();
 		GetAdminPostListFromServer();
 
+		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("item");
+		Debug.Log(bro.GetReturnValue());
+		ItemFromServerRows server = JsonConvert.DeserializeObject<ItemFromServerRows>(bro.GetReturnValue());
 
+		Debug.Log(server.rows[0].itemDict.M.Keys.ToString());
 	}
-	
+
+	[Serializable]
+	class ItemFromServerRows
+	{
+		[SerializeField]
+		public ItemFromServer[] rows;
+	}
+
+	[Serializable]
+	class ItemFromServer : JsonTableBase
+	{
+		[SerializeField]
+		public ItemsDic itemDict;
+	}
+
+	[Serializable]
+	class ItemsDic
+	{
+		[SerializeField]
+		//public ItemCont 
+		public Dictionary<string, JsonN> M;
+	}
+
+	[Serializable]
+	class ItemCont
+	{
+		[SerializeField]
+		public JsonN item01;
+		[SerializeField]
+		public JsonN item02;
+		[SerializeField]
+		public JsonN item03;
+		[SerializeField]
+		public JsonN item04;
+		[SerializeField]
+		public JsonN item05;
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -162,10 +209,10 @@ public class CJooMail : MonoBehaviour
 		string result = bro.GetReturnValue();
 		Debug.Log(result);
 		CJooPostFromUserRows tData = JsonUtility.FromJson<CJooPostFromUserRows>(result);
-		Debug.Log(tData.rows[0].content.S);
+		//Debug.Log(tData.rows[0].isRead.BOOL);
 		foreach(CJooPostFromUser userPost in tData.rows)
 		{
-			if(userPost.isRead.S == "y")
+			if(userPost.isRead.BOOL == true)
 			{
 				continue;
 			}
@@ -184,7 +231,7 @@ public class CJooMail : MonoBehaviour
 		string result = bro.GetReturnValue();
 		Debug.Log(result);
 		JsonPostFromBackendConsole tData = JsonUtility.FromJson<JsonPostFromBackendConsole>(result);
-		Debug.Log(tData.fromAdmin[0].item.M.content.S);
+		//Debug.Log(tData.fromAdmin[0].item.M.content.S);
 		foreach (var adminPost in tData.fromAdmin)
 		{
 			string tContent = adminPost.content.S;
@@ -199,5 +246,64 @@ public class CJooMail : MonoBehaviour
 			item.Initial(tContent, tInDate, tItemList.ToArray());
 			postItemDic.Add(tInDate, item);
 		}
+	}
+
+	public void OnClickBtnReceiveAll()
+	{
+		int tReceivedHeart = 0;
+		foreach (var item in postItemDic.Values)
+		{
+			if (item is CJooPostItemFromUser)
+			{
+				Backend.Social.Message.GetReceivedMessage(item.InDate);
+				tReceivedHeart++;
+			}
+		}
+		//todo 하트 갱신
+
+		BackendReturnObject bro = Backend.Social.Post.ReceiveAdminPostAll();
+		string tReturnValue = bro.GetReturnValue();
+
+		ItemFromAdmin tItem = JsonUtility.FromJson<ItemFromAdmin>(tReturnValue);
+		CJooTempItemContainer.Instance.ClearContainer();
+
+		foreach (var adminItem in tItem.items)
+		{
+			List<string> keys = new List<string>();
+			List<int> values = new List<int>();
+
+			keys.AddRange(new string[] { "item01", "item02", "item03", "item04", "item05" });
+			int val01 = Convert.ToInt32(adminItem.M.item01.S);
+			int val02 = Convert.ToInt32(adminItem.M.item02.S);
+			int val03 = Convert.ToInt32(adminItem.M.item03.S);
+			int val04 = Convert.ToInt32(adminItem.M.item04.S);
+			int val05 = Convert.ToInt32(adminItem.M.item05.S);
+			values.AddRange(new int[] { val01, val02, val03, val04, val05 });
+			CJooTempItemContainer.Instance.AddToContainer(keys.ToArray(), values.ToArray());
+		}
+		//todo 아이템 갱신
+
+	}
+
+	void UpdateHeart(int pReceivedHeart)
+	{
+		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("heart");
+		string tReturnValue = bro.GetReturnValue();
+		JsonTableHeart heartTable = JsonUtility.FromJson<JsonTableHeart>(tReturnValue);
+		string tInDate = heartTable.inDate.S;
+		int heartCountOnServer = Convert.ToInt32(heartTable.HeartCount.N);
+		Param heartParam = new Param();
+		heartParam.Add("HeartCount", heartCountOnServer + pReceivedHeart);
+		Backend.GameInfo.Update("heart", tInDate, heartParam);
+	}
+
+
+
+
+	[Serializable]
+	class ItemFromAdmin
+	{
+		[SerializeField]
+		public JsonItemFromAdmin[] items;
 	}
 }

@@ -34,7 +34,6 @@ public class CJooLogin : MonoBehaviour
 				bool hasSetNickname = IsNickNameSet();
 				if(hasSetNickname)
 				{
-					TestStageData();
 					SceneManager.LoadScene(SceneNames.modeSelectScene);
 				}
 				else
@@ -44,7 +43,7 @@ public class CJooLogin : MonoBehaviour
             }
         }
     }
-	
+	/*
 	void TestStageData()
 	{
 		Dictionary<string, string> test = new Dictionary<string, string>()
@@ -66,7 +65,7 @@ public class CJooLogin : MonoBehaviour
 		pa.Add("StageFloat", test_int);
 		Backend.GameInfo.Insert("stage", pa);
 	}
-
+	*/
 	bool IsNickNameSet()
 	{
 		BackendReturnObject bro = Backend.BMember.GetUserInfo();
@@ -285,13 +284,34 @@ public class CJooLogin : MonoBehaviour
                 default:
                     PlayerPrefs.SetString("UserID", tID);
                     PlayerPrefs.SetString("UserPW", tPW);
-                    isSucceeded = true;
+					SetDefaultData();
+					isSucceeded = true;
                     break;
             }
 
             Debug.Log(bro.ToString());
         }
     }
+
+	void SetDefaultData()
+	{
+		Param heartParam = new Param();
+		heartParam.Add("HeartCount", 5);
+
+		BackendReturnObject bro = Backend.Utils.GetServerTime();
+		string tTime = bro.GetReturnValue();
+		ServerTime sTime = JsonUtility.FromJson<ServerTime>(tTime);
+		CJooTime jooTime = new CJooTime(sTime);
+		Debug.Log(sTime.utcTime);
+		Debug.Log(jooTime.ToString());
+		heartParam.Add("RecordedDate", jooTime.ToString());
+		heartParam.Add("RemainTime", -1);
+		Backend.GameInfo.Insert("heart", heartParam);
+
+		Param itemParam = new Param();
+		itemParam.Add("itemDict", new Dictionary<string, int>() { { "item01", 0 }, { "item02", 0 }, { "item03", 0 }, { "item04", 0 }, { "item05", 0 } });
+		Backend.GameInfo.Insert("item", itemParam);
+	}
 
     // 커스텀 가입
     BackendReturnObject CustomSignUp(string id, string pw)

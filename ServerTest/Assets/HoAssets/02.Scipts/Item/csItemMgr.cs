@@ -5,11 +5,26 @@ using UnityEngine;
 
 public class ItemContainer
 {
+	/// <summary>
+	/// Server Item Key : item01
+	/// </summary>
     public int GodOfTimeCount;
-    public int GodOfShildCount;
-    public int GodOfHeartCount;
-    public int GodOfSlowCount;
-    public int GodOfHintCount;
+	/// <summary>
+	/// Server Item Key : item02
+	/// </summary>
+	public int GodOfShildCount;
+	/// <summary>
+	/// Server Item Key : item03
+	/// </summary>
+	public int GodOfHeartCount;
+	/// <summary>
+	/// Server Item Key : item04
+	/// </summary>
+	public int GodOfSlowCount;
+	/// <summary>
+	/// Server Item Key : item05
+	/// </summary>
+	public int GodOfHintCount;
 }
 
 public class csItemMgr
