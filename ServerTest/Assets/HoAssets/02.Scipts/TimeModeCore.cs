@@ -19,6 +19,7 @@ public class TimeModeCore : MonoBehaviour {
     public GameObject m_StartText;
     public GameObject m_GameOverText;
     public TMPro.TMP_Text m_CountText;
+    Sprite[] m_Sprite;
     Tile[,] m_TileMap;
     float m_TimeScore;
     int m_LockNum = 5;
@@ -32,12 +33,12 @@ public class TimeModeCore : MonoBehaviour {
     IEnumerator Start()
     {
         Input.multiTouchEnabled = false;
-        m_StartText.SetActive(true);
-        yield return null;
-
-        while (!Input.GetMouseButtonDown(0))
-            yield return null;
-        m_StartText.SetActive(false);
+      //m_StartText.SetActive(true)
+      //yield return null;
+      //
+      // while (!Input.GetMouseButtonDown(0))
+      //     yield return null;
+      // m_StartText.SetActive(false);
 
         Init();
         m_NumOrder = 1;
@@ -178,7 +179,6 @@ public class TimeModeCore : MonoBehaviour {
         for (int i = 0; i < numArr.Length; i++)
             numArr[i] = i + 1;
         numArr = ShuffleArray(numArr);
-
         m_TileMap = new Tile[m_TileNum.x, m_TileNum.y];
 
         for (int y = 0; y < m_TileNum.y; y++)
@@ -188,6 +188,7 @@ public class TimeModeCore : MonoBehaviour {
                 m_TileMap[x, y] = tile;
                 tile.transform.position = m_StartPos.position + new Vector3((x * (m_TileSize.x + m_TileSpacing.x)), (y * (-m_TileSize.y - m_TileSpacing.y)));
                 tile.transform.localScale = new Vector3(m_TileSize.x, m_TileSize.y, 1);
+                
                 tile.m_Num = numArr[m_Index];
                 tile.m_NumText.text = tile.m_Num.ToString();
                 m_TileList.Add(tile);

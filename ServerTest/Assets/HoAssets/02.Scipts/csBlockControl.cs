@@ -235,7 +235,7 @@ public class csBlockControl : MonoBehaviour
 
         for (int i = 0; i < ListLen; i++)
         {
-            int RandomNum = Random.Range(GameCore.Instance.m_NumOrder - 1, GameCore.Instance.hasOnGame);
+            int RandomNum = Random.Range(GameCore.Instance.m_NumOrder - 1, GameCore.Instance.hasOnGame-1);
 
             if (intDic.ContainsKey(RandomNum))
             {

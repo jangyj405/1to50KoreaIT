@@ -53,12 +53,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/JooAssets/01.Scenes/StageScene.unity
     guid: a655962182148ae46b79b408b6d6a5e6
-  - enabled: 0
+  - enabled: 1
     path: Assets/HoAssets/StageModeScene.unity
     guid: 92344b42bff934b4593549703172432a
   - enabled: 1
-    path: Assets/HoAssets/GameScene.unity
-    guid: 3eac9b4cef81ca54485ef533459079a4
-  - enabled: 1
     path: Assets/HoAssets/TimeModeScene.unity
-    guid: 34a4f26d10dbf6f4d9cfd9351a76c920
+    guid: 04012aa5313a17d4a99bda5c6acf96d2

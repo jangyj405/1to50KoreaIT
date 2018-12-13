@@ -11,7 +11,13 @@ public class csUseItemBtn : MonoBehaviour
 	private bool isGodOfHintItem = false;
 	private bool isGodOfHeartItem = false;
 
-	public void GodOfTimeBtn() 
+    private void Awake()
+    {
+        ItemUseSetting();
+    }
+
+
+    public void GodOfTimeBtn() 
 	{
 		isGodOfTimeItem = true;
 		csGameData.GetInstance ().IsClickTimeSkill = isGodOfTimeItem;
@@ -80,7 +86,7 @@ public class csUseItemBtn : MonoBehaviour
 	{
 		get
 		{
-			return isGodOfTimeItem;
+            return isGodOfShieldItem;
 		}
 	}
 

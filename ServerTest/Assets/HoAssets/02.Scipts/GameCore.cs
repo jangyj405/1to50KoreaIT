@@ -64,12 +64,14 @@ public class GameCore : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         Input.multiTouchEnabled = false;
+        /*
         m_StartText.SetActive(true);
         yield return null;
 
         while (!Input.GetMouseButtonDown(0))
             yield return null;
         m_StartText.SetActive(false);
+        */
 
 		MapSettingInit ();
         Init();
@@ -275,8 +277,9 @@ public class GameCore : MonoBehaviour {
             }
             yield return null;
         }
-    }
 
+    }
+  
     IEnumerator UpdateTimer()
     {
         yield return null;

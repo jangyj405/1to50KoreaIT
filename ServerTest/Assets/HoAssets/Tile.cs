@@ -8,6 +8,8 @@ public class Tile : MonoBehaviour {
     public float m_BlinkDelay = 2.0f;
     public float m_MissDelay = 0.25f;
 	public float m_HintBlink = 2f;
+    public Sprite[] m_TileSprite;
+    public int m_MaxTileNum;
     [HideInInspector]
     public int m_Num;
     [HideInInspector]
@@ -26,6 +28,16 @@ public class Tile : MonoBehaviour {
         m_NumText = GetComponentInChildren<TMPro.TMP_Text>();
         m_Tf = transform;
         m_OriScale = m_Tf.localScale;
+    }
+    private void Start()
+    {
+        ChangeTile();
+    }
+    void ChangeTile()
+    {
+        float numT = Mathf.InverseLerp(1, m_MaxTileNum, m_Num);
+        int index = Mathf.FloorToInt(m_TileSprite.Length * numT);
+        m_Sr.sprite = m_TileSprite[Mathf.Clamp(index, 0, m_TileSprite.Length - 1)];
     }
     public bool IsDestory()
     {
@@ -79,9 +91,9 @@ public class Tile : MonoBehaviour {
         m_IsDestroy = false;
         m_IsPlaying = true;
         //m_Col.enabled = true;
-        m_Sr.color = Color.black;
+        m_Sr.color = Color.white;
         m_Tf.localScale = Vector3.zero;
-        m_NumText.color = Color.white;
+        m_NumText.color = Color.black;
         float t = 0;
         yield return null;
 
@@ -111,8 +123,8 @@ public class Tile : MonoBehaviour {
             t += Time.deltaTime / m_FadeDuration;
 
             m_Tf.localScale = Vector3.Lerp(m_OriScale, destScale, t);
-            m_Sr.color = Color.Lerp(Color.black, Color.clear, t);
-            m_NumText.color = Color.Lerp(Color.white, new Color(1, 1, 1, 0), t);
+            m_Sr.color = Color.Lerp(Color.white, new Color(1, 1, 1, 0), t);
+            m_NumText.color = Color.Lerp(Color.black, Color.clear, t);
 
             if (t > 1)
                 break;
@@ -128,11 +140,11 @@ public class Tile : MonoBehaviour {
         while (true)
         {
             m_Sr.color = Color.grey;
-            m_NumText.color = Color.black;
+            //m_NumText.color = Color.black;
 			//Debug.Log ("깜박임_01");
 			yield return wait;
-            m_Sr.color = Color.black;
-            m_NumText.color = Color.white;
+            m_Sr.color = Color.white;
+            //m_NumText.color = Color.white;
 			//Debug.Log ("깜박임_02");
 			yield return wait;
         }
@@ -146,7 +158,7 @@ public class Tile : MonoBehaviour {
         {
             m_Sr.color = Color.red;
             yield return wait;
-            m_Sr.color = Color.black;
+            m_Sr.color = Color.white;
             yield break;
         }
     }
