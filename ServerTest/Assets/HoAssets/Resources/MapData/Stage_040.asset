@@ -17,7 +17,7 @@ MonoBehaviour:
   blinkCount: 5
   blinkTimer: 5
   reverseCount: 10
-  reverseTimer: 5
+  reverseTimer: 4
   scaleCount: 0
   scaleTimer: 0
   trackCount: 0
