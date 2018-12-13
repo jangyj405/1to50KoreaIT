@@ -9,20 +9,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 050d14a2041b2a443a24b46691ad5f05, type: 3}
-  m_Name: Stage_034
+  m_Name: Stage_038
   m_EditorClassIdentifier: 
-  MapId: Stage_034
-  rotationCount: 5
-  rotationTimer: 5
-  blinkCount: 4
-  blinkTimer: 4
-  reverseCount: 3
-  reverseTimer: 3
-  scaleCount: 0
-  scaleTimer: 0
+  MapId: Stage_038
+  rotationCount: 0
+  rotationTimer: 0
+  blinkCount: 0
+  blinkTimer: 0
+  reverseCount: 10
+  reverseTimer: 5
+  scaleCount: 5
+  scaleTimer: 2
   trackCount: 0
   emptyCount: 0
-  maxGameNum: 50
+  maxGameNum: 55
   islimitTimer: 0
   limitTimer: 0
   isEdgeRotation: 0

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050d14a2041b2a443a24b46691ad5f05, type: 3}
   m_Name: Stage_033
   m_EditorClassIdentifier: 
-  MapId: Stage_030
+  MapId: Stage_033
   rotationCount: 3
   rotationTimer: 5
   blinkCount: 0
