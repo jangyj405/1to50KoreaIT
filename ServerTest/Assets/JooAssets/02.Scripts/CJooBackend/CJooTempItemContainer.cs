@@ -23,7 +23,13 @@ public class CJooTempItemContainer
 	}
 
 	Dictionary<string, int> dicItemContainer = new Dictionary<string, int>();
-	
+	public Dictionary<string,int> DicItemContainer
+	{
+		get
+		{
+			return dicItemContainer;
+		}
+	}
 	public void ClearContainer()
 	{
 		dicItemContainer.Clear();

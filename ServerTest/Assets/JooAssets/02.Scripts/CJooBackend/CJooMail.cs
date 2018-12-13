@@ -151,12 +151,6 @@ public class CJooMail : MonoBehaviour
 	{
 		GetUserPostListFromServer();
 		GetAdminPostListFromServer();
-
-		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("item");
-		Debug.Log(bro.GetReturnValue());
-		ItemFromServerRows server = JsonConvert.DeserializeObject<ItemFromServerRows>(bro.GetReturnValue());
-
-		Debug.Log(server.rows[0].itemDict.M.Keys.ToString());
 	}
 
 	[Serializable]
@@ -260,6 +254,7 @@ public class CJooMail : MonoBehaviour
 			}
 		}
 		//todo 하트 갱신
+		UpdateHeart(tReceivedHeart);
 
 		BackendReturnObject bro = Backend.Social.Post.ReceiveAdminPostAll();
 		string tReturnValue = bro.GetReturnValue();
@@ -282,22 +277,44 @@ public class CJooMail : MonoBehaviour
 			CJooTempItemContainer.Instance.AddToContainer(keys.ToArray(), values.ToArray());
 		}
 		//todo 아이템 갱신
-
+		UpdateItem();
 	}
 
 	void UpdateHeart(int pReceivedHeart)
 	{
 		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("heart");
 		string tReturnValue = bro.GetReturnValue();
-		JsonTableHeart heartTable = JsonUtility.FromJson<JsonTableHeart>(tReturnValue);
-		string tInDate = heartTable.inDate.S;
-		int heartCountOnServer = Convert.ToInt32(heartTable.HeartCount.N);
+		JsonTableHeartRows heartTable = JsonConvert.DeserializeObject<JsonTableHeartRows>(tReturnValue);
+		string tInDate = heartTable.rows[0].inDate.S;
+		int heartCountOnServer = Convert.ToInt32(heartTable.rows[0].HeartCount.N);
 		Param heartParam = new Param();
 		heartParam.Add("HeartCount", heartCountOnServer + pReceivedHeart);
 		Backend.GameInfo.Update("heart", tInDate, heartParam);
 	}
 
+	void UpdateItem()
+	{
+		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("item");
+		string tReturnValue = bro.GetReturnValue();
+		ItemFromServerRows itemFromServer = JsonConvert.DeserializeObject<ItemFromServerRows>(tReturnValue);
+		string tInDate = itemFromServer.rows[0].inDate.S;
+		List<string> keys = new List<string>();
+		List<int> values = new List<int>();
 
+		keys.AddRange(new string[] { "item01", "item02", "item03", "item04", "item05" });
+		int val01 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item01"].N);
+		int val02 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item02"].N);
+		int val03 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item03"].N);
+		int val04 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item04"].N);
+		int val05 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item05"].N);
+		values.AddRange(new int[] { val01, val02, val03, val04, val05 });
+		CJooTempItemContainer.Instance.AddToContainer(keys.ToArray(), values.ToArray());
+
+		Param itemParam = new Param();
+		itemParam.Add("itemDict",CJooTempItemContainer.Instance.DicItemContainer);
+		Backend.GameInfo.Update("item", tInDate, itemParam);
+		CJooTempItemContainer.Instance.ClearContainer();
+	}
 
 
 	[Serializable]
@@ -305,5 +322,13 @@ public class CJooMail : MonoBehaviour
 	{
 		[SerializeField]
 		public JsonItemFromAdmin[] items;
+	}
+
+	void OnGUI()
+	{
+		if(GUI.Button(new Rect(0f,0f,100f,100f),"ReceiveAll"))
+		{
+			OnClickBtnReceiveAll();
+		}
 	}
 }
