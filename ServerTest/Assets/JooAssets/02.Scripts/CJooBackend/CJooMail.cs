@@ -7,6 +7,14 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 
 [Serializable]
+public class ItemFromAdmin
+{
+	[SerializeField]
+	public JsonItemFromAdmin[] items;
+}
+
+
+[Serializable]
 public class JsonNum
 {
 	[SerializeField]
@@ -128,7 +136,42 @@ public class CJooPostFromUserRows
 	public CJooPostFromUser[] rows = new CJooPostFromUser[1];
 }
 
+[Serializable]
+public class ItemFromServerRows
+{
+	[SerializeField]
+	public ItemFromServer[] rows;
+}
 
+[Serializable]
+public class ItemFromServer : JsonTableBase
+{
+	[SerializeField]
+	public ItemsDic itemDict;
+}
+
+[Serializable]
+public class ItemsDic
+{
+	[SerializeField]
+	//public ItemCont 
+	public Dictionary<string, JsonN> M;
+}
+
+[Serializable]
+public class ItemCont
+{
+	[SerializeField]
+	public JsonN item01;
+	[SerializeField]
+	public JsonN item02;
+	[SerializeField]
+	public JsonN item03;
+	[SerializeField]
+	public JsonN item04;
+	[SerializeField]
+	public JsonN item05;
+}
 
 public class CJooMail : MonoBehaviour
 {
@@ -153,42 +196,7 @@ public class CJooMail : MonoBehaviour
 		GetAdminPostListFromServer();
 	}
 
-	[Serializable]
-	class ItemFromServerRows
-	{
-		[SerializeField]
-		public ItemFromServer[] rows;
-	}
 
-	[Serializable]
-	class ItemFromServer : JsonTableBase
-	{
-		[SerializeField]
-		public ItemsDic itemDict;
-	}
-
-	[Serializable]
-	class ItemsDic
-	{
-		[SerializeField]
-		//public ItemCont 
-		public Dictionary<string, JsonN> M;
-	}
-
-	[Serializable]
-	class ItemCont
-	{
-		[SerializeField]
-		public JsonN item01;
-		[SerializeField]
-		public JsonN item02;
-		[SerializeField]
-		public JsonN item03;
-		[SerializeField]
-		public JsonN item04;
-		[SerializeField]
-		public JsonN item05;
-	}
 
 	// Update is called once per frame
 	void Update ()
@@ -317,13 +325,7 @@ public class CJooMail : MonoBehaviour
 	}
 
 
-	[Serializable]
-	class ItemFromAdmin
-	{
-		[SerializeField]
-		public JsonItemFromAdmin[] items;
-	}
-
+#if UNITY_EDITOR
 	void OnGUI()
 	{
 		if(GUI.Button(new Rect(0f,0f,100f,100f),"ReceiveAll"))
@@ -331,4 +333,5 @@ public class CJooMail : MonoBehaviour
 			OnClickBtnReceiveAll();
 		}
 	}
+#endif
 }
