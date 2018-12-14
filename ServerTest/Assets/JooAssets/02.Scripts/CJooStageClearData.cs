@@ -92,6 +92,10 @@ public class CJooStageClearData
 	{
 		if (DictStageClear.ContainsKey(pClearData.Key))
 		{
+			if(DictStageClear[pClearData.Key] < pClearData.Value)
+			{
+				return;
+			}
 			DictStageClear[pClearData.Key] = pClearData.Value;
 		}
 		else
