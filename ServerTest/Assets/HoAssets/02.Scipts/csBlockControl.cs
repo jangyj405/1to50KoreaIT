@@ -201,7 +201,7 @@ public class csBlockControl : MonoBehaviour
         for (int i = 0; i < arrayInt.Length; i++)
         {
             GameCore.Instance.m_TileList[arrayInt[i]].transform.DORotate(new Vector3(0f, -180f, 0f), 1f);
-        }
+        }	
         yield return null;
 
     }
@@ -229,13 +229,22 @@ public class csBlockControl : MonoBehaviour
 
     private List<int> GetRandomNumList(int ListLen)
     {
-
         List<int> resultList = new List<int>();
         Dictionary<int, bool> intDic = new Dictionary<int, bool>();
+		int tHasOnGame = GameCore.Instance.hasOnGame;
+		int tNumOrder = GameCore.Instance.m_NumOrder;
+		if ((tHasOnGame - tNumOrder + 1) <= ListLen)
+		{
+			for(int i = 0; i< 1 + tHasOnGame - tNumOrder;i++)
+			{
+				resultList.Add(tNumOrder + i - 1);
+			}
+			return resultList;
+		}
 
         for (int i = 0; i < ListLen; i++)
         {
-            int RandomNum = Random.Range(GameCore.Instance.m_NumOrder - 1, GameCore.Instance.hasOnGame-1);
+            int RandomNum = Random.Range(GameCore.Instance.m_NumOrder - 1, GameCore.Instance.hasOnGame - 1);
 
             if (intDic.ContainsKey(RandomNum))
             {
