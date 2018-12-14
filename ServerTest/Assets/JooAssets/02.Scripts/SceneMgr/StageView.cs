@@ -20,7 +20,7 @@ public class JsonTableStage : JsonTableBase
 public class JsonTableStageRow
 {
 	[SerializeField]
-	public JsonTableStage[] row;
+	public JsonTableStage[] rows;
 }
 
 [Serializable]
@@ -111,11 +111,11 @@ public class StageView : MonoBehaviour
 		
 		try
 		{
-			oInDate = stageData.row[0].inDate.S;
+			oInDate = stageData.rows[0].inDate.S;
 			Dictionary<string, int> tDict = new Dictionary<string, int>();
-			foreach(var item in stageData.row[0].StageRecord.M.Keys)
+			foreach(var item in stageData.rows[0].StageRecord.M.Keys)
 			{
-				int tVal = Convert.ToInt32(stageData.row[0].StageRecord.M[item].N);
+				int tVal = Convert.ToInt32(stageData.rows[0].StageRecord.M[item].N);
 				tDict.Add(item, tVal);
 			}
 			return tDict;
