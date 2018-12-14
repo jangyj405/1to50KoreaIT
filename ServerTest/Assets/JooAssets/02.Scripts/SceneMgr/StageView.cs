@@ -20,7 +20,7 @@ public class JsonTableStage : JsonTableBase
 public class JsonTableStageRow
 {
 	[SerializeField]
-	public JsonTableStage[] rows;
+	public JsonTableStage[] row;
 }
 
 [Serializable]
@@ -96,18 +96,26 @@ public class StageView : MonoBehaviour
 
 	private Dictionary<string, int> GetStageDataFromServer(out string oInDate)
 	{
-		BackendReturnObject bro = Backend.GameInfo.GetPublicContents("stage");
+		BackendReturnObject userBro = Backend.BMember.GetUserInfo();
+		string userBroStr = userBro.GetReturnValue();
+
+		UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(userBroStr);
+
+		string tIndate = metaData.row.inDate; 
+
+		Debug.Log(tIndate);
+		BackendReturnObject bro = Backend.GameInfo.GetPublicContentsByGamerIndate("stage", tIndate);
 		string tReturnValue = bro.GetReturnValue();
 		Debug.Log(tReturnValue);
 		JsonTableStageRow stageData = JsonConvert.DeserializeObject<JsonTableStageRow>(tReturnValue);
 		
 		try
 		{
-			oInDate = stageData.rows[0].inDate.S;
+			oInDate = stageData.row[0].inDate.S;
 			Dictionary<string, int> tDict = new Dictionary<string, int>();
-			foreach(var item in stageData.rows[0].StageRecord.M.Keys)
+			foreach(var item in stageData.row[0].StageRecord.M.Keys)
 			{
-				int tVal = Convert.ToInt32(stageData.rows[0].StageRecord.M[item].N);
+				int tVal = Convert.ToInt32(stageData.row[0].StageRecord.M[item].N);
 				tDict.Add(item, tVal);
 			}
 			return tDict;
