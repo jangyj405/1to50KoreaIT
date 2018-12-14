@@ -20,7 +20,12 @@ public class CJooStageClearData
 		}
 	}
 
-	private Dictionary<string, int> DictStageClear = null;
+	private CJooStageClearData()
+	{
+
+	}
+
+	private Dictionary<string, int> DictStageClear = new Dictionary<string, int>();
 	private string stageInDate = "";
 
 	private int timeAtkScore = 0;
@@ -28,7 +33,14 @@ public class CJooStageClearData
 
 	public void SetStageClearDict(Dictionary<string,int> pDict, string pInDate)
 	{
+		DictStageClear = pDict;
+		stageInDate = pInDate;
+	}
 
+	public void SetTimeAtkScore(int pScore, string pInDate)
+	{
+		timeAtkScore = pScore;
+		timeAtkInDate = pInDate;
 	}
 
 	public bool PushDataToServer(StageModeKind gameMode)
@@ -56,22 +68,35 @@ public class CJooStageClearData
 
 	private bool PushStageDataToServer()
 	{
-		bool isFirst = (timeAtkInDate == "");
-		//BackendReturnObject bro = Backend.GameInfo.Update();
-		return false;
+		bool isFirst = (stageInDate == "");
+		Param stageParam = new Param();
+		stageParam.Add("StageRecord", DictStageClear);
+		BackendReturnObject bro = (isFirst) ? 
+			Backend.GameInfo.Insert("stage", stageParam) : Backend.GameInfo.Update("stage", stageInDate, stageParam);
+		bool tResult = CJooBackendCommonErrors.IsAvailableWithServer(bro);
+		return tResult;
 	}
 
 	private bool PushTimeAtkDataToServer()
 	{
-		return false;
+		bool isFirst = (timeAtkInDate == "");
+		Param timeAtkParam = new Param();
+		timeAtkParam.Add("InfiniteScore", timeAtkScore);
+		BackendReturnObject bro = (isFirst) ?
+			Backend.GameInfo.Insert("score", timeAtkParam) : Backend.GameInfo.Update("score", timeAtkInDate, timeAtkParam);
+		bool tResult = CJooBackendCommonErrors.IsAvailableWithServer(bro);
+		return tResult;
 	}
 
 	public void AddStageClearToDict(KeyValuePair<string, int> pClearData)
 	{
-		if(DictStageClear == null)
+		if (DictStageClear.ContainsKey(pClearData.Key))
 		{
-			return;
+			DictStageClear[pClearData.Key] = pClearData.Value;
 		}
-		DictStageClear.Add(pClearData.Key, pClearData.Value);
+		else
+		{
+			DictStageClear.Add(pClearData.Key, pClearData.Value);
+		}
 	}
 }

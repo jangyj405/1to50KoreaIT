@@ -211,9 +211,13 @@ public class GameCore : MonoBehaviour {
 					m_TimeScore = csItemMgr.GetInstance ().UseGodOfTime (m_TimeScore);
                     m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
 				}
-                csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
+				//csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
+				isRunningTimer = false;
+				CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
+				CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
                 CRyuGameDataMgr.GetInst().IncreaseStageLevel();
-                StopCoroutine("UpdateTimer");
+                //StopCoroutine("UpdateTimer");
+				
                 Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
 				Debug.Log (m_TimeScore);
 				Debug.Log (m_TimeScoreText.text.ToString());
@@ -279,12 +283,12 @@ public class GameCore : MonoBehaviour {
         }
 
     }
-  
+	bool isRunningTimer = true;
     IEnumerator UpdateTimer()
     {
         yield return null;
 
-        while (true)
+        while (isRunningTimer)
         {
 			if (csGameData.GetInstance ().IsClickSlowSkill) {
 				//m_TimeScore = csItemMgr.GetInstance ().UseGodOfSlow (m_TimeScore);

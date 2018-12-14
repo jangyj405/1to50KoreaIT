@@ -13,17 +13,22 @@ using System.Linq.Expressions;
 public class JsonTableStage : JsonTableBase
 {
 	[SerializeField]
-	public Dictionary<string, int> StageRecord;
+	public JsonStageRecord StageRecord;
 }
 
 [Serializable]
 public class JsonTableStageRow
 {
 	[SerializeField]
-	public JsonTableStage[] row;
+	public JsonTableStage[] rows;
 }
 
-
+[Serializable]
+public class JsonStageRecord
+{
+	[SerializeField]
+	public Dictionary<string, JsonN> M;
+}
 
 
 
@@ -50,8 +55,13 @@ public class StageView : MonoBehaviour
 			stageButtons[i].IsInteractable = false;
 		}
 		//todo 
-		stageDict = GetStageDataFromServer();
-		
+		string tInDate = "";
+		stageDict = GetStageDataFromServer(out tInDate);
+		Debug.Log(tInDate);
+		if(!tInDate.Equals(""))
+		{
+			CJooStageClearData.Instance.SetStageClearDict(stageDict, tInDate);
+		}
 		//받은 값으로 세팅하기
 		//값이 없으면(기록이 없으면) 버튼 interactable false
 		string tFormat = string.Format("Stage_{0}", radix.ToString("00"));
@@ -84,17 +94,28 @@ public class StageView : MonoBehaviour
 		}
 	}
 
-	private Dictionary<string, int> GetStageDataFromServer()
+	private Dictionary<string, int> GetStageDataFromServer(out string oInDate)
 	{
 		BackendReturnObject bro = Backend.GameInfo.GetPublicContents("stage");
 		string tReturnValue = bro.GetReturnValue();
+		Debug.Log(tReturnValue);
 		JsonTableStageRow stageData = JsonConvert.DeserializeObject<JsonTableStageRow>(tReturnValue);
+		
 		try
 		{
-			return stageData.row[0].StageRecord;
+			oInDate = stageData.rows[0].inDate.S;
+			Dictionary<string, int> tDict = new Dictionary<string, int>();
+			foreach(var item in stageData.rows[0].StageRecord.M.Keys)
+			{
+				int tVal = Convert.ToInt32(stageData.rows[0].StageRecord.M[item].N);
+				tDict.Add(item, tVal);
+			}
+			return tDict;
 		}
-		catch
+		catch(Exception e)
 		{
+			Debug.Log(e.Message);
+			oInDate = "";
 			return null;
 		}
 	}
@@ -132,7 +153,7 @@ public class StageView : MonoBehaviour
 
     public void GameStartClick()
     {
-		csMapMgr.GetInstance().MapSetting(SelectedStage);
+		CRyuGameDataMgr.GetInst().GetMapStageLevel = SelectedStage;
 		SceneManager.LoadScene(SceneNames.stageModeScene);
     }
 		

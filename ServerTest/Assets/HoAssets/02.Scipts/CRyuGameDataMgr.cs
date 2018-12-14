@@ -8,7 +8,7 @@ public class CRyuGameDataMgr
 
 	private int mStageIndex = 1;
 
-
+	private int SelectedStage = 0;
 
 
     protected CRyuGameDataMgr()
@@ -37,7 +37,11 @@ public class CRyuGameDataMgr
 	public int GetMapStageLevel 
 	{
 		get {
-			return mStageIndex;
+			return SelectedStage;
+		}
+		set
+		{
+			SelectedStage = value;
 		}
 	}
 
