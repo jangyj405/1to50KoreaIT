@@ -103,4 +103,13 @@ public class CJooStageClearData
 			DictStageClear.Add(pClearData.Key, pClearData.Value);
 		}
 	}
+
+	public void SetTimeAtkScore(int pScore)
+	{
+		if(pScore < timeAtkScore)
+		{
+			return;
+		}
+		timeAtkScore = pScore;
+	}
 }

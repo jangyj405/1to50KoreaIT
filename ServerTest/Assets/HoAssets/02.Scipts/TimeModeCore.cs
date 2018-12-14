@@ -94,7 +94,10 @@ public class TimeModeCore : MonoBehaviour {
             }
             if (m_TimeScore >= m_LimitTime)
             {
-                StopCoroutine("UpdateTimer");
+				//StopCoroutine("UpdateTimer");
+				isRunningTimer = false;
+				CJooStageClearData.Instance.SetTimeAtkScore(m_NumOrder - 1);
+				CJooStageClearData.Instance.PushDataToServer(StageModeKind.TimeAttackMode);
                 m_TimeScoreText.text = string.Format("{0:000.00}", (int)m_TimeScore);
                 break;
 
@@ -140,11 +143,12 @@ public class TimeModeCore : MonoBehaviour {
             yield return null;
         }
     }
+	bool isRunningTimer = true;
     IEnumerator UpdateTimer()
     {
         //yield return null;
 
-        while (true)
+        while (isRunningTimer)
         {
             m_TimeScore += Time.deltaTime;
             m_TimeScoreText.text = string.Format("{0:000.00}",m_TimeScore);

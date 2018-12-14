@@ -1699,7 +1699,7 @@ MonoBehaviour:
   errorMessage: {fileID: 780297448}
   panelExpire: {fileID: 966124476}
   expireButton: {fileID: 966124475}
-  succeededCreate: {fileID: 389171390}
+  succeededCreate: {fileID: 1348994811}
   createButton: {fileID: 1576541036}
 --- !u!1 &1576541034
 GameObject:
