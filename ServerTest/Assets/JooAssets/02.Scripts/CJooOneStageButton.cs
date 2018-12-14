@@ -24,6 +24,17 @@ public class CJooOneStageButton : MonoBehaviour
 		}
 	}
 
+	public bool IsInteractable
+	{
+		get
+		{
+			return stageButton.interactable;
+		}
+		set
+		{
+			stageButton.interactable = value;
+		}
+	}
 
 	[SerializeField]
 	private Button stageButton = null;

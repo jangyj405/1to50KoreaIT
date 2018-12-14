@@ -16,6 +16,8 @@ public static class SceneNames
     public const string AccountScene = "02_AccountScene";
 	public const string nicknameCreateScene = "NickNameCreate";
 	public const string nicknameChangeScene = "NickNameChange";
+	public const string stageModeScene = "StageModeScene";
+	public const string timeAtkModeScene = "TimeModeScene";
 }
 
 public class ModeSelect : MonoBehaviour
