@@ -150,7 +150,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d2993fcc5b27d8e4d8a02f65607e497a, type: 3}
   - {fileID: 21300000, guid: 02e5bf03bade95749bc3ac4346ff22ab, type: 3}
   - {fileID: 21300000, guid: d0a4b076036214243a44816698885b0c, type: 3}
-  m_MaxTileNum: 25
+  - {fileID: 21300000, guid: 1153723c67aed2845ba09232f89a3994, type: 3}
+  - {fileID: 21300000, guid: 42223eedc7e2c7341a590e2ab7ee8cf9, type: 3}
+  - {fileID: 21300000, guid: d2993fcc5b27d8e4d8a02f65607e497a, type: 3}
+  - {fileID: 21300000, guid: 02e5bf03bade95749bc3ac4346ff22ab, type: 3}
+  - {fileID: 21300000, guid: d0a4b076036214243a44816698885b0c, type: 3}
+  m_MaxTileNum: 100
   m_Num: 0
   m_NumText: {fileID: 0}
   m_Sr: {fileID: 0}

@@ -1711,7 +1711,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6ec37d7b7b51d243ad28130ad025a09, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 672839c66a8bc414696f880850c85705, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1777,6 +1777,7 @@ MonoBehaviour:
   m_StartText: {fileID: 0}
   m_GameOverText: {fileID: 1071844843}
   m_CountText: {fileID: 1066255979}
+  m_NumOrder: 0
   m_LockText: {fileID: 1734009263}
 --- !u!4 &1569095031
 Transform:

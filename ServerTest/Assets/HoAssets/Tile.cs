@@ -38,6 +38,7 @@ public class Tile : MonoBehaviour {
         float numT = Mathf.InverseLerp(1, m_MaxTileNum, m_Num);
         int index = Mathf.FloorToInt(m_TileSprite.Length * numT);
         m_Sr.sprite = m_TileSprite[Mathf.Clamp(index, 0, m_TileSprite.Length - 1)];
+        
     }
     public bool IsDestory()
     {
@@ -45,6 +46,7 @@ public class Tile : MonoBehaviour {
     }
     public void FadeIn()
     {
+        ChangeTile();
         StopAllCoroutines();
         StartCoroutine("Co_FadeIn");
     }

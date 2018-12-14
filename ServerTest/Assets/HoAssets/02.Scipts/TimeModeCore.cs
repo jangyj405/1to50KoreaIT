@@ -8,6 +8,9 @@ using System.Linq.Expressions;
 
 
 public class TimeModeCore : MonoBehaviour {
+
+    private static TimeModeCore instance;
+
     public float m_HelpTIme;
     public Transform m_StartPos;
     public Vector2 m_TileSize;
@@ -25,11 +28,30 @@ public class TimeModeCore : MonoBehaviour {
     int m_LockNum = 5;
     int m_MissNum = 0;
     int m_Index;
-    int m_NumOrder;
+    public int m_NumOrder;
     float m_LimitTime =60f;
     public GameObject m_LockText;
     List<Tile> m_TileList = new List<Tile>();
     // Use this for initialization
+
+
+
+    public static TimeModeCore Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<TimeModeCore>();
+                if (instance == null)
+                {
+                    GameObject container = new GameObject("TimeModeCore");
+                    instance = container.AddComponent<TimeModeCore>();
+                }
+            }
+            return instance;
+        }
+    }
     IEnumerator Start()
     {
         Input.multiTouchEnabled = false;
