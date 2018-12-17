@@ -30,10 +30,6 @@ public class csMapData : ScriptableObject {
     [SerializeField]
     private float scaleTimer;
 
-    [SerializeField]
-    private int trackCount;
-    [SerializeField]
-    private int emptyCount;
 	[SerializeField]
 	private int maxGameNum;
 
@@ -110,29 +106,7 @@ public class csMapData : ScriptableObject {
 		}
     }
 
-    public int TrackCount
-    {
-        get
-        {
-            return trackCount;
-        }
-		set
-		{
-			trackCount = value;
-		}
-    }
 
-    public int EmptyCount
-    {
-        get
-        {
-            return emptyCount;
-        }
-		set
-		{
-			emptyCount = value;
-		}
-    }
 
 	public int MaxGameNum
 	{
@@ -215,7 +189,7 @@ public class csMapData : ScriptableObject {
     {
         get
         {
-            return 25 - (RotationCount + BlinkCount + ReverseCount + ScaleCount + TrackCount + EmptyCount);
+            return 25 - (RotationCount + BlinkCount + ReverseCount + ScaleCount);
         }
     }
 

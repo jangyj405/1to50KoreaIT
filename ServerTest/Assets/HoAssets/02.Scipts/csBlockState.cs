@@ -3,7 +3,5 @@
     BLINK,
     REVERSE,
     SCALE,
-    TRACK,
-    EMPTY,
     NOTHING,
 };

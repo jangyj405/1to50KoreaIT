@@ -20,8 +20,6 @@ MonoBehaviour:
   reverseTimer: 0
   scaleCount: 0
   scaleTimer: 0
-  trackCount: 0
-  emptyCount: 0
   maxGameNum: 25
   islimitTimer: 0
   limitTimer: 0

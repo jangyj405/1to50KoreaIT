@@ -62,7 +62,6 @@ public class csBlockControl : MonoBehaviour
 		RandomBlinkNumber = m_MapData.BlinkCount;
 		RandomReverseNumber = m_MapData.ReverseCount;
 		RandomChangeScaleNumber = m_MapData.ScaleCount;
-		RandomTwoTouchNumber = m_MapData.TrackCount;
 		if (csGameData.GetInstance ().IsClickShieldSkill) {
 			//csItemMgr.GetInstance ().UseGodOfShield (m_MapData);
 			RandomRotationNumber = 0;
@@ -147,7 +146,7 @@ public class csBlockControl : MonoBehaviour
 
         for (int i = 0; i < arrayInt.Length; i++)
         {
-			GameCore.Instance.m_TileList[arrayInt[i]].transform.DORotate(new Vector3(0f, 0f, 360f), 2.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(repeatNum, LoopType.Yoyo);
+			GameCore.Instance.m_TileList[arrayInt[i]].transform.DORotate(new Vector3(0f, 0f, -360f), 1f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(repeatNum, LoopType.Restart);
         }
         yield return null;
 
@@ -220,7 +219,7 @@ public class csBlockControl : MonoBehaviour
 		}
         for (int i = 0; i < arrayInt.Length; i++)
         {
-			GameCore.Instance.m_TileList[arrayInt[i]].transform.DOScale(new Vector3(0.7f, 0.7f, 0.1f), 1f).SetLoops(repeatNum, LoopType.Yoyo);
+			GameCore.Instance.m_TileList[arrayInt[i]].transform.DOScale(new Vector3(0.5f, 0.5f, 0.1f), 1f).SetLoops(repeatNum, LoopType.Yoyo);
         }
         yield return null;
     }

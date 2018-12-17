@@ -95,10 +95,8 @@ public class csItemMgr
 	{
 		_mapData.RotationCount = 0;
 		_mapData.BlinkCount = 0;
-		_mapData.EmptyCount = 0;
 		_mapData.ReverseCount = 0;
 		_mapData.ScaleCount = 0;
-		_mapData.TrackCount = 0;
 	}
 
 	public float UseGodOfSlow(float time)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MapId: Stage_029
   rotationCount: 3
-  rotationTimer: 1
+  rotationTimer: 2
   blinkCount: 3
   blinkTimer: 2
   reverseCount: 1
