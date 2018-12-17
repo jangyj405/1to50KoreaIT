@@ -11,6 +11,9 @@ public class SoundManager : MonoBehaviour {
     public AudioClip BGMMainMenuAudioClip;
     public AudioClip[] BGMGameSceneAudioClip;
 
+    public AudioClip SFXCorrectClickAudioClip;
+    public AudioClip SFXMissClickAudioClip;
+
     void Awake()
     {
         if (instance == null)
@@ -23,19 +26,31 @@ public class SoundManager : MonoBehaviour {
 
     void Start()
     {
-        MainMenuBGM();
+        BGMMainMenu();
     }
 
-    public void MainMenuBGM()
+    public void BGMMainMenu()
     {
         BGMAudioSource.clip = BGMMainMenuAudioClip;
         BGMAudioSource.Play();
     }
 
-    public void GameSceneBGM()
+    public void BGMGameScene()
     {
         int index = Random.Range(0, BGMGameSceneAudioClip.Length);
         BGMAudioSource.clip = BGMGameSceneAudioClip[index];
         BGMAudioSource.Play();
+    }
+
+    public void SFXCorrectClick()
+    {
+        SFXAudioSource.clip = SFXCorrectClickAudioClip;
+        SFXAudioSource.Play();
+    }
+
+    public void SFXMissClick()
+    {
+        SFXAudioSource.clip = SFXMissClickAudioClip;
+        SFXAudioSource.Play();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System.Linq;
 using System.Linq.Expressions;
+using DG.Tweening;
 
 
 public class TimeModeCore : MonoBehaviour {
@@ -29,12 +30,11 @@ public class TimeModeCore : MonoBehaviour {
     int m_MissNum = 0;
     int m_Index;
     public int m_NumOrder;
-    float m_LimitTime =60f;
+    public float m_LimitTime =60f;
     public GameObject m_LockText;
     List<Tile> m_TileList = new List<Tile>();
-    // Use this for initialization
 
-
+    public GameObject TimeOverPanel;   
 
     public static TimeModeCore Instance
     {
@@ -52,6 +52,13 @@ public class TimeModeCore : MonoBehaviour {
             return instance;
         }
     }
+
+    void Awake()
+    {
+        TimeOverPanel.transform.localScale = Vector3.one * 0.1f;  
+
+    }
+
     IEnumerator Start()
     {
         Input.multiTouchEnabled = false;
@@ -63,6 +70,7 @@ public class TimeModeCore : MonoBehaviour {
       // m_StartText.SetActive(false);
 
         Init();
+       SoundManager.instance.BGMGameScene();
         m_NumOrder = 1;
         StartCoroutine("UpdateNextNum");
         m_CountText.gameObject.SetActive(true);
@@ -84,13 +92,14 @@ public class TimeModeCore : MonoBehaviour {
             {
                 if (tile.m_Num == m_NumOrder)
                 {
+                    SoundManager.instance.SFXCorrectClick();
                     StartCoroutine("TouchTile", tile);
                     m_NumOrder++;
                     t = Time.time;
                 }
                 else
                 {
-
+                    SoundManager.instance.SFXMissClick();
                     m_MissNum++;
                     Debug.Log("" + m_MissNum);
                     tile.Miss();
@@ -137,7 +146,11 @@ public class TimeModeCore : MonoBehaviour {
         while (!Input.GetMouseButtonDown(0))
             yield return null;
 
-        SceneManager.LoadScene("TimeAttackScene");
+        TimeOverPanel.SetActive(true);
+        TimeOverPanel.transform.DOScale(1f, 0.4f);
+
+        
+        //SceneManager.LoadScene("TimeAttackScene");
     }
 
     IEnumerator TouchTile(Tile tile)
@@ -258,5 +271,28 @@ public class TimeModeCore : MonoBehaviour {
             array[i] = tempItem;
         }
         return array;
+    }
+
+    public void ReStartButtonClick()
+    {
+        Tweener tTweener = TimeOverPanel.transform.DOScale(0.1f, 0.4f);
+        tTweener.OnComplete(() => ReStartButtonClickAfter());        
+    }
+    private void ReStartButtonClickAfter()
+    {
+        TimeOverPanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void MainMenuButtonClick()
+    {
+        Tweener tTweener = TimeOverPanel.transform.DOScale(0.1f, 0.4f);
+        tTweener.OnComplete(() => MainMenuButtonClickAfter());        
+    }  
+    private void MainMenuButtonClickAfter()
+    {
+        TimeOverPanel.SetActive(false);
+        SoundManager.instance.BGMMainMenu();
+        SceneManager.LoadScene(SceneNames.timeAttackScene);
     }
 }

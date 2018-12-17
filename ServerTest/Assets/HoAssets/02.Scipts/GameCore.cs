@@ -76,6 +76,8 @@ public class GameCore : MonoBehaviour {
 		MapSettingInit ();
         Init();
 
+        SoundManager.instance.BGMGameScene();
+
         m_NumOrder = 1;
         StartCoroutine("UpdateNextNum");
         m_CountText.gameObject.SetActive(true);
@@ -133,6 +135,7 @@ public class GameCore : MonoBehaviour {
             {
                 if (tile.m_Num == m_NumOrder)
                 {
+                    SoundManager.instance.SFXCorrectClick();
                     StartCoroutine("TouchTile", tile);
                     m_NumOrder++;
                     t = Time.time;
@@ -140,7 +143,7 @@ public class GameCore : MonoBehaviour {
                 }
                 else
                 {
-
+                    SoundManager.instance.SFXMissClick();
                     m_MissNum++;
                     Debug.Log("" + m_MissNum);
                     tile.Miss();
@@ -238,6 +241,7 @@ public class GameCore : MonoBehaviour {
         while (!Input.GetMouseButtonDown(0))
             yield return null;
 
+        SoundManager.instance.BGMMainMenu();
         SceneManager.LoadScene(SceneNames.stageScene);
     }
 
