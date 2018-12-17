@@ -23,6 +23,7 @@ public class TimeModeCore : MonoBehaviour {
     public GameObject m_StartText;
     public GameObject m_GameOverText;
     public TMPro.TMP_Text m_CountText;
+    public TMPro.TMP_Text m_CurrentScore;
     Sprite[] m_Sprite;
     Tile[,] m_TileMap;
     float m_TimeScore;
@@ -130,6 +131,7 @@ public class TimeModeCore : MonoBehaviour {
 				CJooStageClearData.Instance.SetTimeAtkScore(m_NumOrder - 1);
 				CJooStageClearData.Instance.PushDataToServer(StageModeKind.TimeAttackMode);
                 m_TimeScoreText.text = string.Format("{0:000.00}", (int)m_TimeScore);
+                m_CurrentScore.text= string.Format("{000}",m_NumOrder-1);
                 break;
 
             }
@@ -147,6 +149,7 @@ public class TimeModeCore : MonoBehaviour {
             yield return null;
 
         TimeOverPanel.SetActive(true);
+        m_CurrentScore.gameObject.SetActive(true);
         TimeOverPanel.transform.DOScale(1f, 0.4f);
 
         
