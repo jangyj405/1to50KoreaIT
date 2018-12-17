@@ -116,7 +116,7 @@ public class TimeModeCore : MonoBehaviour {
             }
             if (m_TimeScore >= m_LimitTime)
             {
-				//StopCoroutine("UpdateTimer");
+                //StopCoroutine("UpdateTimer");
 				isRunningTimer = false;
 				CJooStageClearData.Instance.SetTimeAtkScore(m_NumOrder - 1);
 				CJooStageClearData.Instance.PushDataToServer(StageModeKind.TimeAttackMode);
@@ -126,11 +126,10 @@ public class TimeModeCore : MonoBehaviour {
             }
             yield return null;
         }
-       // StopCoroutine("UpdateTimer");
+        // StopCoroutine("UpdateTimer");
 
         yield return new WaitForSeconds(0.25f);
-
-
+    
         m_GameOverText.SetActive(true);
 
         yield return new WaitForSeconds(0.25f);
