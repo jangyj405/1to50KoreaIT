@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BackEnd;
 
 public class CJooPostItemFromUser : CJooPostItem
 {
@@ -46,12 +47,18 @@ public class CJooPostItemFromUser : CJooPostItem
 
 	public override void GetItems()
 	{
-		throw new System.NotImplementedException();
+		BackendReturnObject broReceive = Backend.Social.Message.GetReceivedMessage(InDate);
+		//skip error checking
+		Param tParam = new Param();
+		tParam.Add("HeartCount", CJooHeart.heartCountStc + 1);
+		BackendReturnObject broUpdate = Backend.GameInfo.Update("heart", CJooHeart.inDate, tParam);
+		//todo Display UI;
+		DeleteThis();
 	}
 
 	protected override void DeleteThis()
 	{
-		throw new System.NotImplementedException();
+		Destroy(gameObject);
 	}
 
 	public void Initial(string pContent, string pInDate, string pSenderNickName)

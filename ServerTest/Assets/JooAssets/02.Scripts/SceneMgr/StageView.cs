@@ -48,25 +48,35 @@ public class StageView : MonoBehaviour
 	{
 		SceneManager.LoadScene("AddtiveSceneETC", LoadSceneMode.Additive);
 
-		for (int i = 0; i < stageButtons.Length; i++)
-		{
-			stageButtons[i].Stage = radix * 10 + i + 1;
-			stageButtons[i].RecordText = "-";
-			stageButtons[i].IsInteractable = false;
-		}
+		InitButtons();
 		//todo 
 		string tInDate = "";
 		stageDict = GetStageDataFromServer(out tInDate);
-		Debug.Log(tInDate);
 		if(!tInDate.Equals(""))
 		{
 			CJooStageClearData.Instance.SetStageClearDict(stageDict, tInDate);
 		}
 		//받은 값으로 세팅하기
 		//값이 없으면(기록이 없으면) 버튼 interactable false
+		
+		
+		SetStageButtonsAsStageDict();
+	}
+
+	private void InitButtons()
+	{
+		for (int i = 0; i < stageButtons.Length; i++)
+		{
+			stageButtons[i].Stage = radix * 10 + i + 1;
+			stageButtons[i].RecordText = "-";
+			stageButtons[i].IsInteractable = false;
+		}
+	}
+
+	private void SetStageButtonsAsStageDict()
+	{
 		string tFormat = string.Format("Stage_{0}", radix.ToString("00"));
 		string tFromatNext = string.Format("Stage_{0}" + "0", (radix + 1).ToString("00"));
-		Debug.Log(tFromatNext);
 		if (stageDict != null)
 		{
 			stageKVPair = stageDict.Where((t) => (t.Key.Contains(tFormat) && t.Key.Last() != '0') || t.Key.Equals(tFromatNext))
@@ -85,14 +95,23 @@ public class StageView : MonoBehaviour
 			stageDict = new Dictionary<string, int>();
 			stageDict.Add("Stage_000", 0);
 		}
-		for(int i =0; i< stageButtons.Length;i++)
+		for (int i = 0; i < stageButtons.Length; i++)
 		{
-			if(stageDict.ContainsKey(string.Format("Stage_{0}", (stageButtons[i].Stage-1).ToString("000"))))
+			if (stageDict.ContainsKey(string.Format("Stage_{0}", (stageButtons[i].Stage - 1).ToString("000"))))
 			{
 				stageButtons[i].IsInteractable = true;
 			}
 		}
 	}
+
+	public void OnClickBtnPageView(bool pIsRight)
+	{
+		radix = (pIsRight) ? radix + 1 : radix - 1;
+		radix = Mathf.Clamp(radix, 0, 4);
+		InitButtons();
+		SetStageButtonsAsStageDict();
+	}
+
 
 	private Dictionary<string, int> GetStageDataFromServer(out string oInDate)
 	{

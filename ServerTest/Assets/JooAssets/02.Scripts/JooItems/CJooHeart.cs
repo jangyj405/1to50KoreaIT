@@ -37,6 +37,19 @@ public class JsonS
 {
 	[SerializeField]
 	public string S = "";
+
+	public int ToInt()
+	{
+		try
+		{
+			int result = Convert.ToInt32(S);
+			return result;
+		}
+		catch
+		{
+			return 0;
+		}
+	}
 }
 [Serializable]
 public class JsonN
@@ -113,10 +126,9 @@ public class JsonTableHeart : JsonTableBase
 
 public class CJooHeart : MonoBehaviour
 {
-
 	public static CJooHeart jooHeart = null;
-	[SerializeField]
-	string inDate = "";
+	public static int heartCountStc = 0;
+	public static string inDate = "";
 	[SerializeField]
 	private int maxHeart = 5;
 
@@ -215,6 +227,7 @@ public class CJooHeart : MonoBehaviour
 	void Awake()
 	{
 		jooHeart = this;
+		inDate = "";
 	}
 
 	// Use this for initialization
@@ -278,7 +291,8 @@ public class CJooHeart : MonoBehaviour
 		catch
 		{
 			Debug.Log("Called");
-			return this.inDate;
+			string tIndate = inDate;
+			return tIndate;
 		}
 	}
 
@@ -368,6 +382,11 @@ public class CJooHeart : MonoBehaviour
 		{
 			OnClickBtnUseHeart(null);
 		}
+	}
+
+	void OnDisable()
+	{
+		heartCountStc = CurHeart;
 	}
 }
 

@@ -45,10 +45,7 @@ public class CJooStageClearData
 
 	public bool PushDataToServer(StageModeKind gameMode)
 	{
-		if(DictStageClear == null)
-		{
-			return false;
-		}
+		
 
 		bool tResult = false;
 
@@ -68,6 +65,10 @@ public class CJooStageClearData
 
 	private bool PushStageDataToServer()
 	{
+		if (DictStageClear == null)
+		{
+			return false;
+		}
 		bool isFirst = (stageInDate == "");
 		Param stageParam = new Param();
 		stageParam.Add("StageRecord", DictStageClear);
