@@ -338,6 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50688031}
   - component: {fileID: 50688032}
+  - component: {fileID: 50688033}
   m_Layer: 5
   m_Name: Toggle_Item3
   m_TagString: Untagged
@@ -410,6 +411,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &50688033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 50688030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6224c95cfdcf5e94baee267c16218f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCount: {fileID: 1785565406}
+  toggle: {fileID: 50688032}
 --- !u!1 &99150802
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 244000043}
   - component: {fileID: 244000044}
+  - component: {fileID: 244000045}
   m_Layer: 5
   m_Name: Toggle_Item4
   m_TagString: Untagged
@@ -873,6 +888,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &244000045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 244000042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6224c95cfdcf5e94baee267c16218f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCount: {fileID: 1903345171}
+  toggle: {fileID: 244000044}
 --- !u!1 &258599622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569293126}
   - component: {fileID: 569293127}
+  - component: {fileID: 569293128}
   m_Layer: 5
   m_Name: Toggle_Item1
   m_TagString: Untagged
@@ -1358,6 +1387,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &569293128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 569293125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6224c95cfdcf5e94baee267c16218f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCount: {fileID: 1923971398}
+  toggle: {fileID: 569293127}
 --- !u!1 &639124496
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,6 +3429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1595507668}
   - component: {fileID: 1595507669}
+  - component: {fileID: 1595507670}
   m_Layer: 5
   m_Name: Toggle_Item2
   m_TagString: Untagged
@@ -3459,6 +3502,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &1595507670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1595507667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6224c95cfdcf5e94baee267c16218f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtCount: {fileID: 99150804}
+  toggle: {fileID: 1595507669}
 --- !u!1 &1613474691
 GameObject:
   m_ObjectHideFlags: 0
@@ -4439,6 +4495,7 @@ GameObject:
   - component: {fileID: 1914402013}
   - component: {fileID: 1914402017}
   - component: {fileID: 1914402018}
+  - component: {fileID: 1914402019}
   m_Layer: 5
   m_Name: Canvas_MainMenu
   m_TagString: Untagged
@@ -4561,6 +4618,22 @@ MonoBehaviour:
   - {fileID: 239975773}
   - {fileID: 1916935241}
   - {fileID: 1085845992}
+--- !u!114 &1914402019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1914402012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2a06404ac7c4c4891a52119e3a9691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 569293128}
+  - {fileID: 1595507670}
+  - {fileID: 50688033}
+  - {fileID: 244000045}
 --- !u!1001 &1916935239
 Prefab:
   m_ObjectHideFlags: 0
