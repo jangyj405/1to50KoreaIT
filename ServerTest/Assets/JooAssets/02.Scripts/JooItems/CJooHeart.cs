@@ -56,6 +56,19 @@ public class JsonN
 {
 	[SerializeField]
 	public string N = "";
+
+	public int ToInt()
+	{
+		try
+		{
+			int result = Convert.ToInt32(N);
+			return result;
+		}
+		catch
+		{
+			return 0;
+		}
+	}
 }
 
 
