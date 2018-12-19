@@ -247,6 +247,7 @@ public class GameCore : MonoBehaviour {
 
 
         timeOverPanel.SetActive(true);
+        m_GameOverText.SetActive(false);
         timeOverPanel.transform.DOScale(1f, 0.4f);
 
      
