@@ -33,7 +33,7 @@ public class GameCore : MonoBehaviour {
     public int m_LockNum = 5;
     int m_stageIndex = 0;
     float m_LimitTime = 200f;
-
+    public GameObject timeOverPanel;
 
 	private csBlockControl BlockControlScript;
 
@@ -60,6 +60,10 @@ public class GameCore : MonoBehaviour {
 
     public List<Tile> m_TileList = new List<Tile>();
 
+    void Awake()
+    {
+        timeOverPanel.transform.localScale = Vector3.one * 0.1f;
+    }
 
 	// Use this for initialization
 	IEnumerator Start () {
@@ -241,8 +245,11 @@ public class GameCore : MonoBehaviour {
         while (!Input.GetMouseButtonDown(0))
             yield return null;
 
-        SoundManager.instance.BGMMainMenu();
-        SceneManager.LoadScene(SceneNames.stageScene);
+
+        timeOverPanel.SetActive(true);
+        timeOverPanel.transform.DOScale(1f, 0.4f);
+
+     
     }
 
     IEnumerator TouchTile(Tile tile)
@@ -441,6 +448,27 @@ public class GameCore : MonoBehaviour {
         }
     }
 
+    public void ReStartButtonClick()
+    {
+        Tweener tTweener = timeOverPanel.transform.DOScale(0.1f, 0.4f);
+        tTweener.OnComplete(() => ReStartButtonClickAfter());
+    }
+    private void ReStartButtonClickAfter()
+    {
+        timeOverPanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    public void MainMenuButtonClick()
+    {
+        Tweener tTweener = timeOverPanel.transform.DOScale(0.1f, 0.4f);
+        tTweener.OnComplete(() => MainMenuButtonClickAfter());
+    }
+    private void MainMenuButtonClickAfter()
+    {
+        timeOverPanel.SetActive(false);
+        SoundManager.instance.BGMMainMenu();
+        SceneManager.LoadScene(SceneNames.stageScene);
+    }
 
 }

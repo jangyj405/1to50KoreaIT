@@ -16,5 +16,9 @@ public class CUIControll : MonoBehaviour {
         SceneManager.LoadScene(SceneNames.timeAttackScene);
     }
 
+    public void ReStartButtonClick()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     
 }
