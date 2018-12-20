@@ -6,6 +6,7 @@ using DG.Tweening;
 using System.Linq;
 using System.Linq.Expressions;
 using DG.Tweening;
+using UnityEngine.UI;
 
 
 public class TimeModeCore : MonoBehaviour {
@@ -23,7 +24,8 @@ public class TimeModeCore : MonoBehaviour {
     public GameObject m_StartText;
     public GameObject m_GameOverText;
     public TMPro.TMP_Text m_CountText;
-    public TMPro.TMP_Text m_CurrentScore;
+    //public TMPro.TMP_Text m_CurrentScore;
+    public Text m_CurrentScore;
     Sprite[] m_Sprite;
     Tile[,] m_TileMap;
     float m_TimeScore;

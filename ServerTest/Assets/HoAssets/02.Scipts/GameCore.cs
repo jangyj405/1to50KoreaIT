@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class GameCore : MonoBehaviour {
 
@@ -22,6 +23,7 @@ public class GameCore : MonoBehaviour {
     public GameObject m_GameOverText;
     public GameObject m_LockText;
     public TMPro.TMP_Text m_CountText;
+    public Text m_CurrentScore = null;
     public Vector2Int[] m_RotationOrder;
     [SerializeField]
 	private float ITEM_SlowRate;
@@ -220,7 +222,8 @@ public class GameCore : MonoBehaviour {
 				}
 				//csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
 				isRunningTimer = false;
-				CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
+                m_CurrentScore.text = string.Format("{0:00.00}", m_TimeScore);
+                CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
 				CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
                 CRyuGameDataMgr.GetInst().IncreaseStageLevel();
                 //StopCoroutine("UpdateTimer");
@@ -247,6 +250,7 @@ public class GameCore : MonoBehaviour {
 
 
         timeOverPanel.SetActive(true);
+        m_CurrentScore.gameObject.SetActive(true);
         m_GameOverText.SetActive(false);
         timeOverPanel.transform.DOScale(1f, 0.4f);
 
