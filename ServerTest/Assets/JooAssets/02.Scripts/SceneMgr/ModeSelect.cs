@@ -27,13 +27,14 @@ public class ModeSelect : MonoBehaviour
     public void StageModeClick()
     {
         stageModeKind = StageModeKind.StageMode;
-        SceneManager.LoadScene(SceneNames.stageScene);
+        FadeInOut.instance.FadeIn(SceneNames.stageScene);
+        //SceneManager.LoadScene(SceneNames.stageScene);
     }
 
     public void TimeAttackModeClick()
     {
         stageModeKind = StageModeKind.TimeAttackMode;
-        SceneManager.LoadScene(SceneNames.timeAttackScene);
+        FadeInOut.instance.FadeIn(SceneNames.timeAttackScene);
     }    
 }
 

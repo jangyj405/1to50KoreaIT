@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour {
 
     void Start()
     {
+        BGMAudioSource.volume = PlayerPrefs.GetFloat("backgroundVolume", 1f);
+        SFXAudioSource.volume = PlayerPrefs.GetFloat("effectVolume", 1f);
         BGMMainMenu();
     }
 

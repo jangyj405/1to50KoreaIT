@@ -19,6 +19,7 @@ public class CJooLogin : MonoBehaviour
 
     public GameObject serverStatusPanel = null;
 
+
     bool m_isSucceeded = false;
     bool isSucceeded
     {
@@ -34,15 +35,18 @@ public class CJooLogin : MonoBehaviour
 				bool hasSetNickname = IsNickNameSet();
 				if(hasSetNickname)
 				{
-					SceneManager.LoadScene(SceneNames.modeSelectScene);
+                    FadeInOut.instance.FadeIn(SceneNames.modeSelectScene);
+                    //SceneManager.LoadScene(SceneNames.modeSelectScene);
 				}
 				else
 				{
-					SceneManager.LoadScene(SceneNames.nicknameCreateScene);
+                    FadeInOut.instance.FadeIn(SceneNames.nicknameCreateScene);
+                    //SceneManager.LoadScene(SceneNames.nicknameCreateScene);
 				}
             }
         }
     }
+
 	/*
 	void TestStageData()
 	{
@@ -68,15 +72,15 @@ public class CJooLogin : MonoBehaviour
 	*/
 	bool IsNickNameSet()
 	{
-		BackendReturnObject bro = Backend.BMember.GetUserInfo();
-		string tVal = bro.GetReturnValue();
-		UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(tVal);
-		return !(metaData.row.nickname == "");
+        //BackendReturnObject bro = Backend.BMember.GetUserInfo();
+        //string tVal = bro.GetReturnValue();
+        //UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(tVal);
+        return true;
 	}
 
     void Start()
     {
-		PlayerPrefs.DeleteAll();
+		//PlayerPrefs.DeleteAll();
         InitialBackend();
         bool isServerAvailable = ServerStatus.CheckServerStatus();
 
@@ -246,6 +250,7 @@ public class CJooLogin : MonoBehaviour
         {
             CustomLogin(tID, tPW);
         }
+        
     }
 
     public void OnClickTryCreateID()
