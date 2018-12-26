@@ -2793,6 +2793,7 @@ MonoBehaviour:
   m_LockText: {fileID: 1734009263}
   m_CountText: {fileID: 1066255979}
   m_CurrentScore: {fileID: 111837216}
+  m_BestRecord: {fileID: 1370243009}
   m_RotationOrder:
   - {x: 0, y: 0}
   - {x: 0, y: 1}

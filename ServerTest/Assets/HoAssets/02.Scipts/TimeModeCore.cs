@@ -25,6 +25,7 @@ public class TimeModeCore : MonoBehaviour {
     public GameObject m_GameOverText;
     public TMPro.TMP_Text m_CountText;
     //public TMPro.TMP_Text m_CurrentScore;
+    public Text m_BestRocord;
     public Text m_CurrentScore;
     Sprite[] m_Sprite;
     Tile[,] m_TileMap;
@@ -134,6 +135,8 @@ public class TimeModeCore : MonoBehaviour {
 				CJooStageClearData.Instance.PushDataToServer(StageModeKind.TimeAttackMode);
                 m_TimeScoreText.text = string.Format("{0:000.00}", (int)m_TimeScore);
                 m_CurrentScore.text= string.Format("{000}",m_NumOrder-1);
+                m_BestRocord.text = string.Format("{000}", best);
+
                 break;
 
             }

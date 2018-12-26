@@ -24,6 +24,7 @@ public class GameCore : MonoBehaviour {
     public GameObject m_LockText;
     public TMPro.TMP_Text m_CountText;
     public Text m_CurrentScore = null;
+    public Text m_BestRecord = null;
     public Vector2Int[] m_RotationOrder;
     [SerializeField]
 	private float ITEM_SlowRate;
@@ -216,27 +217,48 @@ public class GameCore : MonoBehaviour {
                 }
             }
 			if (m_NumOrder > m_MaxGameNum) {
-				if (csGameData.GetInstance ().IsClickTimeSkill) {
-					m_TimeScore = csItemMgr.GetInstance ().UseGodOfTime (m_TimeScore);
-                    m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
-				}
-				//csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
-				isRunningTimer = false;
-                m_CurrentScore.text = string.Format("{0:00.00}", m_TimeScore);
-                KeyValuePair<string, int> best = CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
-				CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
-                CRyuGameDataMgr.GetInst().IncreaseStageLevel();
-                //StopCoroutine("UpdateTimer");
-				
-                Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
-				Debug.Log (m_TimeScore);
-				Debug.Log (m_TimeScoreText.text.ToString());
-				Debug.Log (m_MapData.GetMapId);
 
-				break;
+                //if (csGameData.GetInstance ().IsClickTimeSkill) {
+                //	m_TimeScore = csItemMgr.GetInstance ().UseGodOfTime (m_TimeScore);
+                //    m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
+                //}
+                ////csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
+                //isRunningTimer = false;
+                //m_CurrentScore.text = string.Format("{0:00.00}", m_TimeScore);
+                //KeyValuePair<string, int> best = CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
+                //m_BestRecord.text = string.Format("{0:00.00}", best.Value*0.01f);
+                //CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
+                //CRyuGameDataMgr.GetInst().IncreaseStageLevel();
+                //
+                ////StopCoroutine("UpdateTimer");
+                //
+                //Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+                //Debug.Log (m_TimeScore);
+                //Debug.Log (m_TimeScoreText.text.ToString());
+                //Debug.Log (m_MapData.GetMapId);
+                //break;
+                break;
 			}
             yield return null;
         }
+        if (csGameData.GetInstance ().IsClickTimeSkill) {
+        	m_TimeScore = csItemMgr.GetInstance ().UseGodOfTime (m_TimeScore);
+            m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
+        }
+        //csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
+        isRunningTimer = false;
+        m_CurrentScore.text = string.Format("{0:00.00}", m_TimeScore);
+        KeyValuePair<string, int> best = CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
+        m_BestRecord.text = string.Format("{0:00.00}", best.Value*0.01f);
+        CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
+        CRyuGameDataMgr.GetInst().IncreaseStageLevel();
+        
+        //StopCoroutine("UpdateTimer");
+        
+        Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+        Debug.Log (m_TimeScore);
+        Debug.Log (m_TimeScoreText.text.ToString());
+        Debug.Log (m_MapData.GetMapId);
         //StopCoroutine("UpdateTimer");
 
         yield return new WaitForSeconds(0.25f);

@@ -2971,6 +2971,7 @@ MonoBehaviour:
   m_StartText: {fileID: 0}
   m_GameOverText: {fileID: 1071844843}
   m_CountText: {fileID: 1066255979}
+  m_BestRocord: {fileID: 1755270121}
   m_CurrentScore: {fileID: 2068619697}
   m_NumOrder: 0
   m_LimitTime: 2
