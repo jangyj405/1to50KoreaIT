@@ -1504,15 +1504,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495773729}
-        m_MethodName: DiaPurchasClick
-        m_Mode: 3
+      - m_Target: {fileID: 1495773730}
+        m_MethodName: BuyProductID
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 10000
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dia120
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2088,15 +2088,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495773729}
-        m_MethodName: DiaPurchasClick
-        m_Mode: 3
+      - m_Target: {fileID: 1495773730}
+        m_MethodName: BuyProductID
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 25000
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dia300
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2636,7 +2636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1049178472
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3048,15 +3048,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495773729}
-        m_MethodName: DiaPurchasClick
-        m_Mode: 3
+      - m_Target: {fileID: 1495773730}
+        m_MethodName: BuyProductID
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3000
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dia033
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3312,15 +3312,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495773729}
-        m_MethodName: DiaPurchasClick
-        m_Mode: 3
+      - m_Target: {fileID: 1495773730}
+        m_MethodName: BuyProductID
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1000
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dia010
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3665,6 +3665,7 @@ GameObject:
   - component: {fileID: 1495773726}
   - component: {fileID: 1495773725}
   - component: {fileID: 1495773729}
+  - component: {fileID: 1495773730}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3762,6 +3763,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiaPurchasScreen: {fileID: 1043142554}
   wordText: {fileID: 1390468713}
+--- !u!114 &1495773730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1495773724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8d9c843b5192c41b2f3e3d12d7e7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTouchPanel: {fileID: 1043142554}
 --- !u!1 &1509150650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,15 +3851,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495773729}
-        m_MethodName: DiaPurchasClick
-        m_Mode: 3
+      - m_Target: {fileID: 1495773730}
+        m_MethodName: BuyProductID
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 15000
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dia180
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4106,15 +4119,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495773729}
-        m_MethodName: DiaPurchasClick
-        m_Mode: 3
+      - m_Target: {fileID: 1495773730}
+        m_MethodName: BuyProductID
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5000
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Dia055
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
