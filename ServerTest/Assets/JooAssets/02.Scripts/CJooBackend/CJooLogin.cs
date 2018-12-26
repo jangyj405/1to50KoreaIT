@@ -32,6 +32,7 @@ public class CJooLogin : MonoBehaviour
             m_isSucceeded = value;
             if(m_isSucceeded == true)
             {
+				//Debug.Log(Backend.GameInfo.GetTableList().GetReturnValue());
 				bool hasSetNickname = IsNickNameSet();
 				if(hasSetNickname)
 				{
@@ -72,10 +73,17 @@ public class CJooLogin : MonoBehaviour
 	*/
 	bool IsNickNameSet()
 	{
-        //BackendReturnObject bro = Backend.BMember.GetUserInfo();
-        //string tVal = bro.GetReturnValue();
-        //UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(tVal);
-        return true;
+        BackendReturnObject bro = Backend.BMember.GetUserInfo();
+        string tVal = bro.GetReturnValue();
+        UserMetaData metaData = JsonUtility.FromJson<UserMetaData>(tVal);
+		try
+		{
+			return !metaData.row.nickname.Equals("");
+		}
+		catch
+		{
+			return false;
+		}
 	}
 
     void Start()

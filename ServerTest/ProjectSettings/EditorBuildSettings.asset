@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/asdf.unity
     guid: 24091134fdc7e3043a83a7977288f87a
   - enabled: 1

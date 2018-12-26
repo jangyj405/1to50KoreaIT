@@ -81,10 +81,13 @@ public class CJooStageClearData
 	private bool PushTimeAtkDataToServer()
 	{
 		bool isFirst = (timeAtkInDate == "");
+		Debug.Log(timeAtkInDate);
 		Param timeAtkParam = new Param();
 		timeAtkParam.Add("InfiniteScore", timeAtkScore);
+		Debug.Log(isFirst);
 		BackendReturnObject bro = (isFirst) ?
 			Backend.GameInfo.Insert("score", timeAtkParam) : Backend.GameInfo.Update("score", timeAtkInDate, timeAtkParam);
+		Debug.Log(bro.GetStatusCode());
 		bool tResult = CJooBackendCommonErrors.IsAvailableWithServer(bro);
 		return tResult;
 	}

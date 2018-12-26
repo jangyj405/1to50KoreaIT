@@ -244,7 +244,7 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/joo_git/1to50KoreaIT/ServerTest/touchnumberreal.keystore
+  AndroidKeystoreName: C:/Joo_git_local/1to50KoreaIT/ServerTest/touchnumberreal.keystore
   AndroidKeyaliasName: relkey0
   AndroidTVCompatibility: 1
   AndroidIsGame: 1

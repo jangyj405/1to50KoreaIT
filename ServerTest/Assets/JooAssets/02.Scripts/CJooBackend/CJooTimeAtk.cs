@@ -31,9 +31,11 @@ public class CJooTimeAtk : MonoBehaviour
 			inDate = meta.row.inDate;
 			BackendReturnObject tBro = Backend.GameInfo.GetPublicContentsByGamerIndate("score", inDate);
 			string tScore = tBro.GetReturnValuetoJSON()["rows"][0]["InfiniteScore"]["N"].ToString();
+			string tInDate = tBro.GetReturnValuetoJSON()["rows"][0]["inDate"]["S"].ToString();
 			Debug.Log(tScore);
+			Debug.Log(tInDate);
 			int tScoreInt = System.Convert.ToInt32(tScore);
-			CJooStageClearData.Instance.SetTimeAtkScore(0, inDate);
+			CJooStageClearData.Instance.SetTimeAtkScore(tScoreInt, tInDate);
 		}
 		catch
 		{
