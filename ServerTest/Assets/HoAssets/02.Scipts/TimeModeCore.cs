@@ -130,7 +130,7 @@ public class TimeModeCore : MonoBehaviour {
             {
                 //StopCoroutine("UpdateTimer");
 				isRunningTimer = false;
-				CJooStageClearData.Instance.SetTimeAtkScore(m_NumOrder - 1);
+				int best = CJooStageClearData.Instance.SetTimeAtkScore(m_NumOrder - 1);
 				CJooStageClearData.Instance.PushDataToServer(StageModeKind.TimeAttackMode);
                 m_TimeScoreText.text = string.Format("{0:000.00}", (int)m_TimeScore);
                 m_CurrentScore.text= string.Format("{000}",m_NumOrder-1);

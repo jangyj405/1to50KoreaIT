@@ -89,28 +89,31 @@ public class CJooStageClearData
 		return tResult;
 	}
 
-	public void AddStageClearToDict(KeyValuePair<string, int> pClearData)
+	public KeyValuePair<string, int> AddStageClearToDict(KeyValuePair<string, int> pClearData)
 	{
 		if (DictStageClear.ContainsKey(pClearData.Key))
 		{
 			if(DictStageClear[pClearData.Key] < pClearData.Value)
 			{
-				return;
+				return new KeyValuePair<string, int>(pClearData.Key, DictStageClear[pClearData.Key]);
 			}
 			DictStageClear[pClearData.Key] = pClearData.Value;
+			return pClearData;
 		}
 		else
 		{
 			DictStageClear.Add(pClearData.Key, pClearData.Value);
+			return pClearData;
 		}
 	}
 
-	public void SetTimeAtkScore(int pScore)
+	public int SetTimeAtkScore(int pScore)
 	{
 		if(pScore < timeAtkScore)
 		{
-			return;
+			return timeAtkScore;
 		}
 		timeAtkScore = pScore;
+		return timeAtkScore;
 	}
 }

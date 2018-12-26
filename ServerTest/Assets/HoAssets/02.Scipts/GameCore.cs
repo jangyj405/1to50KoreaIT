@@ -223,7 +223,7 @@ public class GameCore : MonoBehaviour {
 				//csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
 				isRunningTimer = false;
                 m_CurrentScore.text = string.Format("{0:00.00}", m_TimeScore);
-                CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
+                KeyValuePair<string, int> best = CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
 				CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
                 CRyuGameDataMgr.GetInst().IncreaseStageLevel();
                 //StopCoroutine("UpdateTimer");
