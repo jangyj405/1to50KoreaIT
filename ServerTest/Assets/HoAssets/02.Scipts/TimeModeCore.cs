@@ -35,7 +35,7 @@ public class TimeModeCore : MonoBehaviour {
     int m_Index;
     public int m_NumOrder;
     public float m_LimitTime =60f;
-    public GameObject m_LockText;
+    public GameObject m_LockPanel;
     List<Tile> m_TileList = new List<Tile>();
 
     public GameObject TimeOverPanel;   
@@ -112,9 +112,9 @@ public class TimeModeCore : MonoBehaviour {
             }
             if (m_MissNum >= m_LockNum)
             {
-                m_LockText.SetActive(true);
+                m_LockPanel.SetActive(true);
                 yield return new WaitForSeconds(2.0f);
-                m_LockText.SetActive(false);
+                m_LockPanel.SetActive(false);
                 m_MissNum = 0;
 
             }
