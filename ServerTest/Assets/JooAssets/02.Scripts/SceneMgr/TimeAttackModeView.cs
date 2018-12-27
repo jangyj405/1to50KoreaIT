@@ -10,6 +10,6 @@ public class TimeAttackModeView : MonoBehaviour {
 	}
     public void btnOnClick()
     {
-        SceneManager.LoadScene("TimeModeScene");
+        FadeInOut.instance.FadeIn(SceneNames.timeAtkModeScene);
     }
 }

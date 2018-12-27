@@ -9,16 +9,16 @@ public class CUIControll : MonoBehaviour {
 	
     public void BtnStageModeBackButton()
     {
-        SceneManager.LoadScene(SceneNames.stageScene);
+        FadeInOut.instance.FadeIn(SceneNames.stageScene);
     }
     public void BtnTimeModeBackButton()
     {
-        SceneManager.LoadScene(SceneNames.timeAttackScene);
+        FadeInOut.instance.FadeIn(SceneNames.timeAttackScene);
     }
 
     public void ReStartButtonClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FadeInOut.instance.FadeInReStart();        
     }
     
 }

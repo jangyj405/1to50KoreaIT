@@ -33,17 +33,17 @@ public class OptionView : MonoBehaviour {
     {
         if (ModeSelect.stageModeKind == StageModeKind.StageMode)
         {
-            SceneManager.LoadScene(SceneNames.stageScene);
+            FadeInOut.instance.FadeIn(SceneNames.stageScene);
         }
         else if (ModeSelect.stageModeKind == StageModeKind.TimeAttackMode)
         {
-            SceneManager.LoadScene(SceneNames.timeAttackScene);
+            FadeInOut.instance.FadeIn(SceneNames.timeAttackScene);
         }
     }
 
     public void NickNameChangeClick()
     {
-        SceneManager.LoadScene(SceneNames.nicknameChangeScene);
+        FadeInOut.instance.FadeIn(SceneNames.nicknameChangeScene);
     }
 
     public void LogOutClick()
@@ -58,7 +58,7 @@ public class OptionView : MonoBehaviour {
 
     public void LogOutWithdrawAfterConfirmClick()
     {
-        SceneManager.LoadScene(SceneNames.AccountScene);
+        FadeInOut.instance.FadeIn(SceneNames.AccountScene);
     }
 
 

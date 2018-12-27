@@ -289,7 +289,7 @@ public class TimeModeCore : MonoBehaviour {
     private void ReStartButtonClickAfter()
     {
         TimeOverPanel.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FadeInOut.instance.FadeInReStart();
     }
 
     public void MainMenuButtonClick()
@@ -301,6 +301,6 @@ public class TimeModeCore : MonoBehaviour {
     {
         TimeOverPanel.SetActive(false);
         SoundManager.instance.BGMMainMenu();
-        SceneManager.LoadScene(SceneNames.timeAttackScene);
+        FadeInOut.instance.FadeIn(SceneNames.timeAttackScene);
     }
 }

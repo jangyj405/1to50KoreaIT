@@ -223,7 +223,7 @@ public class CJooCreateNickName : MonoBehaviour
 
 	public void OnClickBtnGoToModeSelect()
 	{
-		SceneManager.LoadScene(SceneNames.modeSelectScene);
+        FadeInOut.instance.FadeIn(SceneNames.modeSelectScene);
 	}
 
 	public void OnClickBtnClosePanelExpire()

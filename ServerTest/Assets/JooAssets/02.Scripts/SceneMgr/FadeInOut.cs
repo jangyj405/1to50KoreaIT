@@ -32,8 +32,7 @@ public class FadeInOut : MonoBehaviour {
             FadeOut();
         });
     }
-
-    public void FadeOut()
+    private void FadeOut()
     {
         Tween tTween = fadeInOutImage.DOFade(0f, 2f);
         tTween.OnComplete(() =>
@@ -42,4 +41,22 @@ public class FadeInOut : MonoBehaviour {
         });        
     }
 
+    public void FadeInReStart()
+    {
+        canvasObject.SetActive(true);
+        Tween tTween = fadeInOutImage.DOFade(1f, 2f);
+        tTween.OnComplete(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            FadeOutReStart();
+        });
+    }
+    private void FadeOutReStart()
+    {
+        Tween tTween = fadeInOutImage.DOFade(0f, 2f);
+        tTween.OnComplete(() =>
+        {
+            canvasObject.SetActive(false);
+        });
+    }
 }

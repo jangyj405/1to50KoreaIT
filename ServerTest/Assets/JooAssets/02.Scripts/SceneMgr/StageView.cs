@@ -181,7 +181,7 @@ public class StageView : MonoBehaviour
     public void GameStartClick()
     {
 		CRyuGameDataMgr.GetInst().GetMapStageLevel = SelectedStage;
-		SceneManager.LoadScene(SceneNames.stageModeScene);
+        FadeInOut.instance.FadeIn(SceneNames.stageModeScene);
     }
 		
 }

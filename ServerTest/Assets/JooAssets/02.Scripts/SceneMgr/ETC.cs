@@ -7,12 +7,12 @@ public class ETC : MonoBehaviour {
     
     public void DiaPurchasClick()
     {
-        SceneManager.LoadScene("DiaPurchase");
+        FadeInOut.instance.FadeIn(SceneNames.diaPurchaseScene);
     }
 
     public void HeartPurchasClick()
     {
-        SceneManager.LoadScene("HeartPurchase");
+        FadeInOut.instance.FadeIn(SceneNames.heartPurchaseScene);
     }
 
     //public void CharacterClick()
@@ -22,26 +22,26 @@ public class ETC : MonoBehaviour {
 
     public void OptionClick()
     {
-        SceneManager.LoadScene("Option");
+        FadeInOut.instance.FadeIn(SceneNames.optionScene);
     }
 
     public void PostClick()
     {
-        SceneManager.LoadScene("Post");
+        FadeInOut.instance.FadeIn(SceneNames.postScene);
     }
 
     public void FriendClick()
     {
-        SceneManager.LoadScene("Friend");
+        FadeInOut.instance.FadeIn(SceneNames.friendScene);
     }
 
     public void ItemClick()
     {
-        SceneManager.LoadScene("ItemPurchas");
+        FadeInOut.instance.FadeIn(SceneNames.itemPurchaseScene);
     }
 
     public void CharacterPurchasClick()
     {
-        SceneManager.LoadScene("CharacterPurchase");
+        FadeInOut.instance.FadeIn(SceneNames.characterPurchaseScene);
     }
 }

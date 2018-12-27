@@ -483,7 +483,7 @@ public class GameCore : MonoBehaviour {
     private void ReStartButtonClickAfter()
     {
         timeOverPanel.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        FadeInOut.instance.FadeInReStart();
     }
 
     public void MainMenuButtonClick()
@@ -495,7 +495,7 @@ public class GameCore : MonoBehaviour {
     {
         timeOverPanel.SetActive(false);
         SoundManager.instance.BGMMainMenu();
-        SceneManager.LoadScene(SceneNames.stageScene);
+        FadeInOut.instance.FadeIn(SceneNames.stageScene);
     }
 
 }

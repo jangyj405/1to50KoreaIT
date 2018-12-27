@@ -18,6 +18,13 @@ public static class SceneNames
 	public const string nicknameChangeScene = "NickNameChange";
 	public const string stageModeScene = "StageModeScene";
 	public const string timeAtkModeScene = "TimeModeScene";
+    public const string diaPurchaseScene = "DiaPurchase";
+    public const string heartPurchaseScene = "HeartPurchase";
+    public const string optionScene = "Option";
+    public const string postScene = "Post";
+    public const string friendScene = "Friend";
+    public const string itemPurchaseScene = "ItemPurchase";
+    public const string characterPurchaseScene = "CharacterPurchase";
 }
 
 public class ModeSelect : MonoBehaviour

@@ -42,11 +42,11 @@ public class DiaBuy : MonoBehaviour {
     {
         if (ModeSelect.stageModeKind == StageModeKind.StageMode)
         {
-            SceneManager.LoadScene(SceneNames.stageScene);
+            FadeInOut.instance.FadeIn(SceneNames.stageScene);
         }
         else if (ModeSelect.stageModeKind == StageModeKind.TimeAttackMode)
         {
-            SceneManager.LoadScene(SceneNames.timeAttackScene);
+            FadeInOut.instance.FadeIn(SceneNames.timeAttackScene);
         }
     }    
 }
