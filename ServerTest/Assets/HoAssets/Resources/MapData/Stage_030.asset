@@ -20,9 +20,7 @@ MonoBehaviour:
   reverseTimer: 4
   scaleCount: 0
   scaleTimer: 0
-  trackCount: 0
-  emptyCount: 0
   maxGameNum: 50
   islimitTimer: 1
-  limitTimer: 40
+  limitTimer: 45
   isEdgeRotation: 0

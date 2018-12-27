@@ -20,7 +20,7 @@ public class GameCore : MonoBehaviour {
     public TMPro.TMP_Text[] m_NextText;
     public TMPro.TMP_Text m_TimeScoreText;
     public GameObject m_ClearText;
-    public GameObject m_LockText;
+    public GameObject m_LockPannel;
     public TMPro.TMP_Text m_CountText;
     public Text m_CurrentScore = null;
     public Text m_BestRecord = null;
@@ -160,9 +160,9 @@ public class GameCore : MonoBehaviour {
             }
             if(m_MissNum>=m_LockNum)
             {
-                m_LockText.SetActive(true);
+                m_LockPannel.SetActive(true);
                 yield return new WaitForSeconds(2.0f);
-                m_LockText.SetActive(false);
+                m_LockPannel.SetActive(false);
                 m_MissNum = 0;
 
             }
