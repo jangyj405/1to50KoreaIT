@@ -19,13 +19,13 @@ public class GameCore : MonoBehaviour {
     public GameObject m_TilePrefab;
     public TMPro.TMP_Text[] m_NextText;
     public TMPro.TMP_Text m_TimeScoreText;
-    public GameObject m_ClearText;
+    public GameObject m_StartText;
+    public GameObject m_GameOverText;
     public GameObject m_LockText;
     public TMPro.TMP_Text m_CountText;
     public Text m_CurrentScore = null;
     public Text m_BestRecord = null;
     public Vector2Int[] m_RotationOrder;
-    public GameObject m_TimeOver = null;
     [SerializeField]
 	private float ITEM_SlowRate;
     public Tile[,] m_TileMap;
@@ -36,7 +36,7 @@ public class GameCore : MonoBehaviour {
     public int m_LockNum = 5;
     int m_stageIndex = 0;
     float m_LimitTime = 200f;
-    public GameObject RecordPanel;
+    public GameObject timeOverPanel;
 
 	private csBlockControl BlockControlScript;
 
@@ -65,7 +65,7 @@ public class GameCore : MonoBehaviour {
 
     void Awake()
     {
-        RecordPanel.transform.localScale = Vector3.one * 0.1f;
+        timeOverPanel.transform.localScale = Vector3.one * 0.1f;
     }
 
 	// Use this for initialization
@@ -131,7 +131,7 @@ public class GameCore : MonoBehaviour {
         //    csBlockControl.Instance.RandomRotation();
         //    
         //}
-        bool isClear = true;
+
         StartCoroutine("UpdateTimer");
         float t = Time.time;
         while (true)
@@ -200,17 +200,14 @@ public class GameCore : MonoBehaviour {
 					}
 				}
 			}
-           
             if (m_MapData.IsLimitTimer == true)
             {
                 if (m_TimeScore >= m_LimitTime)
                 {
-                    isClear = false;
                     Debug.Log("제한시간 초과");
                     break;
                 }
             }
-            /*
             else
             {
                 if ((m_TimeScore >= m_LimitTime))
@@ -219,9 +216,27 @@ public class GameCore : MonoBehaviour {
                     break;
                 }
             }
-            */
 			if (m_NumOrder > m_MaxGameNum) {
 
+                //if (csGameData.GetInstance ().IsClickTimeSkill) {
+                //	m_TimeScore = csItemMgr.GetInstance ().UseGodOfTime (m_TimeScore);
+                //    m_TimeScoreText.text = string.Format("{0:000.00}", m_TimeScore);
+                //}
+                ////csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
+                //isRunningTimer = false;
+                //m_CurrentScore.text = string.Format("{0:00.00}", m_TimeScore);
+                //KeyValuePair<string, int> best = CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
+                //m_BestRecord.text = string.Format("{0:00.00}", best.Value*0.01f);
+                //CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
+                //CRyuGameDataMgr.GetInst().IncreaseStageLevel();
+                //
+                ////StopCoroutine("UpdateTimer");
+                //
+                //Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
+                //Debug.Log (m_TimeScore);
+                //Debug.Log (m_TimeScoreText.text.ToString());
+                //Debug.Log (m_MapData.GetMapId);
+                //break;
                 break;
 			}
             yield return null;
@@ -233,27 +248,13 @@ public class GameCore : MonoBehaviour {
         //csStageClearData.GetInstance().SetClearTime(m_MapData.GetMapId, m_TimeScoreText.text.ToString());
         isRunningTimer = false;
         m_CurrentScore.text = string.Format("{0:00.00}", m_TimeScore);
-
-        if (isClear)
-        {
-          
-            KeyValuePair<string, int> best = CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
-            m_BestRecord.text = string.Format("{0:00.00}", best.Value * 0.01f);
-            CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
-            CRyuGameDataMgr.GetInst().IncreaseStageLevel();
-            RecordPanel.SetActive(true);
-            m_CurrentScore.gameObject.SetActive(true);;
-            RecordPanel.transform.DOScale(1f, 0.4f);
-        }
+        KeyValuePair<string, int> best = CJooStageClearData.Instance.AddStageClearToDict(new KeyValuePair<string, int>(m_MapData.GetMapId, Mathf.RoundToInt(m_TimeScore * 100)));
+        m_BestRecord.text = string.Format("{0:00.00}", best.Value*0.01f);
+        CJooStageClearData.Instance.PushDataToServer(StageModeKind.StageMode);
+        CRyuGameDataMgr.GetInst().IncreaseStageLevel();
         
-        else
-        {
-            StartCoroutine("Co_TimeOverRestart");
-        }
-        
-
         //StopCoroutine("UpdateTimer");
-
+        
         Debug.Log (CRyuGameDataMgr.GetInst().GetMapStageLevel);
         Debug.Log (m_TimeScore);
         Debug.Log (m_TimeScoreText.text.ToString());
@@ -262,18 +263,18 @@ public class GameCore : MonoBehaviour {
 
         yield return new WaitForSeconds(0.25f);
 
-        //m_TimeOver.SetActive(true);
+        m_GameOverText.SetActive(true);
 
         yield return new WaitForSeconds(0.25f);
 
         while (!Input.GetMouseButtonDown(0))
             yield return null;
 
-       //
-       //RecordPanel.SetActive(true);
-       //m_CurrentScore.gameObject.SetActive(true);
-       //m_TimeOver.SetActive(false);
-       //RecordPanel.transform.DOScale(1f, 0.4f);
+
+        timeOverPanel.SetActive(true);
+        m_CurrentScore.gameObject.SetActive(true);
+        m_GameOverText.SetActive(false);
+        timeOverPanel.transform.DOScale(1f, 0.4f);
 
      
     }
@@ -476,36 +477,25 @@ public class GameCore : MonoBehaviour {
 
     public void ReStartButtonClick()
     {
-        Tweener tTweener = RecordPanel.transform.DOScale(0.1f, 0.4f);
+        Tweener tTweener = timeOverPanel.transform.DOScale(0.1f, 0.4f);
         tTweener.OnComplete(() => ReStartButtonClickAfter());
     }
     private void ReStartButtonClickAfter()
     {
-        RecordPanel.SetActive(false);
+        timeOverPanel.SetActive(false);
         FadeInOut.instance.FadeInReStart();
     }
 
     public void MainMenuButtonClick()
     {
-        Tweener tTweener = RecordPanel.transform.DOScale(0.1f, 0.4f);
+        Tweener tTweener = timeOverPanel.transform.DOScale(0.1f, 0.4f);
         tTweener.OnComplete(() => MainMenuButtonClickAfter());
     }
     private void MainMenuButtonClickAfter()
     {
-        RecordPanel.SetActive(false);
+        timeOverPanel.SetActive(false);
         SoundManager.instance.BGMMainMenu();
         FadeInOut.instance.FadeIn(SceneNames.stageScene);
-    }
-    IEnumerator Co_TimeOverRestart()
-    {
-        m_TimeOver.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
-        m_TimeOver.gameObject.SetActive(false);
-        SoundManager.instance.BGMMainMenu();
-        FadeInOut.instance.FadeIn(SceneNames.stageScene);
-
-
-
     }
 
 }

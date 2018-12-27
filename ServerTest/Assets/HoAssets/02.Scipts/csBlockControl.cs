@@ -185,7 +185,7 @@ public class csBlockControl : MonoBehaviour
         {
             Vector2Int CurPos = GameCore.Instance.m_RotationOrder[i];
             Tile CurTile = GameCore.Instance.m_TileMap[CurPos.x, CurPos.y];
-            prevTile.transform.DOMove(CurTile.transform.position, 0.5f);
+            prevTile.transform.DOMove(CurTile.transform.position, 0.2f);
 
             GameCore.Instance.m_TileMap[CurPos.x, CurPos.y] = prevTile;
             prevTile = CurTile;

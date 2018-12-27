@@ -33,13 +33,6 @@ public class CJooIAP : MonoBehaviour, IStoreListener
 
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
 	{
-		BackendReturnObject validateBro = Backend.Receipt.IsValidateGooglePurchase(args.purchasedProduct.receipt, args.purchasedProduct.definition.id);
-		bool isValidated = validateBro.IsSuccess();
-		if(!isValidated)
-		{
-			disableTouchPanel.SetActive(false);
-			return PurchaseProcessingResult.Complete;
-		}
 		// A consumable product has been purchased by this user.
 		bool isContains = false;
 		for (int i = 0; i < productIDs.Length; i++)
