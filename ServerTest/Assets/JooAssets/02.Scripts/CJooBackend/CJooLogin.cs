@@ -19,6 +19,8 @@ public class CJooLogin : MonoBehaviour
 
     public GameObject serverStatusPanel = null;
 
+    public GameObject FailLogInPanel = null;
+    public Text FailLogInText = null;
 
     bool m_isSucceeded = false;
     bool isSucceeded
@@ -222,12 +224,16 @@ public class CJooLogin : MonoBehaviour
             case 401:
                 {
                     Debug.Log("아이디가 존재하지 않음");
+                    FailLogInPanel.SetActive(true);
+                    FailLogInText.text = "아이디 또는 비밀번호가 틀렸습니다";
                 }
                 break;
 
             case 403:
                 {
                     Debug.Log("차단당한 유저");
+                    FailLogInPanel.SetActive(true);
+                    FailLogInText.text = "차단당한 유저입니다";
                 }
                 break;
 
@@ -249,10 +255,14 @@ public class CJooLogin : MonoBehaviour
         if (tID == "")
         {
             Debug.Log("아이디를 입력해라");
+            FailLogInPanel.SetActive(true);
+            FailLogInText.text = "아이디를 입력하세요";
         }
         else if (tPW == "")
         {
             Debug.Log("패스워드를 입력해라");
+            FailLogInPanel.SetActive(true);
+            FailLogInText.text = "비밀번호를 입력하세요";
         }
         else
         {
@@ -349,5 +359,10 @@ public class CJooLogin : MonoBehaviour
     {
         Application.Quit();
 		
+    }
+
+    public void ButtonFailLogInPanelClose()
+    {
+        FailLogInPanel.SetActive(false);
     }
 }

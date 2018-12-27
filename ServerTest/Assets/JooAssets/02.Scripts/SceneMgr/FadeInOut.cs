@@ -25,7 +25,7 @@ public class FadeInOut : MonoBehaviour {
     public void FadeIn(string sceneName)
     {
         canvasObject.SetActive(true);
-        Tween tTween = fadeInOutImage.DOFade(1f, 2f);
+        Tween tTween = fadeInOutImage.DOFade(1f, 1.2f);
         tTween.OnComplete(() =>
         {           
             SceneManager.LoadScene(sceneName);
@@ -34,7 +34,7 @@ public class FadeInOut : MonoBehaviour {
     }
     private void FadeOut()
     {
-        Tween tTween = fadeInOutImage.DOFade(0f, 2f);
+        Tween tTween = fadeInOutImage.DOFade(0f, 1.2f);
         tTween.OnComplete(() =>
         {
             canvasObject.SetActive(false);
@@ -44,7 +44,7 @@ public class FadeInOut : MonoBehaviour {
     public void FadeInReStart()
     {
         canvasObject.SetActive(true);
-        Tween tTween = fadeInOutImage.DOFade(1f, 2f);
+        Tween tTween = fadeInOutImage.DOFade(1f, 1.2f);
         tTween.OnComplete(() =>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -53,7 +53,7 @@ public class FadeInOut : MonoBehaviour {
     }
     private void FadeOutReStart()
     {
-        Tween tTween = fadeInOutImage.DOFade(0f, 2f);
+        Tween tTween = fadeInOutImage.DOFade(0f, 1.2f);
         tTween.OnComplete(() =>
         {
             canvasObject.SetActive(false);

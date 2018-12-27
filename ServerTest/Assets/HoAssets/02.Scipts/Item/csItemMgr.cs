@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemContainer
 {
+    //1번:시간  2번:쉴드  3번:슬로우  4번:힌트
 	/// <summary>
 	/// Server Item Key : item01
 	/// </summary>

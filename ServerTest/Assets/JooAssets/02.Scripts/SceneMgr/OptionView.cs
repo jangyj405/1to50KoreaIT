@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using BackEnd;
 
 public class OptionView : MonoBehaviour {
 
     public GameObject LogOutPanel;
-    public GameObject WithdrawPanel;
     public Slider backgroundVolumeSlider;
     public Slider effectVolumeSlider;
     private float backgroundVolumeValue = 1f;
@@ -48,17 +48,15 @@ public class OptionView : MonoBehaviour {
 
     public void LogOutClick()
     {
-        LogOutPanel.SetActive(true);
-    }
-
-    public void WithdrawClick()
-    {
-        WithdrawPanel.SetActive(true);
+        LogOutPanel.SetActive(true);        
     }
 
     public void LogOutWithdrawAfterConfirmClick()
     {
+        Backend.BMember.Logout();
+        PlayerPrefs.DeleteAll();
         FadeInOut.instance.FadeIn(SceneNames.AccountScene);
+        
     }
 
 

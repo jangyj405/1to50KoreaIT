@@ -12,4 +12,9 @@ public class TimeAttackModeView : MonoBehaviour {
     {
         FadeInOut.instance.FadeIn(SceneNames.timeAtkModeScene);
     }
+
+    public void ButtonBack()
+    {
+        FadeInOut.instance.FadeIn(SceneNames.modeSelectScene);
+    }
 }

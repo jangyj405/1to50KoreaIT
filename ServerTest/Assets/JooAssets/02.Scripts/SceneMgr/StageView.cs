@@ -183,5 +183,10 @@ public class StageView : MonoBehaviour
 		CRyuGameDataMgr.GetInst().GetMapStageLevel = SelectedStage;
         FadeInOut.instance.FadeIn(SceneNames.stageModeScene);
     }
-		
+
+    public void ButtonBack()
+    {
+        FadeInOut.instance.FadeIn(SceneNames.modeSelectScene);
+    }
+
 }
