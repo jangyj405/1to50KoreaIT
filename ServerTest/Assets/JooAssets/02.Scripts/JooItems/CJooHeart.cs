@@ -323,12 +323,14 @@ public class CJooHeart : MonoBehaviour
 		if (pTimeWithHeart.RemainTime == -1)
 		{
 			CurHeart = pTimeWithHeart.HeartCount;
+			inDate = InsertHeartDataToServer(false);
 			return;
 		}
 
 		if (pTimeWithHeart.HeartCount >= maxHeart)
 		{
 			CurHeart = pTimeWithHeart.HeartCount;
+			inDate = InsertHeartDataToServer(false);
 			return;
 		}
 
@@ -370,7 +372,7 @@ public class CJooHeart : MonoBehaviour
 				}
 			}
 		}
-		
+		inDate = InsertHeartDataToServer(false);
 	}
 
 	public void OnClickBtnUseHeart(Action act)
