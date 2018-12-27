@@ -9,7 +9,7 @@ public class CJooIAP : MonoBehaviour, IStoreListener
 {
 	private IStoreController controller = null;
 	private IExtensionProvider provider = null;
-	public static readonly string[] productIDs = { "Dia010", "Dia033", "Dia055", "Dia120", "Dia180", "Dia300" };
+	public static readonly string[] productIDs = { "dia010", "dia033", "dia055", "dia120", "dia180", "dia300" };
 
 	[SerializeField]
 	private GameObject disableTouchPanel = null;
@@ -130,12 +130,5 @@ public class CJooIAP : MonoBehaviour, IStoreListener
 			Debug.Log("BuyProductID FAIL. Not initialized.");
 			disableTouchPanel.SetActive(false);
 		}
-	}
-
-
-	// Update is called once per frame
-	void Update ()
-	{
-		
 	}
 }

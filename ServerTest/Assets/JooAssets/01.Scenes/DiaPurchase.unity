@@ -433,7 +433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000009536743, y: 189}
+  m_AnchoredPosition: {x: 0, y: 189}
   m_SizeDelta: {x: -80.7, y: -595.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &111710866
@@ -505,7 +505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000009536743, y: -95}
+  m_AnchoredPosition: {x: 0, y: -95}
   m_SizeDelta: {x: -80.7, y: -595.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &125856210
@@ -580,7 +580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.041443788, y: 0.027}
   m_AnchorMax: {x: 0.97778106, y: 0.762614}
-  m_AnchoredPosition: {x: -5.50325, y: 0.1000061}
+  m_AnchoredPosition: {x: -5.5032654, y: 0.099975586}
   m_SizeDelta: {x: 0.20000076, y: -1.1000061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &220239726
@@ -1020,7 +1020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000009536743, y: 94}
+  m_AnchoredPosition: {x: 0, y: 94}
   m_SizeDelta: {x: -80.7, y: -595.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322454905
@@ -1512,7 +1512,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 10000
           m_FloatArgument: 0
-          m_StringArgument: Dia120
+          m_StringArgument: dia120
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1701,7 +1701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.080000006, y: 0.1722969}
   m_AnchorMax: {x: 0.92375004, y: 0.8291094}
-  m_AnchoredPosition: {x: -1.4999962, y: -0.99998474}
+  m_AnchoredPosition: {x: -1.5, y: -1}
   m_SizeDelta: {x: 0.099998474, y: -5.799988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591297350
@@ -2096,7 +2096,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 25000
           m_FloatArgument: 0
-          m_StringArgument: Dia300
+          m_StringArgument: dia300
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2656,7 +2656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076294, y: -14.6}
+  m_AnchoredPosition: {x: 0, y: -14.599976}
   m_SizeDelta: {x: -198, y: -918.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1049178473
@@ -3056,7 +3056,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3000
           m_FloatArgument: 0
-          m_StringArgument: Dia033
+          m_StringArgument: dia033
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3320,7 +3320,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1000
           m_FloatArgument: 0
-          m_StringArgument: Dia010
+          m_StringArgument: dia010
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3472,7 +3472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000013351, y: 54}
+  m_AnchoredPosition: {x: 0, y: 54}
   m_SizeDelta: {x: -128.9, y: -216.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1411243637
@@ -3859,7 +3859,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 15000
           m_FloatArgument: 0
-          m_StringArgument: Dia180
+          m_StringArgument: dia180
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3933,7 +3933,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000009536743, y: 0.0000076294}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -80.7, y: -595.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1548141703
@@ -4127,7 +4127,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5000
           m_FloatArgument: 0
-          m_StringArgument: Dia055
+          m_StringArgument: dia055
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4569,7 +4569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000009536743, y: -189.99997}
+  m_AnchoredPosition: {x: 0, y: -189.99994}
   m_SizeDelta: {x: -80.7, y: -595.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2028408175
@@ -4637,7 +4637,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3345113, y: 0}
   m_AnchorMax: {x: 0.80075574, y: 1}
-  m_AnchoredPosition: {x: 21.6, y: 0.0000049882}
+  m_AnchoredPosition: {x: 21.599998, y: 0.0000076293945}
   m_SizeDelta: {x: -1.3, y: 0.000038147}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2050861382

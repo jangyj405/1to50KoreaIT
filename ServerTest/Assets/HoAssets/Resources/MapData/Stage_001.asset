@@ -16,8 +16,8 @@ MonoBehaviour:
   rotationTimer: 0
   blinkCount: 0
   blinkTimer: 0
-  reverseCount: 0
-  reverseTimer: 0
+  reverseCount: 25
+  reverseTimer: 5
   scaleCount: 0
   scaleTimer: 0
   maxGameNum: 25
