@@ -200,7 +200,7 @@ public class csBlockControl : MonoBehaviour
 
         for (int i = 0; i < arrayInt.Length; i++)
         {
-            GameCore.Instance.m_TileList[arrayInt[i]].transform.DORotate(new Vector3(0f, -180f, 0f), 2f).SetLoops(1, LoopType.Restart);
+            GameCore.Instance.m_TileList[arrayInt[i]].transform.DORotate(new Vector3(0f, -180f, 0f), 1f);
         }	
         yield return null;
 
