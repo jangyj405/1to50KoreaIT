@@ -104,7 +104,10 @@ public class CJooLogin : MonoBehaviour
             serverStatusPanel.SetActive(true);
             return;
         }
-
+#if UNITY_EDITOR
+		TryLogin();
+		return;
+#endif
 		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
 	   .Builder()
 	   .RequestServerAuthCode(false)
@@ -116,7 +119,9 @@ public class CJooLogin : MonoBehaviour
 		//GPGS 시작.
 		PlayGamesPlatform.Activate();
 		GoogleLogin();
-		//TryLogin();
+
+
+		
     }
 	public void GoogleLogin()
 	{
