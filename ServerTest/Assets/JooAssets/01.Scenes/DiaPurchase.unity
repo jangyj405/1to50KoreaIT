@@ -243,7 +243,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: d0360f21d8835df4a94d87f511a75c11, type: 3}
-    m_FontSize: 65
+    m_FontSize: 74
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -254,7 +254,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uB2E4\uC774\uC544\uBAAC\uB4DC \uAD6C\uB9E4"
+  m_Text: "\uC2A4\uD0C0 \uAD6C\uB9E4"
 --- !u!222 &28750825
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1843,8 +1843,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -214.66, y: 0.0000023842}
-  m_SizeDelta: {x: 206.4, y: 50.8}
+  m_AnchoredPosition: {x: -179.6, y: -0.000077248}
+  m_SizeDelta: {x: 136.2, y: 77.806}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &619403191
 MonoBehaviour:
@@ -1867,7 +1867,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: d0360f21d8835df4a94d87f511a75c11, type: 3}
-    m_FontSize: 38
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -1878,7 +1878,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uBCF4\uC720 \uB2E4\uC774\uC544\uBAAC\uB4DC"
+  m_Text: "\uBCF4\uC720 \uC2A4\uD0C0"
 --- !u!222 &619403192
 CanvasRenderer:
   m_ObjectHideFlags: 0
