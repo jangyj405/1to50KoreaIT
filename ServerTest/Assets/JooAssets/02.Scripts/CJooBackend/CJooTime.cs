@@ -55,6 +55,10 @@ public class CJooTime
 
 	public CJooTime(string time)
 	{
+		if(time.Equals(""))
+		{
+			return;
+		}
 		string[] splitted = time.Split(m_split);
 		Year = Convert.ToInt32(splitted[0]);
 		Month = Convert.ToInt32(splitted[1]);
