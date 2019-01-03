@@ -8,6 +8,7 @@ using BackEnd;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Linq.Expressions;
+using UnityEngine.UI;
 
 [Serializable]
 public class JsonTableStage : JsonTableBase
@@ -38,6 +39,7 @@ public class StageView : MonoBehaviour
 {
 	public static StageView stageView = null;
 	public int SelectedStage;
+    public Text toggleText;
 
     public GameObject startScreen;
 	public CJooOneStageButton[] stageButtons = null;
@@ -47,7 +49,7 @@ public class StageView : MonoBehaviour
 	void Start()
 	{
 		SceneManager.LoadScene("AddtiveSceneETC", LoadSceneMode.Additive);
-
+        toggleText.text = "";
 		InitButtons();
 		//todo 
 		string tInDate = "";
@@ -234,4 +236,30 @@ public class StageView : MonoBehaviour
         FadeInOut.instance.FadeIn(SceneNames.modeSelectScene);
     }
 
+    public void ToggleClick(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                {
+                    toggleText.text = "시간을 -2초 해줍니다";
+                    break;
+                }
+            case 2:
+                {
+                    toggleText.text = "모든 방해 기능들을 제거합니다";
+                    break;
+                }
+            case 3:
+                {
+                    toggleText.text = "시간을 10% 느리게가게 만듭니다";
+                    break;
+                }
+            case 4:
+                {
+                    toggleText.text = "힌트를 바로 볼 수 있게 합니다";
+                    break;
+                }
+        }
+    }
 }
