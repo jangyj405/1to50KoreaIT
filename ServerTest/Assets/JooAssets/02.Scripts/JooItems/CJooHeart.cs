@@ -312,6 +312,7 @@ public class CJooHeart : MonoBehaviour
 
 	public void Initial(TimeWithHeart pTimeWithHeart)
 	{
+		
 		if (pTimeWithHeart.isFirst)
 		{
 			CurHeart = maxHeart;
@@ -383,14 +384,15 @@ public class CJooHeart : MonoBehaviour
 			return;
 		}
 		CurHeart--;
-		inDate = InsertHeartDataToServer(false);
+
+		//inDate = InsertHeartDataToServer(false);
 		if(act != null)
 		{
 			act();
 		}
 	}
 
-
+#if UNITY_EDITOR
 	void OnGUI()
 	{
 		if(GUI.Button(new Rect(0f,0f, 100f,100f),"Use Heart") == true)
@@ -398,10 +400,11 @@ public class CJooHeart : MonoBehaviour
 			OnClickBtnUseHeart(null);
 		}
 	}
-
+#endif
 	void OnDisable()
 	{
 		heartCountStc = CurHeart;
+		inDate = InsertHeartDataToServer(false);
 	}
 }
 

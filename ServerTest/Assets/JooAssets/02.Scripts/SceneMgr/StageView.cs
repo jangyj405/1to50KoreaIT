@@ -181,10 +181,55 @@ public class StageView : MonoBehaviour
     public void GameStartClick()
     {
 		CRyuGameDataMgr.GetInst().GetMapStageLevel = SelectedStage;
-        FadeInOut.instance.FadeIn(SceneNames.stageModeScene);
-    }
+		CJooHeart.jooHeart.OnClickBtnUseHeart(() => { CheckItemsUsed();  FadeInOut.instance.FadeIn(SceneNames.stageModeScene); });
+		
+	}
 
-    public void ButtonBack()
+	private void CheckItemsUsed()
+	{
+		//인데이트가 없으면 오류가 발생했다는 것
+		if (CJooItemUse.inDate.Equals(""))
+		{
+			//리턴 때린다
+			return;
+		}
+		//체크된 아이템 배열을 가져온다
+		bool[] isUsed = CJooItemUse.jooItem.IsItemsUsed();
+		//체크된 아이템이 있는지 없는지 체크
+		int ItemUsedCount = 0;
+		for (int i = 0; i< isUsed.Length;i++)
+		{
+			if(isUsed[i] == true)
+			{
+				ItemUsedCount++;
+			}
+		}
+		//아이템을 사용하지 않았으면 리턴때린다.
+		if(ItemUsedCount == 0)
+		{
+			return;
+		}
+		//1번:시간  2번:쉴드  3번:슬로우  4번:힌트
+		csGameData.GetInstance().IsClickTimeSkill = isUsed[0];
+		csGameData.GetInstance().IsClickShieldSkill = isUsed[1];
+		csGameData.GetInstance().IsClickSlowSkill = isUsed[2];
+		csGameData.GetInstance().IsClickHintSkill = isUsed[3];
+
+		Dictionary<string, int> itemsDict = new Dictionary<string, int>();
+		string tItemStr = "item";
+		for(int i = 0; i< CJooItemUse.jooItem.items.Length;i++)
+		{
+			string tKey = tItemStr + (i+1).ToString("00");
+			int tVal = (isUsed[i]) ? CJooItemUse.jooItem.items[i].ItemCount - 1 : CJooItemUse.jooItem.items[i].ItemCount;
+			itemsDict.Add(tKey, tVal);
+		}
+		Param tParam = new Param();
+		tParam.Add("itemDict", itemsDict);
+		BackendReturnObject bro = Backend.GameInfo.Update("item", CJooItemUse.inDate, tParam);
+		Debug.Log(bro.GetStatusCode());
+	}
+
+	public void ButtonBack()
     {
         FadeInOut.instance.FadeIn(SceneNames.modeSelectScene);
     }

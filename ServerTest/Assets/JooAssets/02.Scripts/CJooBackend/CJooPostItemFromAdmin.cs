@@ -57,12 +57,12 @@ public class CJooPostItemFromAdmin : CJooPostItem
 		List<string> keys = new List<string>();
 		List<int> values = new List<int>();
 
-		keys.AddRange(new string[] { "item01", "item02", "item03", "item04", "item05" });
+		keys.AddRange(new string[] { "item01", "item02", "item03", "item04" });
 		values.Add(tItem.item.M["item01"].ToInt());
 		values.Add(tItem.item.M["item02"].ToInt());
 		values.Add(tItem.item.M["item03"].ToInt());
 		values.Add(tItem.item.M["item04"].ToInt());
-		values.Add(tItem.item.M["item05"].ToInt());
+		
 
 		CJooTempItemContainer.Instance.AddToContainer(keys.ToArray(), values.ToArray());
 		//{"item":{"M":{"num":{"N":"1"},"item05":{"S":"3"},"item04":{"S":"3"},"item03":{"S":"3"},"item02":{"S":"3"},"item01":{"S":"3"},"content":{"S":"1위 선물"}}}}
@@ -94,13 +94,13 @@ public class CJooPostItemFromAdmin : CJooPostItem
 		List<string> keys = new List<string>();
 		List<int> values = new List<int>();
 
-		keys.AddRange(new string[] { "item01", "item02", "item03", "item04", "item05" });
+		keys.AddRange(new string[] { "item01", "item02", "item03", "item04" });
 		int val01 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item01"].N);
 		int val02 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item02"].N);
 		int val03 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item03"].N);
 		int val04 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item04"].N);
-		int val05 = Convert.ToInt32(itemFromServer.rows[0].itemDict.M["item05"].N);
-		values.AddRange(new int[] { val01, val02, val03, val04, val05 });
+
+		values.AddRange(new int[] { val01, val02, val03, val04 });
 		CJooTempItemContainer.Instance.AddToContainer(keys.ToArray(), values.ToArray());
 
 		Param itemParam = new Param();

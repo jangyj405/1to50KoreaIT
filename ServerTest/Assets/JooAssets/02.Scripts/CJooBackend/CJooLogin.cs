@@ -5,6 +5,9 @@ using BackEnd;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using UnityEngine.SocialPlatforms;
 
 
 public class CJooLogin : MonoBehaviour
@@ -90,8 +93,10 @@ public class CJooLogin : MonoBehaviour
 
     void Start()
     {
-		//PlayerPrefs.DeleteAll();
-        InitialBackend();
+#if UNITY_EDITOR
+		PlayerPrefs.DeleteAll();
+#endif
+		InitialBackend();
         bool isServerAvailable = ServerStatus.CheckServerStatus();
 
         if (isServerAvailable == false)
@@ -99,12 +104,67 @@ public class CJooLogin : MonoBehaviour
             serverStatusPanel.SetActive(true);
             return;
         }
-        TryLogin();
+
+		PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
+	   .Builder()
+	   .RequestServerAuthCode(false)
+	   .RequestIdToken()
+	   .Build();
+		//커스텀된 정보로 GPGS 초기화
+		PlayGamesPlatform.InitializeInstance(config);
+		PlayGamesPlatform.DebugLogEnabled = true;
+		//GPGS 시작.
+		PlayGamesPlatform.Activate();
+		GoogleLogin();
+		//TryLogin();
     }
+	public void GoogleLogin()
+	{
+		// 이미 로그인 된 경우
+		if (Social.localUser.authenticated == true)
+		{
+			BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs");
+			isSucceeded = true;
+		}
+		else
+		{
+			Social.localUser.Authenticate((bool success) => {
+				if (success)
+				{
+					// 로그인 성공 -> 뒤끝 서버에 획득한 구글 토큰으로 가입요청
+					BackendReturnObject BRO = Backend.BMember.AuthorizeFederation(GetTokens(), FederationType.Google, "gpgs");
+					isSucceeded = true;
+				}
+				else
+				{
+					// 로그인 실패
+					Debug.Log("Login failed for some reason");
+					serverStatusPanel.SetActive(true);
+				}
+			});
+		}
+	}
 
-   
+	// 구글 토큰 받아옴
+	public string GetTokens()
+	{
+		if (PlayGamesPlatform.Instance.localUser.authenticated)
+		{
+			// 유저 토큰 받기 첫번째 방법
+			string _IDtoken = PlayGamesPlatform.Instance.GetIdToken();
+			// 두번째 방법
+			// string _IDtoken = ((PlayGamesLocalUser)Social.localUser).GetIdToken();
+			return _IDtoken;
+		}
+		else
+		{
+			Debug.Log("접속되어있지 않습니다. PlayGamesPlatform.Instance.localUser.authenticated :  fail");
+			return null;
+		}
+	}
 
-    void InitialBackend()
+
+	void InitialBackend()
     {
         if (!Backend.IsInitialized)
         {
@@ -332,7 +392,7 @@ public class CJooLogin : MonoBehaviour
 		Backend.GameInfo.Insert("heart", heartParam);
 
 		Param itemParam = new Param();
-		itemParam.Add("itemDict", new Dictionary<string, int>() { { "item01", 0 }, { "item02", 0 }, { "item03", 0 }, { "item04", 0 }, { "item05", 0 } });
+		itemParam.Add("itemDict", new Dictionary<string, int>() { { "item01", 0 }, { "item02", 0 }, { "item03", 0 }, { "item04", 0 } });
 		Backend.GameInfo.Insert("item", itemParam);
 	}
 

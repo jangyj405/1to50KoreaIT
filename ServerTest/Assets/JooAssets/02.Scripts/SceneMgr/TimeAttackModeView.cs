@@ -10,7 +10,7 @@ public class TimeAttackModeView : MonoBehaviour {
 	}
     public void btnOnClick()
     {
-        FadeInOut.instance.FadeIn(SceneNames.timeAtkModeScene);
+		CJooHeart.jooHeart.OnClickBtnUseHeart(() => { FadeInOut.instance.FadeIn(SceneNames.timeAtkModeScene); });
     }
 
     public void ButtonBack()
