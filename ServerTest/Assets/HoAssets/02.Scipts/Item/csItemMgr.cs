@@ -108,14 +108,5 @@ public class csItemMgr
 		return time;
 	}
 
-	public void UseGodOfDestory()
-	{
-
-	}
-
-	public void UseGodOfHeart()
-	{
-
-	}
 
 }
