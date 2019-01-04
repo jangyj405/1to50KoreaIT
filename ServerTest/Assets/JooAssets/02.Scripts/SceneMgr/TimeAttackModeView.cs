@@ -10,8 +10,12 @@ public class TimeAttackModeView : MonoBehaviour {
 	}
     public void btnOnClick()
     {
+#if UNITY_EDITOR
+		FadeInOut.instance.FadeIn(SceneNames.timeAtkModeScene);
+		return;
+#endif
 		CJooHeart.jooHeart.OnClickBtnUseHeart(() => { FadeInOut.instance.FadeIn(SceneNames.timeAtkModeScene); });
-    }
+	}
 
     public void ButtonBack()
     {

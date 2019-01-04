@@ -185,6 +185,10 @@ public class StageView : MonoBehaviour
     public void GameStartClick()
     {
 		CRyuGameDataMgr.GetInst().GetMapStageLevel = SelectedStage;
+#if UNITY_EDITOR
+		CheckItemsUsed(); FadeInOut.instance.FadeIn(SceneNames.stageModeScene);
+		return;
+#endif
 		CJooHeart.jooHeart.OnClickBtnUseHeart(() => { CheckItemsUsed();  FadeInOut.instance.FadeIn(SceneNames.stageModeScene); });
 		
 	}

@@ -397,7 +397,7 @@ public class CJooLogin : MonoBehaviour
 		Backend.GameInfo.Insert("heart", heartParam);
 
 		Param itemParam = new Param();
-		itemParam.Add("itemDict", new Dictionary<string, int>() { { "item01", 0 }, { "item02", 0 }, { "item03", 0 }, { "item04", 0 } });
+		itemParam.Add("itemDict", new Dictionary<string, int>() { { "item01", 5 }, { "item02", 5 }, { "item03", 5 }, { "item04", 5 } });
 		Backend.GameInfo.Insert("item", itemParam);
 	}
 

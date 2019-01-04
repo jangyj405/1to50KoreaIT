@@ -150,10 +150,31 @@ public class CJooCreateNickName : MonoBehaviour
 				break;
 
 			default:
+				SetDefaultData();
 				CreateNickNameSucceeded();
 				break;
 		}
 	}
+	void SetDefaultData()
+	{
+		Param heartParam = new Param();
+		heartParam.Add("HeartCount", 5);
+
+		BackendReturnObject bro = Backend.Utils.GetServerTime();
+		string tTime = bro.GetReturnValue();
+		ServerTime sTime = JsonUtility.FromJson<ServerTime>(tTime);
+		CJooTime jooTime = new CJooTime(sTime);
+		Debug.Log(sTime.utcTime);
+		Debug.Log(jooTime.ToString());
+		heartParam.Add("RecordedDate", jooTime.ToString());
+		heartParam.Add("RemainTime", -1);
+		Backend.GameInfo.Insert("heart", heartParam);
+
+		Param itemParam = new Param();
+		itemParam.Add("itemDict", new Dictionary<string, int>() { { "item01", 5 }, { "item02", 5 }, { "item03", 5 }, { "item04", 5 } });
+		Backend.GameInfo.Insert("item", itemParam);
+	}
+
 	void PleaseCheckDuplicationFirst()
 	{
 		errorMessage.text = "중복확인 버튼을 터치하세요";

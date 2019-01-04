@@ -23,7 +23,7 @@ public class HeartView : MonoBehaviour {
     public void HeartPurchasClick(int heart)
     {
         int diaCount = heartDia[heart];
-        wordText.text = "다이아몬드 " + diaCount + "개를\n사용하여 하트 " + heart + "개를\n구매하시겠습니까?";
+        wordText.text = "스타 " + diaCount + "개를\n사용하여 하트 " + heart + "개를\n구매하시겠습니까?";
         if (HeartPurchasScreen != null)
             HeartPurchasScreen.SetActive(true);
     }
