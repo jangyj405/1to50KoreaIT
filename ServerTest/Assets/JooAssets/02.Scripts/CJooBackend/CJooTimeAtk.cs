@@ -63,7 +63,14 @@ public class CJooTimeAtk : MonoBehaviour
 	{
 		Initial();
 		BackendReturnObject broRank = Backend.Rank.RankList();
-		rankUUID = broRank.GetReturnValuetoJSON()["rows"][0]["uuid"]["S"].ToString();
+        try
+        {
+            rankUUID = broRank.GetReturnValuetoJSON()["rows"][0]["uuid"]["S"].ToString();
+        }
+	    catch
+        {
+
+        }
 		GetMyRankFromServer(rankUUID);
 		SetRankFromServer(rankUUID);
 	}

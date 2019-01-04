@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 660911240, guid: 77d6e49b5e6e74c909970a208a23105c, type: 3}
   m_Name: TheBackendSettings
   m_EditorClassIdentifier: 
-  clientAppID: b317fe10-edf3-11e8-b071-afa774b21781319
-  signatureKey: b3182520-edf3-11e8-b071-afa774b21781319
+  clientAppID: f1773bb0-0fd3-11e9-a1ce-0bf9d1bde867306
+  signatureKey: f132b8a0-0fd3-11e9-a1ce-0bf9d1bde867306
   packageName: com.Fictioniz.TouchNumber
   isDevelop: 1
   Version: 3.3.1
