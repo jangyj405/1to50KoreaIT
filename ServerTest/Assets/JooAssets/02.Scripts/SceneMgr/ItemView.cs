@@ -12,12 +12,12 @@ public class ItemView : MonoBehaviour
 	public GameObject ItemPurchasScreen;
 	public GameObject DiaPanel;
 	public Text diaText = null;
-	public Dictionary<string, int> itemPrices = new Dictionary<string, int>()
+	public Dictionary<string, string> itemUUIDs = new Dictionary<string, string>()
 	{
-		{ "item01", 3},
-		{ "item02", 4},
-		{ "item03", 3},
-		{ "item04", 4}
+		{ "item01", "e1bbe200-0ffd-11e9-a1ce-0bf9d1bde867"},
+		{ "item02", "e6c31d40-0ffd-11e9-97d6-a3a20419b215"},
+		{ "item03", "eb441180-0ffd-11e9-a1ce-0bf9d1bde867"},
+		{ "item04", "eea739b0-0ffd-11e9-97d6-a3a20419b215"}
 	};
 	private Dictionary<string, int> itemsHave = null;
 	void Start()
@@ -53,12 +53,54 @@ public class ItemView : MonoBehaviour
 			return tDictItem;
 		}
 	}
-
-	public void ItemPurchasClick()
+	private string selectedItem = "";
+	public void ItemPurchasClick(string pItemKey)
     {
         if (ItemPurchasScreen != null)
-            ItemPurchasScreen.SetActive(true);
+		{
+			selectedItem = pItemKey;
+			ItemPurchasScreen.SetActive(true);
+		}
     }
+	public void OnClickBtnBuyItem()
+	{
+		if(selectedItem.Equals(""))
+		{
+			ItemPurchasScreen.SetActive(false);
+			return;
+		}
+		string tUUID = itemUUIDs[selectedItem];
+
+		BackendReturnObject buyBro = Backend.TBC.UseTBC(tUUID, selectedItem);
+		bool isServerAvail = CJooBackendCommonErrors.IsAvailableWithServer(buyBro);
+		if (!isServerAvail)
+		{
+			ItemPurchasScreen.SetActive(false);
+			DiaPanel.gameObject.SetActive(true);
+			//서버 응답 실패
+			return;
+		}
+		string status = buyBro.GetStatusCode();
+		if (status.Equals("400"))
+		{
+			ItemPurchasScreen.SetActive(false);
+			DiaPanel.gameObject.SetActive(true);
+			//fail buying - TBC부족!!
+			return;
+		}
+
+		itemsHave[selectedItem] = itemsHave[selectedItem] + 1;
+		UpdateItem();
+		DiaPanel.gameObject.SetActive(true);
+	}
+
+	private void UpdateItem()
+	{
+		Param itemParam = new Param();
+		itemParam.Add("itemDict", itemsHave);
+
+		Backend.GameInfo.Update("item", inDate, itemParam);
+	}
 
     public void NoClick()
     {

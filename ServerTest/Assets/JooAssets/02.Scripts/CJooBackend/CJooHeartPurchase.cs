@@ -20,12 +20,12 @@ public class CJooHeartPurchase : MonoBehaviour
 
 	private static readonly Dictionary<string, string> heartProducts = new Dictionary<string, string>()
 	{
-		{ "heart005", "27dc9330-09ad-11e9-abe1-0b2a22724fe4"},
-		{ "heart011", "2e429b20-09ad-11e9-abe1-0b2a22724fe4"},
-		{ "heart025", "3de54aa0-09ad-11e9-abe1-0b2a22724fe4"},
-		{ "heart040", "47f1c550-09ad-11e9-904e-97f0fa6faabe"},
-		{ "heart055", "4f8b1d20-09ad-11e9-abe1-0b2a22724fe4"},
-		{ "heart099", "56185c20-09ad-11e9-904e-97f0fa6faabe"}
+		{ "heart005", "8f7283a0-0ffd-11e9-a1ce-0bf9d1bde867"},
+		{ "heart011", "95733a10-0ffd-11e9-97d6-a3a20419b215"},
+		{ "heart025", "9b63eaf0-0ffd-11e9-a1ce-0bf9d1bde867"},
+		{ "heart040", "a178c5a0-0ffd-11e9-97d6-a3a20419b215"},
+		{ "heart055", "a94ed850-0ffd-11e9-a1ce-0bf9d1bde867"},
+		{ "heart099", "ad646090-0ffd-11e9-97d6-a3a20419b215"}
 	};
 	/// <summary>
 	/// key - product ID.
