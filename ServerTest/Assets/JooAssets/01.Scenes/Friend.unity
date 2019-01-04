@@ -774,7 +774,6 @@ GameObject:
   - component: {fileID: 355740267}
   - component: {fileID: 355740269}
   - component: {fileID: 355740268}
-  - component: {fileID: 355740270}
   m_Layer: 5
   m_Name: Panel_ErrorMessage
   m_TagString: Untagged
@@ -836,19 +835,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355740266}
---- !u!114 &355740270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 355740266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce051cf10b276fd4d9705c6cc9fedccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txtErrorID: {fileID: 625298671}
-  txtErrorExplain: {fileID: 534901925}
 --- !u!1 &387299428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,6 +2499,7 @@ GameObject:
   - component: {fileID: 879318755}
   - component: {fileID: 879318757}
   - component: {fileID: 879318756}
+  - component: {fileID: 879318758}
   m_Layer: 5
   m_Name: Panel_ErroMessageBackground
   m_TagString: Untagged
@@ -2572,6 +2559,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 879318754}
+--- !u!114 &879318758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 879318754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce051cf10b276fd4d9705c6cc9fedccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtErrorID: {fileID: 625298671}
+  txtErrorExplain: {fileID: 534901925}
 --- !u!224 &886495820 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224259093391578602, guid: 4ad2eda0868fecf48bbcaaf8c366cb20,
@@ -4086,7 +4086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad63ab9354608d4089086a8ddbd34fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendAddScreen: {fileID: 1015919544}
+  friendAddScreen: {fileID: 872242092}
   friendCount: 0
   friendContent: {fileID: 1001606745}
   requestContent: {fileID: 663522471}
@@ -4109,8 +4109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nicknameField: {fileID: 473257442}
-  panelErrorMessage: {fileID: 355740270}
-  panelAddFriendGO: {fileID: 1015919544}
+  panelErrorMessage: {fileID: 879318758}
+  panelAddFriendGO: {fileID: 872242092}
 --- !u!1 &1523316536
 GameObject:
   m_ObjectHideFlags: 0

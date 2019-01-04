@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ItemView : MonoBehaviour {
 
     public GameObject ItemPurchasScreen;
+    public GameObject DiaPanel;
 
 	void Start () {
         ItemPurchasScreen.SetActive(false);
@@ -33,5 +34,10 @@ public class ItemView : MonoBehaviour {
         {
             FadeInOut.instance.FadeIn(SceneNames.timeAttackScene);
         }
+    }
+
+    public void ButtonDiaClose()
+    {
+        DiaPanel.SetActive(false);
     }
 }

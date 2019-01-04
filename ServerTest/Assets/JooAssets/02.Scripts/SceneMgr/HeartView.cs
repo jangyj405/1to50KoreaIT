@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class HeartView : MonoBehaviour {
     
     public GameObject HeartPurchasScreen;
+    public GameObject DiaPanel;
     public Text wordText;
     public Dictionary<int, int> heartDia = new Dictionary<int, int>()
     {
@@ -42,6 +43,10 @@ public class HeartView : MonoBehaviour {
         {
             FadeInOut.instance.FadeIn(SceneNames.timeAttackScene);
         }
+    }
+    public void ButtonDiaClose() 
+    {
+        DiaPanel.SetActive(false);
     }
 }
 

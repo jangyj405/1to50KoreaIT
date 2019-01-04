@@ -46,6 +46,8 @@ public class StageView : MonoBehaviour
 	private int radix = 0;
 	private Dictionary<string, int> stageDict;
 	public KeyValuePair<string, int>[] stageKVPair;
+    public GameObject HeartPanel;
+
 	void Start()
 	{
 		SceneManager.LoadScene("AddtiveSceneETC", LoadSceneMode.Additive);
@@ -262,4 +264,10 @@ public class StageView : MonoBehaviour
                 }
         }
     }
+
+    public void ButtonCloseClick()
+    {
+        HeartPanel.SetActive(false);
+    }
+
 }
