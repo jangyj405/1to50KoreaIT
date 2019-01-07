@@ -12,7 +12,7 @@ public class CJooBackendLogo : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-		Screen.SetResolution(720, 1280, true);
+		Screen.SetResolution(Screen.width, Screen.width * 16 / 9, true);
         Tween tTween = backendLogoImage.DOFade(0f, 2f).SetEase(Ease.OutSine).SetLoops(2, LoopType.Yoyo);
         tTween.OnComplete(() =>
             {
