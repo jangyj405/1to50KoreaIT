@@ -2027,6 +2027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb7a2d02aba20a498fd1ed1a8d18d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diaText: {fileID: 239263849}
 --- !u!114 &1914402018
 MonoBehaviour:
   m_ObjectHideFlags: 0

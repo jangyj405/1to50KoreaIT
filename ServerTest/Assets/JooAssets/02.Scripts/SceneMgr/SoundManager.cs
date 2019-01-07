@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour {
+public class SoundManager : MonoBehaviour
+{
 
     public static SoundManager instance = null;
     public AudioSource BGMAudioSource;
@@ -46,13 +47,15 @@ public class SoundManager : MonoBehaviour {
 
     public void SFXCorrectClick()
     {
-        SFXAudioSource.clip = SFXCorrectClickAudioClip;
-        SFXAudioSource.Play();
-    }
+		//SFXAudioSource.clip = SFXCorrectClickAudioClip;
+		//SFXAudioSource.Play();
+		SFXAudioSource.PlayOneShot(SFXCorrectClickAudioClip);
+	}
 
     public void SFXMissClick()
     {
-        SFXAudioSource.clip = SFXMissClickAudioClip;
-        SFXAudioSource.Play();
+		//SFXAudioSource.clip = SFXMissClickAudioClip;
+		//SFXAudioSource.Play();
+		SFXAudioSource.PlayOneShot(SFXMissClickAudioClip);
     }
 }

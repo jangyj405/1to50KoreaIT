@@ -7,6 +7,7 @@ using System;
 
 public class CJooTimeAtk : MonoBehaviour
 {
+	/*
 	private static class RankTime
 	{
 		private static readonly DateTime StartTime = new DateTime(2018, 12, 30, 15, 00,00,DateTimeKind.Utc);
@@ -51,7 +52,7 @@ public class CJooTimeAtk : MonoBehaviour
 			}
 		}
 	}
-
+	*/
 
 
 	public static string inDate = "";
@@ -94,7 +95,7 @@ public class CJooTimeAtk : MonoBehaviour
 		int tScoreInt = 0;
 		try
 		{
-			if(tinDate.Equals(""))
+			if (tinDate.Equals(""))
 			{
 				return;
 			}
@@ -109,20 +110,14 @@ public class CJooTimeAtk : MonoBehaviour
 		}
 		catch
 		{
+			tScoreInt = 0;
 			inDate = "";
-			
+
 		}
 		finally
 		{
-			bool isAvail = RankTime.IsAvailableScore(new CJooTime(updateTime));
-			if(isAvail)
-			{
-				CJooStageClearData.Instance.SetTimeAtkScore(tScoreInt, inDate);
-			}
-			else
-			{
-				CJooStageClearData.Instance.SetTimeAtkScore(0, inDate);
-			}
+			//bool isAvail = RankTime.IsAvailableScore(new CJooTime(updateTime));
+			CJooStageClearData.Instance.SetTimeAtkScore(tScoreInt, inDate);
 		}
 
 
