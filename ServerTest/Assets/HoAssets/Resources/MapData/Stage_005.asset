@@ -22,5 +22,5 @@ MonoBehaviour:
   scaleTimer: 0
   maxGameNum: 25
   islimitTimer: 1
-  limitTimer: 2
+  limitTimer: 40
   isEdgeRotation: 0

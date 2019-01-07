@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 14
+  serializedVersion: 15
   productGUID: be0c2434811c9f54a9c676acce984aab
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -161,7 +161,7 @@ PlayerSettings:
     Android: com.Fictioniz.TouchNumbers
     Standalone: com.Fictioniz.TouchNumber
   buildNumber: {}
-  AndroidBundleVersionCode: 4
+  AndroidBundleVersionCode: 5
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 26
   AndroidPreferredInstallLocation: 1
@@ -241,7 +241,7 @@ PlayerSettings:
   tvOSManualSigningProvisioningProfileID: 
   appleEnableAutomaticSigning: 0
   clonedFromGUID: 00000000000000000000000000000000
-  AndroidTargetDevice: 0
+  AndroidTargetArchitectures: 5
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: C:/Users/HSK/Desktop/jin/1to50KoreaIT/ServerTest/touchNumbers/tnRelease.keystore
@@ -289,6 +289,13 @@ PlayerSettings:
       m_Icon: {fileID: 2800000, guid: f2522db6eefdb31459e5df3073ba934b, type: 3}
       m_Width: 36
       m_Height: 36
+      m_Kind: 0
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: f2522db6eefdb31459e5df3073ba934b, type: 3}
+      m_Width: 128
+      m_Height: 128
       m_Kind: 0
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
@@ -440,6 +447,7 @@ PlayerSettings:
   switchAllowsVideoCapturing: 1
   switchAllowsRuntimeAddOnContentInstall: 0
   switchDataLossConfirmation: 0
+  switchUserAccountLockEnabled: 0
   switchSupportedNpadStyles: 3
   switchSocketConfigEnabled: 0
   switchTcpInitialSendBufferSize: 32
