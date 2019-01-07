@@ -619,13 +619,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1495773729}
         m_MethodName: ItemPurchasClick
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: item04
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -887,13 +887,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1495773729}
         m_MethodName: ItemPurchasClick
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: item03
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1164,13 +1164,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1495773729}
         m_MethodName: ItemPurchasClick
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: item02
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1850,13 +1850,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1495773729}
         m_MethodName: ItemPurchasClick
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: item01
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2119,6 +2119,7 @@ GameObject:
   - component: {fileID: 822500304}
   - component: {fileID: 822500306}
   - component: {fileID: 822500305}
+  - component: {fileID: 822500307}
   m_Layer: 5
   m_Name: Panel_DiaBackground
   m_TagString: Untagged
@@ -2181,6 +2182,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 822500303}
+--- !u!114 &822500307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 822500303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e6730aa2420e364885723defd2a4ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtMessage: {fileID: 1420483520}
 --- !u!1 &829503488
 GameObject:
   m_ObjectHideFlags: 0
@@ -3459,12 +3472,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495773724}
-        m_MethodName: 
+      - m_Target: {fileID: 1495773729}
+        m_MethodName: OnClickBtnBuyItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3761,8 +3774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemPurchasScreen: {fileID: 1043142554}
-  DiaPanel: {fileID: 822500303}
-  diaText: {fileID: 0}
+  DiaPanel: {fileID: 822500307}
+  diaText: {fileID: 2050861382}
 --- !u!1 &1509953455
 GameObject:
   m_ObjectHideFlags: 0

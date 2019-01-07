@@ -10,9 +10,9 @@ public class ItemView : MonoBehaviour
 {
 
 	public GameObject ItemPurchasScreen;
-	public GameObject DiaPanel;
+	public CJooDiaPurPanel DiaPanel;
 	public Text diaText = null;
-	public Dictionary<string, string> itemUUIDs = new Dictionary<string, string>()
+	private Dictionary<string, string> itemUUIDs = new Dictionary<string, string>()
 	{
 		{ "item01", "e1bbe200-0ffd-11e9-a1ce-0bf9d1bde867"},
 		{ "item02", "e6c31d40-0ffd-11e9-97d6-a3a20419b215"},
@@ -24,6 +24,7 @@ public class ItemView : MonoBehaviour
 	{
 		ItemPurchasScreen.SetActive(false);
 		diaText.text = CJooDiaCounter.GetTBCAmount().ToString();
+		itemsHave = GetItemsFromServer();
 	}
 
 	
@@ -69,6 +70,13 @@ public class ItemView : MonoBehaviour
 			ItemPurchasScreen.SetActive(false);
 			return;
 		}
+		if(itemsHave == null)
+		{
+			ItemPurchasScreen.SetActive(false);
+			DiaPanel.gameObject.SetActive(true);
+			DiaPanel.Message = "서버 연결에 실패했습니다.";
+			return;
+		}
 		string tUUID = itemUUIDs[selectedItem];
 
 		BackendReturnObject buyBro = Backend.TBC.UseTBC(tUUID, selectedItem);
@@ -77,6 +85,7 @@ public class ItemView : MonoBehaviour
 		{
 			ItemPurchasScreen.SetActive(false);
 			DiaPanel.gameObject.SetActive(true);
+			DiaPanel.Message = "서버 연결에 실패했습니다.";
 			//서버 응답 실패
 			return;
 		}
@@ -85,6 +94,7 @@ public class ItemView : MonoBehaviour
 		{
 			ItemPurchasScreen.SetActive(false);
 			DiaPanel.gameObject.SetActive(true);
+			DiaPanel.Message = "스타가 부족합니다.";
 			//fail buying - TBC부족!!
 			return;
 		}
@@ -92,6 +102,7 @@ public class ItemView : MonoBehaviour
 		itemsHave[selectedItem] = itemsHave[selectedItem] + 1;
 		UpdateItem();
 		DiaPanel.gameObject.SetActive(true);
+		DiaPanel.Message = "아이템 구매 성공!";
 	}
 
 	private void UpdateItem()
@@ -121,6 +132,6 @@ public class ItemView : MonoBehaviour
 
     public void ButtonDiaClose()
     {
-        DiaPanel.SetActive(false);
+        DiaPanel.gameObject.SetActive(false);
     }
 }
