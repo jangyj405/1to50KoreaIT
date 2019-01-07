@@ -249,13 +249,22 @@ public class CJooHeart : MonoBehaviour
 	
 		TimeWithHeart tTwh = GetTimeWithHeartFromServer();
 		Initial(tTwh);
-		StartCoroutine(TimeDecrease());
-
+		if(tTwh != null)
+		{
+			StartCoroutine(TimeDecrease());
+		}
 	}
 
 	private TimeWithHeart GetTimeWithHeartFromServer()
 	{
 		BackendReturnObject bro = Backend.GameInfo.GetPrivateContents("heart");
+
+		bool isAvail = CJooBackendCommonErrors.IsAvailableWithServer(bro);
+		if(!isAvail)
+		{
+			return null;
+		}
+
 		string tResultValue = bro.GetReturnValue();
 		JsonTableHeartRows heartTable = JsonUtility.FromJson<JsonTableHeartRows>(tResultValue);
 		Debug.Log(tResultValue);
@@ -312,7 +321,10 @@ public class CJooHeart : MonoBehaviour
 
 	public void Initial(TimeWithHeart pTimeWithHeart)
 	{
-		
+		if(pTimeWithHeart == null)
+		{
+			return;
+		}
 		if (pTimeWithHeart.isFirst)
 		{
 			CurHeart = maxHeart;
