@@ -49,18 +49,7 @@ public class CJooHeartPurchase : MonoBehaviour
 
 	void SetTbcOnUI()
 	{
-		BackendReturnObject bro = Backend.TBC.GetTBC();
-		LitJson.JsonData tbcData = bro.GetReturnValuetoJSON();
-		try
-		{
-			string tbc = tbcData["amountTBC"].ToString();
-			tbcText.text = tbc;
-		}
-		catch
-		{
-			tbcText.text = string.Empty;
-			Debug.Log(bro.GetReturnValue());
-		}
+		tbcText.text = CJooDiaCounter.GetTBCAmount().ToString();
 	}
 
 	public void OnClickBtnSelectProduct(string pProductID)
