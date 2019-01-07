@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DiaBuy : MonoBehaviour {
+public class DiaBuy : MonoBehaviour
+{
 
     public GameObject DiaPurchasScreen;
     public Text wordText;
@@ -17,9 +18,10 @@ public class DiaBuy : MonoBehaviour {
         {15000, 180},
         {25000, 310}
     };
-
+	public Text diaText = null;
     void Start()
     {
+		diaText.text = CJooDiaCounter.GetTBCAmount().ToString();
         DiaPurchasScreen.SetActive(false);
     }
 	

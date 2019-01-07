@@ -3763,6 +3763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiaPurchasScreen: {fileID: 1043142554}
   wordText: {fileID: 1390468713}
+  diaText: {fileID: 2050861382}
 --- !u!114 &1495773730
 MonoBehaviour:
   m_ObjectHideFlags: 0
