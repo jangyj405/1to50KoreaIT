@@ -987,7 +987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000012219, y: 10}
+  m_AnchoredPosition: {x: 0.000011444092, y: 10}
   m_SizeDelta: {x: -47.9, y: -299.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &809165022
@@ -2293,7 +2293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015259, y: -16}
+  m_AnchoredPosition: {x: 0.000015258789, y: -16}
   m_SizeDelta: {x: -199.9, y: -1091.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1261967044
@@ -2866,7 +2866,7 @@ MonoBehaviour:
   m_TileSize: {x: 1, y: 1}
   m_TileSpacing: {x: 0.1, y: 0.1}
   m_TileNum: {x: 5, y: 5}
-  m_MaxGameNum: 50
+  m_MaxGameNum: 65
   m_TilePrefab: {fileID: 1704083655835138, guid: 89bb3520cf1bacf4590835c2ac83882f,
     type: 2}
   m_NextText:
@@ -3639,7 +3639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000061989, y: -0.000022888}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: -193.3, y: -629.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1867343932

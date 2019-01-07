@@ -282,11 +282,12 @@ public class GameCore : MonoBehaviour {
     {
         tile.FadeOut();
         yield return new WaitForSeconds(0.25f);
-        if(m_NumOrder>26)
-        {
-            tile.gameObject.SetActive(false);
-            //Destroy(tile);
-        }
+        //if(m_NumOrder>26)
+        //if(m_MaxGameNum - hasOnGame <= 25)
+        //{
+        //    tile.gameObject.SetActive(false);
+        //    //Destroy(tile);
+        //}
        
         while (tile.IsPlaying())
             yield return null;
@@ -299,10 +300,12 @@ public class GameCore : MonoBehaviour {
             m_TileList.Add(tile);//새로나온 타일을 list에 추가
             m_Index++;//25를 증가 시킨다  
             tile.FadeIn();//타일 페이드인 효과
-            hasOnGame++;
-            
+            hasOnGame++; 
         }
-
+        else
+        {
+            tile.gameObject.SetActive(false);
+        }
     }
     IEnumerator UpdateNextNum()
     {
@@ -370,7 +373,7 @@ public class GameCore : MonoBehaviour {
 
     void Init()
     {
-		m_MaxGameNum = 50;
+		//m_MaxGameNum = 65;
 		if (m_MapData.MaxGameNum >= 1) {
 			m_MaxGameNum = m_MapData.MaxGameNum;
 		}
