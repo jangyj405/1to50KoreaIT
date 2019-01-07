@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class ETC : MonoBehaviour {
-    
+public class ETC : MonoBehaviour
+{
+	public Text diaText = null;
+	void Start()
+	{
+		diaText.text = CJooDiaCounter.GetTBCAmount().ToString();
+	}
     public void DiaPurchasClick()
     {
         FadeInOut.instance.FadeIn(SceneNames.diaPurchaseScene);
