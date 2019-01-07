@@ -28,7 +28,7 @@ public class CJooIAP : MonoBehaviour, IStoreListener
 
 	public void OnPurchaseFailed(Product i, PurchaseFailureReason p)
 	{
-		throw new System.NotImplementedException();
+		disableTouchPanel.SetActive(false);
 	}
 
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
