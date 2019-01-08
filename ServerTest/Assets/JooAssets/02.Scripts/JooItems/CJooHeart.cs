@@ -393,6 +393,7 @@ public class CJooHeart : MonoBehaviour
 		if (CurHeart <= 0)
 		{
 			Debug.Log("하트가 모자라!");
+            DisplayHeartWarning();
 			return;
 		}
 		CurHeart--;
@@ -403,6 +404,16 @@ public class CJooHeart : MonoBehaviour
 			act();
 		}
 	}
+
+    public GameObject heartWarning = null;
+    public void OnClickBtnCloseHeartWarningMessage()
+    {
+        heartWarning.SetActive(false);
+    }
+    public void DisplayHeartWarning()
+    {
+        heartWarning.SetActive(true);
+    }
 
 #if UNITY_EDITOR
 	void OnGUI()
