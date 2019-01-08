@@ -18,10 +18,9 @@ public class DiaBuy : MonoBehaviour
         {15000, 180},
         {25000, 310}
     };
-	public Text diaText = null;
+	
     void Start()
     {
-		diaText.text = CJooDiaCounter.GetTBCAmount().ToString();
         DiaPurchasScreen.SetActive(false);
     }
 	

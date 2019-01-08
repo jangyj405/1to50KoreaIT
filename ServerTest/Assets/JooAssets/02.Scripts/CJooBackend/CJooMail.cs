@@ -286,6 +286,23 @@ public class CJooMail : MonoBehaviour
 		}
 		//todo 아이템 갱신
 		UpdateItem();
+		RemovePostInstancesAll();
+	}
+
+	protected void RemovePostInstancesAll()
+	{
+		foreach(var item in postItemDic.Keys)
+		{
+			try
+			{
+				Destroy(postItemDic[item].gameObject);
+			}
+			catch
+			{
+				continue;
+			}
+		}
+		postItemDic.Clear();
 	}
 
 	void UpdateHeart(int pReceivedHeart)

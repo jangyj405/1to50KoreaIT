@@ -101,6 +101,7 @@ public class ItemView : MonoBehaviour
 
 		itemsHave[selectedItem] = itemsHave[selectedItem] + 1;
 		UpdateItem();
+		diaText.text = CJooDiaCounter.GetTBCAmount();
 		ItemPurchasScreen.SetActive(false);
 		DiaPanel.gameObject.SetActive(true);
 		DiaPanel.Message = "아이템 구매 성공!";

@@ -66,14 +66,19 @@ public class CJooIAP : MonoBehaviour, IStoreListener
 		// Return a flag indicating whether this product has completely been received, or if the application needs 
 		// to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
 		// saving purchased products to the cloud, and when that save is delayed. 
+
+		//Update Dia
+		diaText.text = CJooDiaCounter.GetTBCAmount().ToString();
 		disableTouchPanel.SetActive(false);
 		return PurchaseProcessingResult.Complete;
 	}
-
+	[SerializeField]
+	UnityEngine.UI.Text diaText = null;
 	// Use this for initialization
 	void Start ()
 	{
-		if(controller == null)
+		diaText.text = CJooDiaCounter.GetTBCAmount().ToString();
+		if (controller == null)
 		{
 			InitializePurchasing();
 		}

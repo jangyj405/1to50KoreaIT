@@ -30,6 +30,7 @@ public class CJooRequestedFriend : Friend
 		}
 
 		Debug.Log(NickName + "과 친구가 되었다!");
+		FriendView.friendView.FriendAddReal(NickName, InDate, false);
 		Destroy(gameObject);
 	}
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using BackEnd;
 using Newtonsoft.Json;
 using System;
+using UnityEngine.UI;
 
 public class CJooTimeAtk : MonoBehaviour
 {
@@ -126,7 +127,7 @@ public class CJooTimeAtk : MonoBehaviour
 
 	void OnDisable()
 	{
-		
+		//0.87 1 0.6 1
 	}
 
 
@@ -157,6 +158,7 @@ public class CJooTimeAtk : MonoBehaviour
 			RankTimeAtk tRank = JsonConvert.DeserializeObject<RankTimeAtk>(tBro.GetReturnValue());
 
 			CJooTimeAtkRank tRankPanel = Instantiate<CJooTimeAtkRank>(panelRankPF, content.transform);
+			tRankPanel.GetComponent<Image>().color = new Color(0.87f, 1f, 0.6f, 1f);
 			tRankPanel.InitialPanel(tRank.rows[0].rank.ToInt(), tRank.rows[0].nickname.S, tRank.rows[0].score.ToInt());
 			CJooStageClearData.Instance.SetTimeAtkScore(tRank.rows[0].score.ToInt(), inDate);
 		}
