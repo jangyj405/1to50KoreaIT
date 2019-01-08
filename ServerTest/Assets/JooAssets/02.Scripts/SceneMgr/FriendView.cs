@@ -54,6 +54,7 @@ public class FriendView : MonoBehaviour
         }
     }
 
+	/*
     public void FriendAddReal()
     {
         //GameObject friend = (GameObject)Instantiate(friendList, friendContent.position, Quaternion.identity);
@@ -64,7 +65,7 @@ public class FriendView : MonoBehaviour
         instFriend.InitialOneFriend(nickNameInputField.text, "2018-11-11T08:00:00");
         //instFriend.NickName = "";
     }
-
+	*/
 
     public void FriendAddReal(string pNickName, string pInDate, bool hasSentHeart)
     {

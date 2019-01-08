@@ -58,6 +58,7 @@ public class CJooPostItemFromUser : CJooPostItem
 
 	protected override void DeleteThis()
 	{
+		CJooMail.mail.postItemDic.Remove(InDate);
 		Destroy(gameObject);
 	}
 
